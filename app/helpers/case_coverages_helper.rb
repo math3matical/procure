@@ -1,0 +1,2 @@
+module CaseCoveragesHelper
+end

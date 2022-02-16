@@ -1,0 +1,58 @@
+<%= link_to "Back", :back %>
+
+<br></br>
+
+<%= form_with model: network_tag do |form| %>
+  <div>
+    <%= form.label :ipv4 %><br>
+    <%= form.check_box :ipv4 %><br>
+  </div>
+  <br>
+
+  <div>
+    <%= form.label :ipv6 %><br>
+    <%= form.check_box :ipv6 %><br>
+  </div>
+  <br>
+
+  <div>
+    <%= form.label :bond %><br>
+    <%= form.check_box :bond %><br>
+  </div>
+  <br>
+
+  <div>
+    <%= form.label :vlan %><br>
+    <%= form.check_box :vlan %><br>
+  </div>
+  <br>
+
+  <div>
+    <%= form.label :bridge %><br>
+    <%= form.check_box :bridge %><br>
+  </div>
+  <br>
+
+  <div>
+    <%= form.label :proxy %><br>
+    <%= form.check_box :proxy %><br>
+  </div>
+  <br>
+
+  <div>
+    <%= form.label :firewall %><br>
+    <%= form.check_box :firewall %><br>
+  </div>
+  <br>
+
+
+  <%= form.hidden_field :network_taggable_id, value: network_taggable_id %>
+  <%= form.hidden_field :network_taggable_type, value: network_taggable_type  %>
+
+  <div>
+    <%= form.submit %>
+  </div>
+</div>
+
+<% end %>
+

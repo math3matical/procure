@@ -1,0 +1,126 @@
+<%= link_to "Back", :back %>
+
+<br></br>
+
+<%= form_with model: satellite_tag do |form| %>
+  <div>
+    <%= form.label :version %><br>
+    <%= form.text_field :version %><br>
+  </div>
+  <br>
+
+  <div>
+    <%= form.label :pulp %><br>
+    <%= form.check_box :pulp %><br>
+  </div>
+  <br>
+
+  <div>
+    <%= form.label :postgres %><br>
+    <%= form.check_box :postgres %><br>
+  </div>
+  <br>
+
+  <div>
+    <%= form.label :foreman_proxy %><br>
+    <%= form.check_box :foreman_proxy %><br>
+  </div>
+  <br>
+
+  <div>
+    <%= form.label :installer %><br>
+    <%= form.check_box :installer %><br>
+  </div>
+  <br>
+
+  <div>
+    <%= form.label :publish %><br>
+    <%= form.check_box :publish %><br>
+  </div>
+  <br>
+
+  <div>
+    <%= form.label :promote %><br>
+    <%= form.check_box :promote %><br>
+  </div>
+  <br>
+
+  <div>
+    <%= form.label :contentview %><br>
+    <%= form.check_box :contentview %><br>
+  </div>
+  <br>
+
+  <div>
+    <%= form.label :capsule %><br>
+    <%= form.check_box :capsule %><br>
+  </div>
+  <br>
+
+  <div>
+    <%= form.label :sync %><br>
+    <%= form.check_box :sync %><br>
+  </div>
+  <br>
+
+  <div>
+    <%= form.label :repository %><br>
+    <%= form.check_box :repository %><br>
+  </div>
+  <br>
+
+  <div>
+    <%= form.label :metadata %><br>
+    <%= form.check_box :metadata %><br>
+  </div>
+  <br>
+
+  <div>
+    <%= form.label :mongo %><br>
+    <%= form.check_box :mongo %><br>
+  </div>
+  <br>
+
+  <div>
+    <%= form.label :redis %><br>
+    <%= form.check_box :redis %><br>
+  </div>
+  <br>
+
+  <div>
+    <%= form.label :puma %><br>
+    <%= form.check_box :puma %><br>
+  </div>
+  <br>
+
+  <div>
+    <%= form.label :http %><br>
+    <%= form.check_box :http %><br>
+  </div>
+  <br>
+
+  <div>
+    <%= form.label :reports %><br>
+    <%= form.check_box :reports %><br>
+  </div>
+  <br>
+
+  <div>
+    <%= form.label :ui %><br>
+    <%= form.check_box :ui %><br>
+  </div>
+  <br>
+
+
+  <%= form.hidden_field :satellite_taggable_id, value: satellite_taggable_id %>
+  <%= form.hidden_field :satellite_taggable_type, value: satellite_taggable_type %>
+  <%#= form.hidden_field :satellite_taggable_id, value: params[:satellite_taggable_id] %>
+  <%#= form.hidden_field :satellite_taggable_type, value: params[:satellite_taggable_type] %>
+
+  <div>
+    <%= form.submit %>
+  </div>
+</div>
+
+<% end %>
+

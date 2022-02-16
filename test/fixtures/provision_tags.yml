@@ -1,0 +1,33 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  version: 1.5
+  provision_taggable_id: 1
+  provision_taggable_type: MyString
+  contentview: false
+  capsule: false
+  http: false
+  ui: false
+  pxe: false
+  bootstrap: false
+  kickstart: false
+  discover: false
+  image: false
+  compute: false
+  notes: MyText
+
+two:
+  version: 1.5
+  provision_taggable_id: 1
+  provision_taggable_type: MyString
+  contentview: false
+  capsule: false
+  http: false
+  ui: false
+  pxe: false
+  bootstrap: false
+  kickstart: false
+  discover: false
+  image: false
+  compute: false
+  notes: MyText

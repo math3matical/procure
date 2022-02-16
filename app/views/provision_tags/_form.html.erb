@@ -1,0 +1,99 @@
+<%= link_to "Back", :back %>
+
+<br></br>
+
+<%= form_with model: provision_tag do |form| %>
+  <div>
+    <%= form.label :version %><br>
+    <%= form.text_field :version %><br>
+  </div>
+  <br>
+  
+  <div>
+    <%= form.label :contentview %><br>
+    <%= form.check_box :contentview %><br>
+  </div>
+  <br>
+
+  <div>
+    <%= form.label :capsule %><br>
+    <%= form.check_box :capsule %><br>
+  </div>
+  <br>
+
+  <div>
+    <%= form.label :http %><br>
+    <%= form.check_box :http %><br>
+  </div>
+  <br>
+
+  <div>
+    <%= form.label :ui %><br>
+    <%= form.check_box :ui %><br>
+  </div>
+  <br>
+
+  <div>
+    <%= form.label :pxe %><br>
+    <%= form.check_box :pxe %><br>
+  </div>
+  <br>
+
+  <div>
+    <%= form.label :bootstrap %><br>
+    <%= form.check_box :bootstrap %><br>
+  </div>
+  <br>
+
+  <div>
+    <%= form.label :kickstart %><br>
+    <%= form.check_box :kickstart %><br>
+  </div>
+  <br>
+
+  <div>
+    <%= form.label :discover %><br>
+    <%= form.check_box :discover %><br>
+  </div>
+  <br>
+
+  <div>
+    <%= form.label :image %><br>
+    <%= form.check_box :image %><br>
+  </div>
+  <br>
+
+  <div>
+    <%= form.label :compute %><br>
+    <%= form.check_box :compute %><br>
+  </div>
+  <br>
+
+  <div>
+    <%= form.label :notes %><br>
+    <%= form.check_box :notes %><br>
+  </div>
+  <br>
+
+  <div>
+    <%= form.label :bootdisk %><br>
+    <%= form.check_box :bootdisk %><br>
+  </div>
+  <br>
+
+  <div>
+    <%= form.label :ipxe %><br>
+    <%= form.check_box :ipxe %><br>
+  </div>
+  <br>
+
+  <%= form.hidden_field :provision_taggable_id, value: provision_taggable_id %>
+  <%= form.hidden_field :provision_taggable_type, value: provision_taggable_type %>
+
+  <div>
+    <%= form.submit %>
+  </div>
+</div>
+
+<% end %>
+

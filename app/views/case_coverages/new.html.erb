@@ -1,0 +1,14 @@
+<%#</h3>New Case Coverage</h3>
+<p style="font-size: 13px">Find me in app/views/case_coverages/new.html.erb</p>%>
+<br></br>
+<%#= params[:case_id] %>
+<%#= @case = Case.find(params[:case_id])  %>
+<%# render "form" (:case_id => @case.id) %>
+<% if params[:case_id] %>
+  <% case_id = params[:case_id] %>
+<% end %>
+
+<div <%# style="background: #f2bb66; border: solid green; width:60%" %> >
+  <%= render partial:  "form", locals:  {case_id: case_id, case_coverage: @case_coverage} %>
+</div>
+

@@ -1,0 +1,14 @@
+<%#</h3>New Solution Coverage</h3>
+<p style="font-size: 13px">Find me in app/views/solution_coverages/new.html.erb</p>%>
+<br></br>
+<%#= params[:solution_id] %>
+<%#= @solution = Solution.find(params[:solution_id])  %>
+<%# render "form" (:solution_id => @solution.id) %>
+<% if params[:solution_id] %>
+  <% solution_id = params[:solution_id] %>
+<% end %>
+
+<div <%# style="background: #f2bb66; border: solid green; width:60%" %> >
+  <%= render partial:  "form", locals:  {solution_id: solution_id, solution_coverage: @solution_coverage} %>
+</div>
+

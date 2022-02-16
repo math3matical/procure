@@ -1,0 +1,17 @@
+<h3>Comment Edit View</h3>
+<p style="font-size: 13px">Find me in app/views/comments/edit.html.erb</p>
+<br></br>
+
+<%# if params[:solution_id] %>
+    <%# @comment = Comment.find_by(id: params[:id]) %>
+    <%# @generic = Solution.find_by(id: params[:solution_id]) %>
+<%# elsif params[:bug_id] %>
+  <%# @generic = @bug %>
+<%# elsif params[:case_id] %>
+  <%# @generic = @case %>
+<%# end %>
+<%# @solution.id %>
+
+<%= link_to "Back", :back %>
+
+<%= render 'comments/form2', @comment %>

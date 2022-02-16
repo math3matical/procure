@@ -1,0 +1,82 @@
+<html>
+<body style="background-color: #ffffc2">
+</body>
+</html>
+
+<style>
+.box1 {
+  overflow: hidden;
+
+  border: solid blue;
+  padding: 20px;
+  margin: 10px;
+  width: 90%;
+  background: lightcyan;
+}
+.nolink {
+  text-decoration: none;
+  color: darkblue;
+}
+.uplink {
+  text-decoration: none;
+  color: darkblue;
+  font-size: 20px;
+}
+</style>
+
+<%#<h3>Article Show View</h3>
+<p style="font-size:13px">Find me in app/views/articles/show.html.erb</p>%>
+
+<br></br>
+
+<p>
+  <%= link_to "Work", :stuff, class: "uplink" %> |
+  <%= link_to "Articles", :articles, class: "uplink" %> |
+  <%= link_to "Engineers", :engineers, class: "uplink" %>
+</p>
+
+<p style="font-size:16px">
+  <%= link_to "Cases", :cases, class: "nolink" %> |
+  <%= link_to "Solutions", :solutions, class: "nolink" %> |
+  <%= link_to "Bugs", :bugs, class: "nolink" %>
+</p>
+
+
+<h2>Article: <%= @articles.title %></h2>
+<p style="font-size:14px">
+  <%#  <a href="/articles">Articles</a> %>
+  <%= link_to "Edit", edit_article_path(@articles), class: "nolink" %> |
+  <%= link_to "Remove", article_path(@articles), data: {
+                    turbo_method: :delete,
+                    turbo_confirm: "Are you sure?"
+                  }, class: "nolink" %> |
+  <%= link_to "Comment", new_article_comment_path(@articles), class: "nolink" %>
+</p>
+
+<div class="box1">
+  <p>Title: <%= @articles.title %></p>
+  <p>Body: <%= @articles.body %></p>
+  <p>Created: <%= @articles.created_at %></p>
+  <p>Updated: <%= @articles.updated_at %></p>
+</div>
+
+
+<div class="box2">
+  <h3>Comments</h3>
+  <%= render @articles.comments %>
+</div>
+
+<style>
+div {
+  border: solid blue;
+  padding: 20px;
+  margin: 10px;
+}
+.box2 {
+  overflow: hidden;
+  inline-size: min-content;
+  border: solid blue;
+  background: lightcyan;
+  width: 90%;
+}
+</style>

@@ -1,0 +1,8 @@
+<div style="border: solid darkblue; background: lightblue; width: 80%; column-count: 2; column-gap: 40px; padding-left: 22px">
+  <% satellite_tag.attributes.each do |key,pair| %>
+    <% unless key.downcase.include? 'taggable' %>
+      <p><%= key.underscore.humanize.capitalize %>: <%= pair %></p>
+    <% end %>
+  <% end %>
+</div>
+

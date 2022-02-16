@@ -1,0 +1,45 @@
+<html>
+<body style="background-color: #ffffc2">
+</body>
+</html>
+<style>
+
+<style>
+div {
+  border: 5px solid green;
+  padding: 50px;
+  margin: 20px;
+}
+.box {
+  overflow: hidden;
+  inline-size: min-content;
+  background-color: lightblue;
+}
+.nolink {
+  text-decoration: none;
+  color: darkblue
+}
+</style>
+<%# puts comment %>
+<%# puts comment.id %>
+<% comment = Comment.find_by(id: params[:id]) %>
+<div <%# class="box", style="border: solid green; width: 50%" %> >
+  <%= form_with model: comment do |form| %>  
+    <p>
+      <%= form.label :commenter %><br>
+      <%= form.text_field :commenter %>
+    </p>
+    <p>
+      <%= form.label :body %><br>
+      <%= form.text_area :body, size: "125x25" %>
+    </p>
+    <p>
+      <%= form.label :status %><br>
+      <%= form.select :status, ['public', 'private', 'archived'], selected: 'public' %>
+    </p>
+    <p>
+      <%= form.submit %>
+    </p>
+  <% end %>
+</div>
+

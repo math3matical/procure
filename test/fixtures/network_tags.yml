@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  ipv4: false
+  ipv6: false
+  bond: false
+  vlan: false
+  bridge: false
+  proxy: false
+  firewall: false
+
+two:
+  ipv4: false
+  ipv6: false
+  bond: false
+  vlan: false
+  bridge: false
+  proxy: false
+  firewall: false

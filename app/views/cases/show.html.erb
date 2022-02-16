@@ -1,0 +1,139 @@
+<html>
+<body style="background-color: #ffffc2">
+</body>
+</html>
+<style>
+.nolink {
+  text-decoration: none;
+  color: darkblue;
+}
+.uplink {
+  text-decoration: none;
+  color: darkblue;
+  font-size: 20px;
+}
+</style>
+
+
+<%#<h3>Cases Show View</h3>
+<p style="font-size:13px">Find me in app/views/cases/show.html.erb</p>%>
+
+<br></br>
+
+<p>
+  <%= link_to "Work", :stuff, class: "uplink" %> |
+  <%= link_to "Articles", :articles, class: "uplink" %> |
+  <%= link_to "Engineers", :engineers, class: "uplink" %>
+</p>
+
+
+<%# link_to "Back", :back %>
+
+<p style="font-size:16px">
+  <%= link_to "Cases", :cases, class: "nolink" %> |
+  <%= link_to "Solutions", :solutions, class: "nolink" %> |
+  <%= link_to "Bugs", :bugs, class: "nolink" %>
+</p>
+<h2>Cases</h2>
+<p style="font-size:14px">
+  <%= link_to "Comment", new_case_comment_path(@cases), class: "nolink" %> | 
+  <%= link_to "Edit", edit_case_path(@cases), class: "nolink" %> |
+  <%# render 'cases/form', generic: @solutions %>
+  <%= link_to "Tag Engineer", new_case_coverage_path(case_id: @cases.id), class: "nolink" %> |
+  <%= link_to "Remove", case_path(@cases), data:{
+                turbo_method: :delete,
+                turbo_confirm: "Are you sure you want to delete bug #{@cases.title}?"
+                }, class: "nolink" %>
+</p>
+<div style="border:solid darkblue; width:90%; background: lightcyan">
+  <ul>
+    <p>Case Details:</p>
+    <div style="border: solid darkblue; background: lightblue; width: 80%; padding-left: 22px">
+    <p>Id: <%= @cases.id %></p>
+    <p>Version: <%= @cases.version %></p>	
+    <p>Title: <%= @cases.title %></p>
+    <p>Number: <%= @cases.number %></p>
+    <p>Importance: <%= @cases.importance %></p>
+    <p>Notes:</p> 
+    <div style="overflow: scroll; border: solid darkblue; background: lightcyan; width: 80%">
+      <%= markdown(@cases.notes) %></p>
+    </div>
+    <p>Created: <%= @cases.created_at %></p>
+    <p>Updated: <%= @cases.updated_at %></p>
+    <p>Status: <%= @cases.status %></p>
+    <br>
+    <p>Comments: <%= render @cases.comments %></p>
+    </div>
+    <br>
+    <p>Satellite Tag:</p> 
+    <% if @cases.satellite_tag %>
+      <p style="font-size: 13px">
+        <%= link_to "Edit", edit_satellite_tag_path(satellite_taggable_id: @cases.id, satellite_tag: @cases.satellite_tag, satellite_taggable_type: 'Case'), class: "nolink" %>
+        <%= link_to "Remove", satellite_tag_path(@cases.satellite_tag), data:{
+                   turbo_method: :delete,
+                   turbo_confirm: "Are you sure you want to delete?"
+                }, class: "nolink" %>
+      </p>
+      <p>
+        <%= render @cases.satellite_tag %>
+      </p>
+    <% elsif %>
+      <p style="font-size: 13px">
+        <%= link_to "New", new_satellite_tag_path(generic_id: @cases.id, taggable_type: 'Case'), class: "nolink" %>
+      </p> 
+    <% end %>
+    <br>
+    <p>Provision Tag:</p>
+      <% if @cases.provision_tag %>
+        <p style="font-size: 13px">
+          <%= link_to "Edit", edit_provision_tag_path(provision_taggable_id: @cases.id, provision_tag: @cases.provision_tag, provision_taggable_type: 'Case'), class: "nolink" %>
+          <%= link_to "Remove", provision_tag_path(@cases.provision_tag), data:{
+                   turbo_method: :delete,
+                   turbo_confirm: "Are you sure you want to delete?"
+                }, class: "nolink" %>
+        </p>
+        <p>
+          <%= render @cases.provision_tag %>
+        </p>
+      <% elsif %>
+        <p style="font-size: 13px">
+          <%= link_to "New", new_provision_tag_path(generic_id: @cases.id, taggable_type: 'Case'), class: "nolink" %>
+        </p>   
+      <% end %>
+    <br>
+    <p>Network Tag:</p>
+    <% if @cases.network_tag %>
+      <p style="font-size: 13px">
+        <%= link_to "Edit", edit_network_tag_path(network_taggable_id: @cases.id, network_tag: @cases.network_tag, network_taggable_type: 'Case'), class: "nolink" %>
+        <%= link_to "Remove", network_tag_path(@cases.network_tag), data:{
+                   turbo_method: :delete,
+                   turbo_confirm: "Are you sure you want to delete?"
+                }, class: "nolink" %>
+      </p>
+      <p>
+        <%= render @cases.network_tag %>
+      </p>
+    <% elsif %>
+        <p style="font-size: 13px">
+          <%= link_to "New", new_network_tag_path(generic_id: @cases.id, taggable_type: 'Case'), class: "nolink" %>
+        </p>   
+    <% end %>
+    <br>
+    <p>Tagged Engineers:
+    <% if @cases.engineers.all.length > 0 %>
+      <div style="border: solid darkblue; background-color: lightblue; width: 30%; min-height: 2px; padding-left: 22px">
+      <% @cases.engineers.each do |engineer| %>
+      <p>
+        <%= engineer.first_name %> 
+        <%= engineer.last_name %> 
+        <%= link_to "Remove", case_coverage_path(CaseCoverage.find_by_case_id_and_engineer_id(params[:id],engineer.id)), data: {
+									turbo_method: :delete,
+									turbo_confirm: "Are you sure?"
+									}, :style => 'font-size: 12px', class: "nolink" %>
+      </p>
+      <% end %>
+      </div>
+    <% end %>
+  </ul>
+</div>
+

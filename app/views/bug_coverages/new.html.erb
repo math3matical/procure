@@ -1,0 +1,14 @@
+<%#</h3>New Bug Coverage</h3>
+<p style="font-size: 13px">Find me in app/views/bug_coverages/new.html.erb</p>%>
+<br></br>
+<%#= params[:bug_id] %>
+<%#= @bug = Bug.find(params[:bug_id])  %>
+<%# render "form" (:bug_id => @bug.id) %>
+<% if params[:bug_id] %>
+  <% bug_id = params[:bug_id] %>
+<% end %>
+
+<div <%# style="background: #f2bb66; border: solid green; width:60%" %> >
+  <%= render partial:  "form", locals:  {bug_id: bug_id, bug_coverage: @bug_coverage} %>
+</div>
+

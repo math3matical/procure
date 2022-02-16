@@ -1,0 +1,45 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  version: 1.5
+  satellite_taggable_id: 1
+  satellite_taggable_type: MyString
+  pulp: false
+  postgres: false
+  foreman-proxy: false
+  installer: false
+  publish: false
+  promote: false
+  contentview: false
+  capsule: false
+  sync: false
+  repository: false
+  metadata: false
+  mongo: false
+  redis: false
+  puma: false
+  http: false
+  reports: false
+  ui: false
+
+two:
+  version: 1.5
+  satellite_taggable_id: 1
+  satellite_taggable_type: MyString
+  pulp: false
+  postgres: false
+  foreman-proxy: false
+  installer: false
+  publish: false
+  promote: false
+  contentview: false
+  capsule: false
+  sync: false
+  repository: false
+  metadata: false
+  mongo: false
+  redis: false
+  puma: false
+  http: false
+  reports: false
+  ui: false

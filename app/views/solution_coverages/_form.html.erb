@@ -1,0 +1,42 @@
+<html>
+<body style="background-color: #ffffc2">
+</body>
+</html>
+<style>
+</style>
+
+<%= link_to "Back", :back %>
+
+<br></br>
+
+
+<%= form_with model: solution_coverage do |form| %>
+  <div>
+    <%= form.label :engineer_id %><br>
+    <%= form.select :engineer_id, Engineer.all.collect{ |p| [p.first_name, p.id ]}, include_blank: true %>
+    <%#= form.text_field :engineer_id %>
+    <% solution_coverage.errors.full_messages_for(:engineer_id).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+    <%= form.hidden_field :solution_id, value: solution_id %>
+    <%#= form.label :solution_id %><br>
+    <%#= form.text_field :solution_id, :value => solution_id, :disabled => true %>
+    <%# solution_coverage.errors.full_messages_for(:solution_id).each do |message| %>
+      <div><%#= message %></div>
+    <%# end %>
+
+
+  <div>
+  <%= form.label :status %><br>
+  <%= form.select :status, ['public', 'private', 'archived'], selected: 'public' %>
+
+  <br></br>
+
+  <div>
+    <%= form.submit %>
+  </div>
+</div>
+
+<% end %>
+

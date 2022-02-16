@@ -1,0 +1,31 @@
+<% unless solution_coverage.archived? %>
+  <style>
+  div {
+    border: 15px solid green;
+    padding: 50px;
+    margin: 20px;
+  }
+  .box {
+    overflow: hidden;
+    inline-size: min-content;
+  }
+  </style>
+  <div class="box">
+    <p>
+      <strong>Solution ID:</strong>
+      <%= solution_coverage.solution_id %>
+    </p>
+
+    <p class="box">
+      <strong>Created:</strong>
+      <%= solution_coverage.created_at %>
+    </p>
+  </div>
+<% end %>
+
+<p>
+<%#  <%= link_to "Remove Comment", [comment.commentable, comment], data: {
+                turbo_method: :delete,
+                turbo_confirm: "Are you sure?"
+              } %>
+</p>
