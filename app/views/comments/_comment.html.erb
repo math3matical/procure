@@ -1,54 +1,21 @@
 <% unless comment.archived? %>
-  <style>
-  div {
-    padding: 20px;
-    margin: 10px;
-    width: 40%
-    border: solid darkblue;
-  }
-  .box {
-    background-color: <%# lightblue %> lightcyan;
-    overflow: scroll;
-    border: solid darkblue;
-    width: 80%
-  }
-.smlink {
-  text-decoration: none;
-  color: darkblue;
-  font-size: 12px;
-}
+  <div class="scrollout">
+    <div class="scrollbox"  >
+      <div style="padding-left: 5px; padding-top: 5px">
+        <%#  <p class="lopad"> <%= comment.commenter 'there was an end erb tag here'  </p> %>
+        <%= markdown(comment.body) %>
+      </div>
+    </div>
 
-  </style>
-  <div class="box">
-    <p>
-      <strong>Commenter:</strong>
-      <%= comment.commenter %>
-    </p>
-
-    <p>
-      <strong>Comment:</strong>
-      <%= markdown(comment.body) %>
-    </p>
+    <div style="margin-left: 10px">
+      <p class="Sfont book" style="margin: 6px 0 4px 0">
+        <%= link_to "Edit", edit_comment_path(comment), class: "smlink" %>
+        <%= link_to "Remove", [comment.commentable, comment], 
+                      data: {
+                      turbo_method: :delete,
+                      turbo_confirm: "Are you sure?"
+                    }, class: "smlink book" %>
+      </p>
+    </div>
   </div>
 <% end %>
-
-<%#
-<script>
-  console.log(params);
-</script>  %>
-<p style="font-size: 14px">
-  <%= link_to "Edit", edit_comment_path(comment), class: "smlink" %>
-  <%= link_to "Remove", [comment.commentable, comment], data: {
-                turbo_method: :delete,
-                turbo_confirm: "Are you sure?"
-              }, class: "smlink" %>
-  <script>
-    console.log(@solutions);
-  </script>
-  <% puts comment.id %>
-  <%# puts @solutions.comments %>
-  <%# puts @solutions.id %>
-  <%# link_to "Edit comment", (render :partial => 'comments/form', :locals => {:generic => @solutions}) %>
-  <%# link_to "Edit Comment", [comment.commentable, comment] %>
-  <%# link_to "Edit Comment", 'comments/form2', @comment %>
-</p>

@@ -1,45 +1,43 @@
-<html>
-<body style="background-color: #ffffc2">
-</body>
-</html>
-<style>
+<%= render "logo" %>
 
-<style>
-div {
-  border: 5px solid green;
-  padding: 50px;
-  margin: 20px;
-}
-.box {
-  overflow: hidden;
-  inline-size: min-content;
-  background-color: lightblue;
-}
-.nolink {
-  text-decoration: none;
-  color: darkblue
-}
-</style>
-<%# puts comment %>
-<%# puts comment.id %>
+<strong><%= link_to "Back", :back, class: "nolink" %></strong>
+
+<br></br>
+
 <% comment = Comment.find_by(id: params[:id]) %>
-<div <%# class="box", style="border: solid green; width: 50%" %> >
-  <%= form_with model: comment do |form| %>  
-    <p>
-      <%= form.label :commenter %><br>
-      <%= form.text_field :commenter %>
-    </p>
-    <p>
-      <%= form.label :body %><br>
-      <%= form.text_area :body, size: "125x25" %>
-    </p>
-    <p>
-      <%= form.label :status %><br>
-      <%= form.select :status, ['public', 'private', 'archived'], selected: 'public' %>
-    </p>
-    <p>
-      <%= form.submit %>
-    </p>
-  <% end %>
-</div>
 
+<div class="mainbox">
+  <div class="mainformbox">
+    <div class="ticketformtitle"> 
+      <p class="XLfont book lopad">Edit Comment</p>
+    </div> 
+
+    <div class="ticketform">
+      <ul class="form">
+        <%= form_with model: comment do |form| %>  
+          <div>
+            <strong><%= form.label :commenter %><strong><br>
+            <textfield class="field2"> <%= form.text_field :commenter %> </textfield>
+          </div>
+          <br>
+
+          <div style="overflow: auto">
+            <strong><%= form.label :body %></strong><br>
+            <textfield class="field3"> <%= form.text_area :body, style: "width: 85%; height: 150px" %> </textfield>
+          </div>
+          <br>
+
+          <div>
+            <strong><%= form.label :status %><strong><br>
+            <%= form.select :status, ['public', 'private', 'archived'], selected: 'public' %>
+          </div>
+          <br>
+
+          <div>
+            <%= form.submit class: "form-submit-button" %>
+          </div>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,171 @@
+<ul>
+  <div class="testbox">
+    <div class="tickettitle">
+      <strong><p class="XLfont lopad">Details</p></strong>
+    </div>
+    <p style="padding:0; margin:4px"></p> 
+
+    <div class="box80">
+      <p><strong>Id:</strong> <%= ticket.id %></p>
+      <p><strong>Title:</strong> <%= ticket.title %></p>
+      <p><strong>Number:</strong> <%= ticket.number %></p>
+      <p><strong>Importance:</strong> <%= ticket.importance %></p>
+      <p><strong>Created:</strong> <%= ticket.created_at %></p>
+      <p><strong>Updated:</strong> <%= ticket.updated_at %></p>
+      <p><strong>Status:</strong> <%= ticket.status %></p>
+      <br>
+    </div>
+    <br>
+  </div>
+  <br>
+
+  <div class="testbox">
+    <div class="tickettitle">
+      <strong><p class="XLfont lopad">Notes</p></strong>
+    </div>
+    <p style="padding:0; margin:4px"></p> 
+
+    <div class="scrollout">
+      <div class="scrollbox">
+        <div class="pad"> <%= markdown(ticket.notes) %> </div> 
+      </div>
+    </div>
+    <br>
+  </div>
+  <br>
+
+  
+  <div class="testbox">
+    <div class="tickettitle">
+      <strong><p class="XLfont lopadtop">Engineers</p></strong>
+      <p class="Sfont book lopadbot"> <%= link_to "Tag", "/engineer_tags/new?#{type}_id=#{ticket.id}&engineer_taggable_type=#{type.capitalize}&engineer_taggable_id=#{ticket.id}", class: "nolink" %> </p>
+    </div>
+    <p style="padding:0; margin:4px"></p>
+
+    <% if ticket.engineers.all.length > 0 %>
+      <div class="box80">
+        <table style="border-spacing: 10px;">
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Title</th>
+            <th scope="col">irc</th>
+          </tr>
+          <% ticket.engineers.each do |engineer| %>
+            <tr>
+              <% case type.capitalize %>
+              <% when 'Solution' %>
+                <% stuff = EngineerTag.find_by_engineer_id_and_engineer_taggable_id_and_engineer_taggable_type(engineer.id, ticket.id, 'Solution') %>
+              <% when 'Case' %>
+                <% stuff = EngineerTag.find_by_engineer_id_and_engineer_taggable_id_and_engineer_taggable_type(engineer.id, ticket.id, 'Case') %>
+              <% when 'Bug' %>
+                <% stuff = EngineerTag.find_by_engineer_id_and_engineer_taggable_id_and_engineer_taggable_type(engineer.id, ticket.id, 'Bug') %>
+              <% end %>
+              <td style="padding: 2px 4px"><e><%= engineer.first_name %> <%= engineer.last_name %></e></td>
+              <td style="padding: 2px 4px"><%= engineer.position %></td>
+              <td style="padding: 2px 4px"><%= engineer.irc %>&nbsp;</td>
+              <td style="padding: 2px 4px"><%= link_to "Remove", "/engineer_tags/#{stuff.id}", data: {
+                                                                            turbo_method: :delete,
+                                                                            turbo_confirm: "Are you sure?"
+                                                                            }, class: "remove" %></td>
+            </tr>
+          <% end %>
+        </table>
+      </div>
+      <br>
+    <% end %>
+  </div>
+  <br>
+
+  <div class="testbox">
+    <div class="tickettitle">
+      <strong><p class="XLfont lopadtop">Satellite Tag</p></strong>
+      <% if ticket.satellite_tag %>
+        <p class="Sfont book lopadbot">
+          <%= link_to "Edit", edit_satellite_tag_path(satellite_taggable_id: ticket.id, satellite_tag: ticket.satellite_tag, satellite_taggable_type: type.capitalize), class: "nolink book" %>
+          <%= link_to "Remove", satellite_tag_path(ticket.satellite_tag),
+                         data:{
+                         turbo_method: :delete,
+                         turbo_confirm: "Are you sure you want to delete?"
+                       }, class: "nolink" %>
+        </p>
+      <% elsif %>
+        <p class="Sfont book lopadbot">
+          <%= link_to "Tag", new_satellite_tag_path(generic_id: ticket.id, taggable_type: type.capitalize), class: "nolink" %>
+        </p>
+      <% end %>
+    </div>
+    <% if ticket.satellite_tag %>
+      <p style="padding:0; margin:4px"></p>
+        <%= render ticket.satellite_tag %>
+      </p>
+    <% end %>
+  </div>
+  <br>
+
+  <div class="testbox">
+    <div class="tickettitle">
+      <strong><p class="XLfont lopadtop">Provision Tag</p></strong>
+      <% if ticket.provision_tag %> 
+        <p class="Sfont book lopadbot">
+          <%= link_to "Edit", edit_provision_tag_path(provision_taggable_id: ticket.id, provision_tag: ticket.provision_tag, provision_taggable_type: type.capitalize), class: "nolink" %>
+          <%= link_to "Remove", provision_tag_path(ticket.provision_tag),
+                       data:{
+                       turbo_method: :delete,
+                       turbo_confirm: "Are you sure you want to delete?"
+                     }, class: "nolink" %>
+        </p>
+      <% elsif %>
+        <p class="Sfont book lopadbot">
+          <%= link_to "Tag", new_provision_tag_path(generic_id: ticket.id, taggable_type: type.capitalize), class: "nolink" %>
+        </p>
+      <% end %>
+    </div>
+    <% if ticket.provision_tag %>
+      <p style="padding:0; margin:4px"></p>
+        <%= render ticket.provision_tag %>
+      </p>
+    <% end %>
+  </div>
+  <br>
+
+  <div class="testbox">
+    <div class="tickettitle">
+      <strong><p class="XLfont lopadtop">Network Tag</p></strong>
+      <% if ticket.network_tag %>
+        <p class="Sfont book lopadbot">
+          <%= link_to "Edit", edit_network_tag_path(network_taggable_id: ticket.id, network_tag: ticket.network_tag, network_taggable_type: type.capitalize), class: "nolink" %>
+          <%= link_to "Remove", network_tag_path(ticket.network_tag),
+                         data:{
+                         turbo_method: :delete,
+                         turbo_confirm: "Are you sure you want to delete?"
+                       }, class: "nolink" %>
+        </p>
+      <% elsif %>
+        <p class="Sfont book lopadbot">
+          <%= link_to "Tag", new_network_tag_path(generic_id: ticket.id, taggable_type: type.capitalize), class: "nolink" %>
+        </p>
+      <% end %>
+    </div>
+    <% if ticket.network_tag %>
+      <p style="padding:0; margin:4px"></p>
+        <%= render ticket.network_tag, style: "margin:0; padding:0" %>
+      </p>
+    <% end %>
+  </div>
+  <br>
+
+  <div>
+    <div class="testbox">
+      <div class="tickettitle">
+        <strong><p class="XLfont lopadtop">Comments</p></strong>
+        <p class="Sfont book lopadbot"> <%= link_to "New", "/#{type}s/#{ticket.id}/comments/new", class: "nolink" %> </p>
+      </div>
+      <p style="padding:0; margin:4px"></p>
+  
+      <% if ticket.comments.length > 0 %>
+        <%= render ticket.comments %>
+      <% end %>
+    </div>
+  </div>
+</ul>
+

@@ -4,7 +4,7 @@ class ArticlesController < ApplicationController
   end
 
   def show
-    @articles = Article.find(params[:id])
+    @article = Article.find(params[:id])
   end
     
   def new
@@ -37,15 +37,7 @@ class ArticlesController < ApplicationController
 
   def destroy
     @article = Article.find(params[:id])
-#    unless @article.comments.empty?
-#      @article.comments.each do |comment|
-#        comment.destroy
-#      end
-#      @article.destroy
-#    else    
-      @article.destroy
-#    end
-
+    @article.destroy
     redirect_to root_path, status: :see_other
   end
 

@@ -1,93 +1,20 @@
-<html>
-<body style="background-color: #ffffc2">
-</body>
-</html>
-<style>
-div {
-  border: solid darkblue;
-  padding: 10px;
-  margin: 10px;
-  width: 35%;
-}
-.box {
-  overflow: hidden;
-}
-.box2 {
-  border: solid darkblue;
-  width: 80%;
-  background: lightblue;
-}
-.nolink {
-  text-decoration: none;
-  color: darkblue;
-}
-.uplink {
-  text-decoration: none;
-  color: darkblue;
-  font-size: 20px;
-}
-</style>
+<%= render 'headerlink' %>
 
-<%#<h3>Test Index View</h3>
-<p style="font-size: 13px">Find me in app/views/test/index.html.erb</p>%>
-
-<br></br>
-
-<p>
-  <%= link_to "Work", :stuff, class: "uplink" %> |
-  <%= link_to "Articles", :articles, class: "uplink" %> |
-  <%= link_to "Engineers", :engineers, class: "uplink" %>
-</p>
-
-<p style="font-size:16px">
-  <%= link_to "Cases", :cases, class: "nolink" %> |
-  <%= link_to "Solutions", :solutions, class: "nolink" %> |
-  <%= link_to "Bugs", :bugs, class: "nolink" %>
-</p>
-
-<h2>Work</h2>
-
-  <%= form_tag(test_index_path, method: :get) do %>
-    <%= text_field_tag(:search, params[:search]) %>
-    <%= submit_tag ("Search") %>
-  <% end %>
-
-
-<h3>Cases</h3>
-<div style="background: lightcyan; width: 90%">
-<ul>
-  <% @cases.each do |casse| %>
-    <% unless casse.archived? %>
-      <li>
-        <%= link_to casse.number, casse, class: "nolink" %> - <%= casse.title %>
-      </li>
-    <% end %>
-  <% end %>
-</ul>
-</div>
-
-<h3>Solutions</h3>
-<div style="background: lightcyan; width: 90%">
-<ul>
-  <% @solutions.each do |solution| %>
-    <% unless solution.archived? %>
-      <li>
-        <%= link_to solution.number, solution, class: "nolink" %> - <%= solution.title %>
-      </li>
-    <% end %>
-  <% end %>
-</ul>
-</div>
-
-<h3>Bugs</h3>
-<div style="background: lightcyan; width: 90%">
-<ul>
-  <% @bugs.each do |bug| %>
-    <% unless bug.archived? %>
-      <li>
-        <%= link_to bug.number, bug, class: "nolink" %> - <%= bug.title %>
-      </li>
-    <% end %>
-  <% end %>
-</ul>
+<div class="mainbox">
+  <div class="testsubbox">
+    <div class="boxsubheader">
+      <h2 class="XXLfont">Work</h2>
+      <p class="Mfont book">
+        <%= link_to "New", "/test/horse", class: "nolink" %> |
+        <%= link_to "Sort", "/test/horse", class: "nolink" %> |
+        <%= link_to "Filter", "/test/horse", class: "nolink" %>
+      </p>
+      <%= render 'searchform', ticket: 'test', path: 'index' %>
+      <br>
+    </div>
+  </div>
+  <br>
+  <%= render 'ticketmainbox', tickets: @cases, ticket: 'case' %>
+  <%= render 'ticketmainbox', tickets: @solutions, ticket: 'solution' %>
+  <%= render 'ticketmainbox', tickets: @bugs, ticket: 'bug' %>
 </div>

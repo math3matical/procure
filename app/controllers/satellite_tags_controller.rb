@@ -60,7 +60,6 @@ class SatelliteTagsController < ApplicationController
     redirect_to case_path(@satellite_tag.satellite_taggable_id), status: 303
   end
 
-
   private
     def satellite_tag_params
       params.require(:satellite_tag).permit(:version, :pulp, :postgres, :foreman_proxy, :installer, :publish, :promote, :contentview, :capsule, :sync, :repository, :metadata, :mongo, :redis, :puma, :http, :reports, :ui, :satellite_taggable_id, :satellite_taggable_type)

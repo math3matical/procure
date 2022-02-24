@@ -1,0 +1,128 @@
+/* BOXES */
+
+body{
+  max-width: 1600px;
+  background: #dbf0bb;  /* light rose green */
+  background: lightgray; 
+}
+.lopadtop, .lopadbot, .lopad, .linebreak, .linebreaker {
+  margin: 0;
+}
+.lopadtop{
+  padding: 4px 0 3px;
+}
+.lopadbot{
+  padding: 3px 0 4px 10px;
+}
+.lopad{
+  padding: 5px 0 5px 5px;
+}
+.linebreak{
+  padding-top: 4px;
+}
+.linebreaker{
+  padding-top: 18px;
+}
+.form {
+  padding-left: 2%
+}
+.testsubbox, .testtitlebox, .testbox {
+  padding: 10px 0 10px 0;
+  margin-left: 2%;
+  width: 80%;
+  border: 2px solid black;
+  border-radius: 5px;
+  background-color: #9dc209;  /* pistachio green */
+  overflow: hidden;
+}
+.testsubbox{
+  min-width: 380px;
+  max-width: 420px;
+}
+.testtitlebox{
+  min-width: 420px;
+  max-width: 460px;
+}
+.testbox {
+  min-width: 380px;
+}
+.uppdermain, .mainbox, .mainformbox, .boxsubheader, .boxheader, .box80, .boxtag, .tickettitle, .ticketformtitle, .scrollout {
+  border: 2px solid black;
+  border-radius: 5px;
+}
+.uppermain, .mainformbox, .boxsubheader{
+  width: 95%;
+}
+.uppermain {
+  padding: 10px 0 20px 0;
+  margin: 0 12% 1.5% 2%`;
+  max-width: 1400px;
+  background-color: #d3fd78;  /* light jade */
+  overflow: hidden;
+}
+.mainbox {
+  padding: 20px 0 15px 0;
+  margin: 0 3% 0 2%;
+  max-width: 1400px;
+  background-color: #d3fd78;  /* light jade */
+  overflow: hidden;
+}
+.mainformbox {
+  padding: 10px 0 15px 0;
+  margin: 0 12% 0 2%;
+  max-width: 800px;
+  background-color: #9dc209;  /* pistachio green */
+}
+.boxsubheader, .boxheard{
+  padding: 10px 10px 0 10px; 
+  margin: 0 10px 0 10px;
+  background: #ffffbf;  /* green water */
+  background: #ebfaf4;  /* water */
+}
+.boxsubheader{
+  width: 85%;
+  max-width: 380px;
+}
+.boxheader{
+  width: 87%;
+  max-width: 420px;
+}
+.box80, .boxtag, .scrollout, .ticketform, .ticketformtitle, .ticketitle {
+  padding: 10px;
+  margin: 0 10px 0 10px;
+  background: #ffffbf;  /* green water */
+  background: #ebfaf4;  /* water */
+ }
+.box80, .boxtag{
+  width: 95%;
+  min-width: 330px;
+  overflow: hidden;
+}
+.boxtag{
+  column-count: 2;
+  column-gap: 40px;
+}
+.scrollout, .scrollbox{
+  min-width:350px;
+}
+.scrollbox{
+  padding: 0 0 0 0;
+  margin: 0 0 0 1%;
+  width: 97%;
+  background: #ffffbf;  /* green water */
+  background: #ebfaf4;  /* water */
+  overflow: auto;
+}
+.ticketform{
+  width: 83%;
+  border: 2px solid black;
+}
+.tickettitle{
+  /*width: max-content;*/
+  width: 85%;
+  max-width: 180px;
+}
+.ticketformtitle{
+  width: max-content;
+}
+

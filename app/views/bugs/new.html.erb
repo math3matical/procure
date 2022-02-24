@@ -1,8 +1,2 @@
-<%#<h3>New Bug</h3>
-<p style="font-size: 13px">Find me in app/views/bugs/new.html.erb</p>%>
-<br></br>
-
-<div <%# style="background: #f2bb66; border: solid green; width:60%" %> >
-  <%= render "form", bug: @bug %>
-</div>
+<%= render "ticketform", ticket: @bug, urltick: "bug", ticketid: params[:ticketid], type: 'case' %>
 

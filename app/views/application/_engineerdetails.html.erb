@@ -1,0 +1,18 @@
+<div class="testbox">
+  <div class="tickettitle">
+    <strong><p class="XLfont lopadtop">Details</p></strong>
+    <p class="Mfont book lopadbot"><%= link_to "Edit", edit_engineer_path(@engineer), class: "nolink" %></p>
+  </div>
+
+  <div class="box80" style="padding-left: 10px">
+    <ul style="padding: 0">
+      <div>
+        <p><strong>First name:</strong> <%= engineer.first_name %></p>
+        <p><strong>Last name:</strong> <%= engineer.last_name %></p>
+        <p><strong>IRC:</strong> <%= engineer.irc %></p>
+        <p><strong>Position:</strong> <%= engineer.position %></p>
+      </div>
+    </ul>
+  </div>
+</div>
+

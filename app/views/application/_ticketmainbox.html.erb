@@ -1,0 +1,20 @@
+<% if tickets.all.length > 0 %>
+  <div class="testbox">
+    <div class="tickettitle">
+      <strong><p class="XLfont lopad"> <%= ticket.capitalize %>s</p></strong>
+    </div>
+
+    <div class="box80">
+      <ol>
+        <% tickets.each do |tick| %>
+          <% unless tick.archived? %>
+            <li>
+              <p><strong><%= link_to tick.number, tick, class: "nolink" %></strong> - <%= tick.title %> </p>
+            </li>
+          <% end %>
+        <% end %>
+      </ol>
+    </div>
+  </div>
+  <br>
+<% end %>

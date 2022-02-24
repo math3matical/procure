@@ -9,6 +9,10 @@ class BugCoveragesController < ApplicationController
     
   def new
     @bug_coverage = BugCoverage.new
+    @bug = Bug.find(params[:bug_id])
+    tagged_engineers = @bug.engineers
+    @engineers = Engineer.all - tagged_engineers
+    
   end
 
   def create

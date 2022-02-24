@@ -1,0 +1,7 @@
+<div class="testbox">
+  <div class="tickettitle">
+    <strong><p class="XLfont lopadtop">Comments</p></strong>
+    <p class="Mfont book lopadbot">  <%= link_to "New", new_engineer_comment_path(@engineer), class: "nolink" %></p>
+  </div>
+  <%= render engineer.comments %>
+</div>

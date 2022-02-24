@@ -1,126 +1,178 @@
-<%= link_to "Back", :back %>
+<%= render "logo" %>
+
+<style>
+  ul {
+    width: 700px;
+  }
+  ul li {
+    width: 325;
+    display: inline-block;
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+
+  ul li > * {
+    width: 175px;
+  }
+</style>
+
+<strong><%= link_to "Back", :back, class: "nolink" %></strong>
 
 <br></br>
 
-<%= form_with model: satellite_tag do |form| %>
-  <div>
-    <%= form.label :version %><br>
-    <%= form.text_field :version %><br>
-  </div>
-  <br>
+<div class="mainbox">
+  <div class="mainformbox" style="overflow: hidden;">
+    <div class="ticketformtitle">
+      <p class="XXLfont book lopad">Satellite Tag</p>
+    </div>
+    <p class="linebreak"></p>
+    <div class="ticketform">
+      <%= form_with model: satellite_tag do |form| %>
+        <ul>
+          <li>
+            <strong><%= form.label :version %></strong>
+            <%= form.select :version, ['6.7', '6.8', '6.9', '6.10'] %>
+          </li>
+          <br></br>
 
-  <div>
-    <%= form.label :pulp %><br>
-    <%= form.check_box :pulp %><br>
-  </div>
-  <br>
+          <li>
+          <div class="form-check">
+            <%= form.check_box :pulp %>
+            <strong><%= form.label :pulp %></strong>
+          </div>
+          </li>
 
-  <div>
-    <%= form.label :postgres %><br>
-    <%= form.check_box :postgres %><br>
-  </div>
-  <br>
+          <li>
+          <div class="form-check">
+            <%= form.check_box :postgres %>
+            <strong><%= form.label :postgres %></strong>
+          </div>
+          </li>
+          <br></br>
+ 
+          <li>
+          <div class="form-check">
+            <%= form.check_box :foreman_proxy %>
+            <strong><%= form.label :foreman_proxy %></strong>
+          </div>
+          </li>
 
-  <div>
-    <%= form.label :foreman_proxy %><br>
-    <%= form.check_box :foreman_proxy %><br>
-  </div>
-  <br>
+          <li>
+          <div class="form-check">
+            <%= form.check_box :installer %>
+            <strong><%= form.label :installer %></strong>
+          </div>
+          </li>
+          <br></br>
 
-  <div>
-    <%= form.label :installer %><br>
-    <%= form.check_box :installer %><br>
-  </div>
-  <br>
+          <li>
+          <div class="form-check">
+            <%= form.check_box :publish %>
+            <strong><%= form.label :publish %></strong>
+          </div>
+          </li>
+  
+          <li>
+          <div class="form-check">
+            <%= form.check_box :promote %>
+            <strong><%= form.label :promote %></strong>
+          </div>
+          </li>
+          <br></br>
 
-  <div>
-    <%= form.label :publish %><br>
-    <%= form.check_box :publish %><br>
-  </div>
-  <br>
+          <li>
+          <div class="form-check">
+            <%= form.check_box :contentview %>
+            <strong><%= form.label :contentview %></strong>
+          </div>
+          </li>
+ 
+          <li>
+          <div class="form-check">
+            <%= form.check_box :capsule, class: "form-check-input", style: "text-align: right" %>
+            <strong><%= form.label :capsule, class: "form-check-label", style: "margin-right: 20px" %></strong>
+          </div>
+          </li>
+     
+          <br></br>
+  
+          <li>
+          <div class="form-check">
+            <%= form.check_box :sync %>
+            <strong><%= form.label :sync %></strong>
+          </div>
+          </li>
 
-  <div>
-    <%= form.label :promote %><br>
-    <%= form.check_box :promote %><br>
-  </div>
-  <br>
+          <li>
+          <div class="form-check">
+             <%= form.check_box :repository %>
+             <strong><%= form.label :repository %></strong>
+          </div>
+          </li>
+          <br></br>
 
-  <div>
-    <%= form.label :contentview %><br>
-    <%= form.check_box :contentview %><br>
-  </div>
-  <br>
+          <li>
+          <div class="form-check">
+            <%= form.check_box :metadata %>
+            <strong><%= form.label :metadata %></strong>
+          </div>
+          </li>
 
-  <div>
-    <%= form.label :capsule %><br>
-    <%= form.check_box :capsule %><br>
-  </div>
-  <br>
+          <li>
+          <div class="form-check">
+            <%= form.check_box :mongo %>
+            <strong><%= form.label :mongo %></strong>
+          </div>
+          </li>
+          <br></br>
 
-  <div>
-    <%= form.label :sync %><br>
-    <%= form.check_box :sync %><br>
-  </div>
-  <br>
+          <li>
+          <div class="form-check">
+            <%= form.check_box :redis %>
+            <strong><%= form.label :redis %></strong>
+          </div>
+          </li>
 
-  <div>
-    <%= form.label :repository %><br>
-    <%= form.check_box :repository %><br>
-  </div>
-  <br>
+          <li>
+          <div class="form-check">
+            <%= form.check_box :puma %>
+            <strong><%= form.label :puma %></strong>
+          </div>
+          </li>
+          <br></br>
 
-  <div>
-    <%= form.label :metadata %><br>
-    <%= form.check_box :metadata %><br>
-  </div>
-  <br>
+          <li>
+          <div class="form-check">
+            <%= form.check_box :http %>
+            <strong><%= form.label :http %></strong>
+          </div>
+          </li>
 
-  <div>
-    <%= form.label :mongo %><br>
-    <%= form.check_box :mongo %><br>
-  </div>
-  <br>
+          <li>
+          <div class="form-check">
+            <%= form.check_box :reports %>
+            <strong><%= form.label :reports %></strong>
+          </div>
+          </li>
+          <br></br>
 
-  <div>
-    <%= form.label :redis %><br>
-    <%= form.check_box :redis %><br>
-  </div>
-  <br>
+          <li>
+          <div class="form-check">
+            <%= form.check_box :ui %>
+            <strong><%= form.label :ui %></strong>
+          </div>
+          </li>
+          <br></br>
 
-  <div>
-    <%= form.label :puma %><br>
-    <%= form.check_box :puma %><br>
-  </div>
-  <br>
+          <%= form.hidden_field :satellite_taggable_id, value: satellite_taggable_id %>
+          <%= form.hidden_field :satellite_taggable_type, value: satellite_taggable_type %>
 
-  <div>
-    <%= form.label :http %><br>
-    <%= form.check_box :http %><br>
-  </div>
-  <br>
-
-  <div>
-    <%= form.label :reports %><br>
-    <%= form.check_box :reports %><br>
-  </div>
-  <br>
-
-  <div>
-    <%= form.label :ui %><br>
-    <%= form.check_box :ui %><br>
-  </div>
-  <br>
-
-
-  <%= form.hidden_field :satellite_taggable_id, value: satellite_taggable_id %>
-  <%= form.hidden_field :satellite_taggable_type, value: satellite_taggable_type %>
-  <%#= form.hidden_field :satellite_taggable_id, value: params[:satellite_taggable_id] %>
-  <%#= form.hidden_field :satellite_taggable_type, value: params[:satellite_taggable_type] %>
-
-  <div>
-    <%= form.submit %>
+          <li>
+            <%= form.submit class: "form-submit-button" %>
+          </li>
+        </ul>
+      <% end %>
+    </div>
   </div>
 </div>
-
-<% end %>
 

@@ -1,7 +1,10 @@
-<div style="border: solid darkblue; background: lightblue; width: 80%; column-count: 2; column-gap: 40px; padding-left: 22px">
-  <% provision_tag.attributes.each do |key,pair| %>
+<div class="boxtag">
+  <% provision_tag.attributes.each do |key, value| %>
     <% unless key.downcase.include? 'taggable' %>
-      <p><%= key.underscore.humanize.capitalize %>: <%= pair %></p>
+      <p>
+        <strong><%= key.underscore.humanize.capitalize %>:</strong>
+        <%= value %>
+      </p>
     <% end %>
   <% end %>
 </div>

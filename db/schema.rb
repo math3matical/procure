@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_16_035725) do
+ActiveRecord::Schema.define(version: 2022_02_24_151815) do
 
   create_table "articles", force: :cascade do |t|
     t.string "title"
@@ -32,12 +32,21 @@ ActiveRecord::Schema.define(version: 2022_02_16_035725) do
 
   create_table "bugs", force: :cascade do |t|
     t.string "title"
-    t.integer "number"
+    t.string "number"
     t.integer "importance"
     t.text "notes"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "status"
+    t.string "product"
+    t.string "assigned_to"
+    t.string "creator"
+    t.string "severity"
+    t.string "qa_contact"
+    t.string "version"
+    t.string "whiteboard"
+    t.string "target_release"
+    t.text "summary"
   end
 
   create_table "case_coverages", force: :cascade do |t|
@@ -51,9 +60,9 @@ ActiveRecord::Schema.define(version: 2022_02_16_035725) do
   end
 
   create_table "cases", force: :cascade do |t|
-    t.float "version"
+    t.string "version"
     t.string "title"
-    t.integer "number"
+    t.string "number"
     t.integer "comments"
     t.integer "importance"
     t.text "notes"
@@ -70,6 +79,14 @@ ActiveRecord::Schema.define(version: 2022_02_16_035725) do
     t.integer "account_number"
     t.string "owner_first"
     t.string "owner_last"
+    t.string "sbr"
+    t.string "product"
+    t.text "issue"
+    t.string "summary"
+    t.string "bug_number"
+    t.text "bug_summary"
+    t.string "customer_contact"
+    t.string "customer_name"
   end
 
   create_table "comments", force: :cascade do |t|
@@ -82,6 +99,15 @@ ActiveRecord::Schema.define(version: 2022_02_16_035725) do
     t.string "commentable_type"
     t.text "url"
     t.index ["commentable_id"], name: "index_comments_on_commentable_id"
+  end
+
+  create_table "engineer_tags", force: :cascade do |t|
+    t.integer "engineer_taggable_id"
+    t.string "engineer_taggable_type"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "engineer_id"
+    t.string "status"
   end
 
   create_table "engineers", force: :cascade do |t|
@@ -109,7 +135,7 @@ ActiveRecord::Schema.define(version: 2022_02_16_035725) do
   end
 
   create_table "provision_tags", force: :cascade do |t|
-    t.float "version"
+    t.string "version"
     t.integer "provision_taggable_id"
     t.string "provision_taggable_type"
     t.boolean "contentview"
@@ -130,7 +156,7 @@ ActiveRecord::Schema.define(version: 2022_02_16_035725) do
   end
 
   create_table "satellite_tags", force: :cascade do |t|
-    t.float "version"
+    t.string "version"
     t.boolean "pulp"
     t.string "satellite_taggable_type"
     t.integer "satellite_taggable_id"
@@ -167,7 +193,7 @@ ActiveRecord::Schema.define(version: 2022_02_16_035725) do
 
   create_table "solutions", force: :cascade do |t|
     t.string "title"
-    t.integer "number"
+    t.string "number"
     t.integer "importance"
     t.text "notes"
     t.datetime "created_at", precision: 6, null: false

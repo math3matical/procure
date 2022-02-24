@@ -1,0 +1,66 @@
+<%= render "logo" %>
+
+<%# When form is first called, these 2 variables are stored in the params hash.  If there
+    is a call for a redirect, these variables then get passed to the form inside the 
+    engineer_tag object.  %>
+<% engineer_taggable_type ||= @engineer_tag.engineer_taggable_type %>
+<% engineer_taggable_id ||= @engineer_tag.engineer_taggable_id %>
+
+<strong><%= link_to "Back", "/#{engineer_taggable_type.downcase}s/#{engineer_taggable_id}", class: "nolink" %></strong>
+<br></br>
+
+<div class="mainbox">
+  <div class="mainformbox">
+    <div class="ticketformtitle">
+      <p class="XLfont book lopad">New Engineer Tag</p>
+    </div>
+
+    <div class="ticketform">
+      <ul class="form">
+        <%= form_with model: engineer_tag do |form| %>
+          <div>
+            <strong><%= form.label :engineer_id %><br></strong>
+
+            <%# Same issue as above.  On the first run, the @engineers variable correctly
+                gets set in the engineer_tag controller new method.  But when a redirect call
+                gets made frmo the create method (to due to someone submitting a blank), the
+                @engineers variable is no longer there.  I have changed the name to engineer
+                for now and handle the logic here  %> 
+            <% case engineer_taggable_type %>
+            <% when 'Solution' %>
+              <% solution = Solution.find(engineer_taggable_id) %>
+              <% engineers||= Engineer.all - solution.engineers %>
+            <% when 'Case' %>
+              <% casse = Case.find(engineer_taggable_id) %>
+              <% engineers||= Engineer.all - casse.engineers %>
+            <% when 'Bug' %>
+              <% bug = Bug.find(engineer_taggable_id) %>
+              <% engineers||= Engineer.all - bug.engineers %>
+            <% end %>
+
+            <%= form.select :engineer_id, engineers.collect{ |p| [p.first_name, p.id ]}, include_blank: true %>
+            <% engineer_tag.errors.full_messages_for(:engineer_id).each do |message| %>
+              <div><%= message %></div>
+            <% end %>
+          </div>
+          <br>
+
+          <div>
+            <%= form.hidden_field :engineer_taggable_type, value: engineer_taggable_type %>
+            <%= form.hidden_field :engineer_taggable_id, value: engineer_taggable_id %>
+          </div>
+
+          <div>
+            <strong><%= form.label :status %><br></strong>
+            <%= form.select :status, ['public', 'private', 'archived'], selected: 'public' %>
+          </div>
+          <br></br>
+
+          <div>
+            <%= form.submit class: "form-submit-button" %>
+          </div>
+        <% end %>
+      </ul>   
+    </div>
+  </div>
+</div>

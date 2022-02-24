@@ -1,0 +1,12 @@
+body{
+  background: #78c0a8; /* turquoise */
+}
+.uppermain, .mainbox {
+  background: #5e412f;  /* brown */
+}
+.testsubbox, .testtitlebox, .testbox, .mainformbox {
+  background: #f07818; /* orange */
+}
+.boxsubheader, .boxheader, .box80, .boxtag, .scrollout, .ticketform, .ticketformtitle, .tickettitle, .scrollbox {
+  background: #fcebb6; /* yellow/cream */
+}

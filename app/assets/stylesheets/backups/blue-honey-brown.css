@@ -1,0 +1,19 @@
+body{
+  background: #FDE74C;
+  background: lightcyan;
+  background: #ecbe5c;
+  background: #f0c770; 
+/*  background: #f3b83b; */
+}
+.testsubbox, .testtitlebox, .testbox, .mainformbox {
+  background-color: #4C5B5C;  /* pistachio green */
+}
+.uppermain, .mainbox {
+  background-color: #3891A6;  /* light jade */
+}
+.boxsubheader, .boxheader, .box80, .boxtag, .scrollout, .ticketform, .ticketformtitle, .tickettitle, .scrollbox {
+  background: #ffffbf;  /* green water */
+  background: #ebfaf4;  /* water */
+}
+
+

@@ -6,4 +6,5 @@ class SolutionCoverage < ApplicationRecord
 
   has_many :comments, as: :commentable
   validates_uniqueness_of :engineer_id, scope: [:solution_id, :engineer_id]
+  validates :engineer_id, presence: true
 end

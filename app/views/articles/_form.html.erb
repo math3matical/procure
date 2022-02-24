@@ -1,48 +1,46 @@
-<html>
-<body style="background-color: #ffffc2">
-</body>
-</html>
-<style>
-.nolink {
-  text-decoration: none;
-  color: darkblue
-}
-</style>
+<%= render "logo" %>
 
-<%= link_to "Back", :back, class: "nolink" %>
-
+<strong><%= link_to "Back", "/articles/#{article.id}", class: "nolink" %></strong>
 <br></br>
 
+<div class="mainbox">
+  <div class="mainformbox">
+    <div class="ticketformtitle"> 
+      <p class="XXLfont book lopad"><%= params[:action].capitalize %> Article</p>
+    </div> 
 
-<%= form_with model: article do |form| %>
-  <div>
-    <%= form.label :title %><br>
-    <%= form.text_field :title %>
-    <% article.errors.full_messages_for(:title).each do |message| %>
-      <div><%= message %></div>
-    <% end %>
-  </div>
+    <div class="ticketform">
+      <ul class="form">
+        <%= form_with model: article do |form| %>
+          <div>
+            <strong><%= form.label :title %></strong><br>
+            <textfield class="field2"> <%= form.text_field :title %> </textfield>
+            <% article.errors.full_messages_for(:title).each do |message| %>
+              <div><%= message %></div>
+            <% end %>
+          </div>
+          <br>
+ 
+          <div style="overflow: auto">
+            <strong><%= form.label :body %></strong><br>
+            <textfield class="field3"> <%= form.text_area :body, style: "width: 80%; height: 150px" %> </textfield><br>
+            <% article.errors.full_messages_for(:body).each do |message| %>
+              <div><%= message %></div>
+            <% end %>
+          </div>
+          <br>
+ 
+          <div>
+            <strong><%= form.label :status %></strong><br>
+            <%= form.select :status, ['public', 'private', 'archived'], selected: 'public' %>
+          </div>
+          <br></br>
 
-  <div>
-    <%= form.label :body %><br>
-    <%= form.text_area :body, size: "125x25" %><br>
-    <% article.errors.full_messages_for(:body).each do |message| %>
-      <div><%= message %></div>
-    <% end %>
-  </div>
-
-  <br></br>
-
-  <div>
-  <%= form.label :status %><br>
-  <%= form.select :status, ['public', 'private', 'archived'], selected: 'public' %>
-
-  <br></br>
-
-  <div>
-    <%= form.submit %>
+          <div>
+            <%= form.submit class: "form-submit-button" %>
+          </div>
+        <% end %>
+      </ul>
+    </div>
   </div>
 </div>
-
-<% end %>
-

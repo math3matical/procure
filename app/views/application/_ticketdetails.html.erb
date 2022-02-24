@@ -1,0 +1,30 @@
+<div class="testbox">
+  <div class="tickettitle">
+    <strong><p class="XLfont lopadtop">Details</p></strong>
+    <p class="lopadbot Mfont book"><%= link_to "Edit", "/#{type}s/#{ticket.id}/edit?ticketid=#{ticket.id}", class: "nolink" %></p>
+  </div>
+
+  <div class="box80">
+    <p><strong>Id:</strong> <%= ticket.id %></p>
+    <p><strong>Title:</strong> <%= ticket.title %></p>
+    <p><strong>Number:</strong> <%= ticket.number %></p>
+    <p><strong>Importance:</strong> <%= ticket.importance %></p>
+    <p><strong>Created:</strong> <%= ticket.created_at %></p>
+    <p><strong>Updated:</strong> <%= ticket.updated_at %></p>
+    <p><strong>Status:</strong> <%= ticket.status %></p>
+  </div>
+</div>
+<p class="linebreaker"></p>
+
+<div class="testbox">
+  <div class="tickettitle">
+    <strong><p class="XLfont lopadtop">Notes</p></strong>
+    <p class="lopadbot Mfont book"><%= link_to "Edit", "/#{type}s/#{ticket.id}/edit?ticketid=#{ticket.id}", class: "nolink" %></p>
+  </div>
+
+  <div class="scrollout">
+    <div class="scrollbox">
+      <div> <%= markdown(ticket.notes) %> </div>
+    </div>
+  </div>
+</div>

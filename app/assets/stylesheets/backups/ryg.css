@@ -1,0 +1,20 @@
+body{
+  background: #7CD1B8;
+  background-color: #ccccff;  /* periwinkle */
+  background: #9cd22b;
+}
+.uppermain, .mainbox {
+  background: #3ba7f3;
+  background: #eade16;
+}
+.testsubbox, .testtitlebox, .testbox, .mainformbox {
+  background-color: #d891ef;  /* bright lilac */
+  background-color: #633799;
+  background: #6b3ca4;
+  background: #e2331f;
+}
+.boxsubheader, .boxheader, .box80, .boxtag, .scrollout, .ticketform, .ticketformtitle, .tickettitle, .scrollbox {
+  background: #ffffbf;  /* green water */
+  background: #ebfaf4;  /* water */
+}
+

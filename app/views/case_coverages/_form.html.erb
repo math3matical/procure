@@ -1,41 +1,40 @@
-<html>
-<body style="background-color: #ffffc2">
-</body>
-</html>
-<style>
-</style>
-<%= link_to "Back", :back %>
+<strong><%= link_to "Back", "/cases/#{case_id}", class: "nolink" %></strong>
 
 <br></br>
 
-
+<div class="mainbox">
 <%= form_with model: case_coverage do |form| %>
   <div>
-    <%= form.label :engineer_id %><br>
-    <%= form.select :engineer_id, Engineer.all.collect{ |p| [p.first_name, p.id ]}, include_blank: true %>
-    <%#= form.text_field :engineer_id %>
+    <strong><%= form.label :engineer_id %></strong><br>
+
+    <%# Manually configuring the @engineers variable in case it is nil.  The controller sets this 
+        correctly when we first enter the new coverable object.  However, if we fail (user enters 
+        blank), the create method in the controller  calls a render "new" command.  Perhaps this 
+        just calls the new.html.erb file for the coverable object, and doesn't hit the new method
+        on the controller again.  Not really sure.  REVIST %>
+
+    <% @case = Case.find(params[:case_id]) %>
+    <% @engineers||= Engineer.all - @case.engineers %>
+
+    <%= form.select :engineer_id, @engineers.collect{ |p| [p.first_name, p.id ]}, include_blank: true %>
     <% case_coverage.errors.full_messages_for(:engineer_id).each do |message| %>
       <div><%= message %></div>
     <% end %>
   </div>
+  <br>
+
+  <div>
     <%= form.hidden_field :case_id, value: case_id %>
-    <%#= form.label :case_id %><br>
-    <%#= form.text_field :case_id, :value => case_id, :disabled => true %>
-    <%# case_coverage.errors.full_messages_for(:case_id).each do |message| %>
-      <div><%#= message %></div>
-    <%# end %>
-
-
-  <div>
-  <%= form.label :status %><br>
-  <%= form.select :status, ['public', 'private', 'archived'], selected: 'public' %>
-
-  <br></br>
-
-  <div>
-    <%= form.submit %>
   </div>
-</div>
 
+  <div>
+    <strong><%= form.label :status %></strong><br>
+    <%= form.select :status, ['public', 'private', 'archived'], selected: 'public' %>
+  </div>
+  <br>
+
+  <div>
+    <%= form.submit class: "form-submit-button" %>
+  </div>
 <% end %>
-
+</div>

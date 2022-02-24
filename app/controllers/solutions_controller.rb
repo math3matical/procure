@@ -2,7 +2,7 @@ class SolutionsController < ApplicationController
   def index
     if params[:engineer_id]
       @engineer = Engineer.find(params[:engineer_id])
-      @solutions = @engineer.solutions
+      @solutions = Solution.search2(params[:search], @engineer)
     else
       @solutions = Solution.search(params[:search])
     end
@@ -18,14 +18,12 @@ class SolutionsController < ApplicationController
 
   def create
     @solution = Solution.new(solution_params)
-
     if @solution.save
       redirect_to @solution
     else
       render :new, status: :unprocessable_entity
     end
   end
-
 
   def edit
     @solution = Solution.find(params[:id])
@@ -42,7 +40,6 @@ class SolutionsController < ApplicationController
  
   def update
     @solution = Solution.find(params[:id])
-
     if @solution.update(solution_params)
       redirect_to @solution
     else
@@ -51,7 +48,8 @@ class SolutionsController < ApplicationController
   end
  
   def show
-    @solutions = Solution.find(params[:id])
+    @solution = Solution.find(params[:id])
+    @coverages = {}
   end
   
   def destroy

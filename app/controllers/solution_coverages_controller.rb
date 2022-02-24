@@ -9,6 +9,9 @@ class SolutionCoveragesController < ApplicationController
 
   def new
     @solution_coverage = SolutionCoverage.new
+    @solution = Solution.find(params[:solution_id])
+    tagged_engineers = @solution.engineers
+    @engineers = Engineer.all - tagged_engineers
   end
 
   def create

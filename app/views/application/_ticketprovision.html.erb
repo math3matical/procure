@@ -1,0 +1,22 @@
+<div class="testbox">
+  <div class="tickettitle">
+    <strong><p class="XLfont lopadtop">Provision Tag</p></strong>
+    <% if ticket.provision_tag %>
+      <p class="Sfont book lopadbot">
+        <%= link_to "Edit", edit_provision_tag_path(provision_taggable_id: ticket.id, provision_tag: ticket.provision_tag, provision_taggable_type: type.capitalize), class: "nolink" %>
+        <%= link_to "Remove", provision_tag_path(ticket.provision_tag),
+                     data:{
+                     turbo_method: :delete,
+                     turbo_confirm: "Are you sure you want to delete?"
+                   }, class: "nolink" %>
+      </p>
+    <% elsif %>
+      <p class="Sfont book lopadbot">
+        <%= link_to "Tag", new_provision_tag_path(generic_id: ticket.id, taggable_type: type.capitalize), class: "nolink" %>
+      </p>
+    <% end %>
+  </div>
+  <% if ticket.provision_tag %>
+    <%= render ticket.provision_tag %>
+  <% end %>
+</div>

@@ -1,0 +1,22 @@
+<div class="testbox">
+  <div class="tickettitle">
+    <strong><p class="XLfont lopadtop">Network Tag</p></strong>
+    <% if ticket.network_tag %>
+      <p class="Sfont book lopadbot">
+        <%= link_to "Edit", edit_network_tag_path(network_taggable_id: ticket.id, network_tag: ticket.network_tag, network_taggable_type: type.capitalize), class: "nolink" %>
+        <%= link_to "Remove", network_tag_path(ticket.network_tag),
+                       data:{
+                       turbo_method: :delete,
+                       turbo_confirm: "Are you sure you want to delete?"
+                     }, class: "nolink" %>
+      </p>
+    <% elsif %>
+      <p class="Sfont book lopadbot">
+        <%= link_to "Tag", new_network_tag_path(generic_id: ticket.id, taggable_type: type.capitalize), class: "nolink" %>
+      </p>
+    <% end %>
+  </div>
+  <% if ticket.network_tag %>
+    <%= render ticket.network_tag, style: "margin:0; padding:0" %>
+  <% end %>
+</div>

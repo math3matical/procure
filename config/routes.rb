@@ -5,25 +5,28 @@ Rails.application.routes.draw do
   get 'bug_coverages/index'
   get 'bugs/index'
   
-#  get 'solutions/index'
+  get '/test/runit', to: 'test#bugcall'
+  get '/test/engineerapi', to: 'test#engineerapi'
+  get '/engineers/newapi', to: 'engineers#newapi'
+  get '/engineers/findapi', to: 'engineers#findapi'
+  get '/cases/newapi', to: 'cases#newapi'
+  get '/cases/findapi', to: 'cases#findapi'
+  get '/bugs/newapi', to: 'bugs#newapi'
+  get '/bugs/findapi', to: 'bugs#findapi'
+  get '/solutions/horse', to: 'solutions#horse'
+  get '/test/horse', to: 'test#horse'
+
   get "/solutions/", to: "solutions#index"
   get "/cases/", to: "cases#index"
-#  get 'engineers/index'
-#  get "/engineers/", to: "engineers#index"
-#  get 'cases/index'
-#  get 'case/index'
   get 'engineer_bugs', to: 'engineers#bugs'
   get 'new_comment', to: 'solutions#new_comment'
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
-  # root "articles#index"
-  root "articles#index"
+  root "test#index"
   get "/stuff", to: "test#index"
 
-#  get "/articles", to: "articles#index"
-#  get "/articles/:id", to: "articles#show"
   resources :articles do
     resources :comments
   end
@@ -32,11 +35,6 @@ Rails.application.routes.draw do
   resources :comments do
   end
 
-#  get "/solution_coverages/", to: "solution_coverages#index"
-#  get "/case_coverages/", to: "case_coverages#index"
-#  get "/bug_coverages/", to: "bug_coverages#index"
-#
-#
   resources :satellite_tags do
   end
 
@@ -75,5 +73,7 @@ Rails.application.routes.draw do
   resources :case_coverages do
     resources :comments
   end
+
+  resources :engineer_tags
 
 end

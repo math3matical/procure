@@ -1,0 +1,30 @@
+<%= render "logo" %>
+<strong><%= link_to "Back", "/engineers/", class: "nolink" %></strong>
+<br></br>
+
+<div class="mainbox">
+  <div class="mainformbox">
+    <div class="ticketformtitle"> 
+      <p class="XXLfont book lopad">API Add Engineer</p>
+    </div> 
+
+    <div class="ticketform">
+      <ul class="form">
+        <%= form_tag("/engineers/newapi", method: :get) do %>
+          <%#= form_tag("/#{ticket}/#{path}", method: :get) do %>
+          <%= text_field_tag(:engineer_first, params[:engineer_first], size: 22) %>
+          <%= text_field_tag(:engineer_last, params[:engineer_last], size: 22) %>
+          <%#= text_field_tag(:search, params[:search], size: 22, style: "margin-right: 4px; border: 2px solid black") %>
+
+          <%# Using this button to clear the form prevents the user from hitting enter
+              to submit a search.  In the url you can see the issue is that the there are
+              2 search variables (i.e. ?search=something&search=). One is blank and one has 
+              the search string. %>
+          <%#= button_tag "x", name: 'search', value: '', class: "form-reset-button book" %>
+
+          <%= button_tag "Search", class: "form-search-button" %>
+        <% end %>
+      </ul>
+    </div> 
+  </div>
+</div>

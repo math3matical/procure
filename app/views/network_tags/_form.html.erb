@@ -1,58 +1,95 @@
-<%= link_to "Back", :back %>
+<%= render "logo" %>
 
+<style>
+  ul li {
+    display: inline-block;
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+  ul li > * {
+    width: 170px;
+  }
+</style>
+
+<%= link_to "Back", :back, class: "nolink book" %>
 <br></br>
 
-<%= form_with model: network_tag do |form| %>
-  <div>
-    <%= form.label :ipv4 %><br>
-    <%= form.check_box :ipv4 %><br>
-  </div>
-  <br>
+<div class="mainbox">
+  <div class="mainformbox" style="overflow: hidden;">
+    <div class="ticketformtitle">
+      <p class="XXLfont book lopad">Network Tag</p>
+    </div>
 
-  <div>
-    <%= form.label :ipv6 %><br>
-    <%= form.check_box :ipv6 %><br>
-  </div>
-  <br>
+    <div class="ticketform">
+      <%= form_with model: network_tag do |form| %>
+        <ul>
+          <li>
+          <div class="form-check">
+            <%= form.check_box :ipv4 %>
+            <strong><%= form.label :ipv4 %></strong>
+          </div>
+          </li>
+   
+          <li>
+          <div class="form-check">
+            <%= form.check_box :ipv6 %>
+            <strong><%= form.label :ipv6 %></strong>
+          </div>
+          </li>
+          <br></br>
+  
+          <li>
+          <div class="form-check">
+            <%= form.check_box :bond %>
+            <strong><%= form.label :bond %></strong>
+          </div>
+          </li>
+  
+          <li>
+          <div class="form-check">
+            <%= form.check_box :vlan %>
+            <strong><%= form.label :vlan %></strong>
+          </div>
+          </li>
+          <br></br>
+  
+          <li>
+          <div class="form-check">
+            <%= form.check_box :bridge %>
+            <strong><%= form.label :bridge %></strong>
+          </div>
+          </li>
+  
+          <li>
+          <div class="form-check">
+            <%= form.check_box :proxy %>
+            <strong><%= form.label :proxy %></strong>
+          </div>
+          </li>
+          <br></br>
+  
+          <li>
+          <div class="form-check">
+            <%= form.check_box :firewall %>
+            <strong><%= form.label :firewall %></strong>
+          </div>
+          </li>
+  
+          <%= form.hidden_field :network_taggable_id, value: network_taggable_id %>
+          <%= form.hidden_field :network_taggable_type, value: network_taggable_type  %>
+  
+          <%# <li> buffer for the submit button, so the submit button stays to the left.  could use the hidden_form, but 
+              would rather leave that out of the li for now %>
+          <li>
+          </li>
+          <br></br>
 
-  <div>
-    <%= form.label :bond %><br>
-    <%= form.check_box :bond %><br>
-  </div>
-  <br>
-
-  <div>
-    <%= form.label :vlan %><br>
-    <%= form.check_box :vlan %><br>
-  </div>
-  <br>
-
-  <div>
-    <%= form.label :bridge %><br>
-    <%= form.check_box :bridge %><br>
-  </div>
-  <br>
-
-  <div>
-    <%= form.label :proxy %><br>
-    <%= form.check_box :proxy %><br>
-  </div>
-  <br>
-
-  <div>
-    <%= form.label :firewall %><br>
-    <%= form.check_box :firewall %><br>
-  </div>
-  <br>
-
-
-  <%= form.hidden_field :network_taggable_id, value: network_taggable_id %>
-  <%= form.hidden_field :network_taggable_type, value: network_taggable_type  %>
-
-  <div>
-    <%= form.submit %>
+          <li>
+            <%= form.submit class: "form-submit-button" %>
+          </li>
+        </ul>
+      </div>
+    <% end %>
   </div>
 </div>
-
-<% end %>
 

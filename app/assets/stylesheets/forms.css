@@ -1,0 +1,124 @@
+.form-search-button, .form-reset-button, .form-submit-button{
+  border-radius: 5px;
+  text-shadow: none;
+  height: 30px;
+  font: bold15px arial,sans-serif;
+}
+.form-search-button, .form-submit-button, .form-reset-button:active{
+  color: #fff;
+}
+.field input, .field2 input, .field3 textarea{
+  padding: 5px;
+  border: 2px inset;
+  font-size: 14px;
+  border-radius:5px;
+}
+.form-search-button { 
+  border-color: #0066A2;
+  border-style: outset;
+  background: #1f45fc;  /* blue orchid */
+}
+.form-search-button:hover {
+  background: #1020cd;  /* medium blue */
+}
+.form-search-button:active {
+  border: 1px inset #eee;
+  background: #0000b5;  /* new midnight blue */
+}
+.form-reset-button {
+  border-color: black;
+  border-style: outset;
+}
+.form-reset-button:hover {
+  color: black;
+  background: #c0c0c0;  /* silver */
+}
+.form-reset-button:active {
+  border: 1px solid #eee;
+  background: #848482;  /* battleship gray */
+}
+.form-submit-button:hover {
+  border: 2px outset;
+  background: #0041c2;  /* blueberry blue */
+}
+.form-submit-button:active {
+  border: 2px inset;
+  background: #0041c2;  /* blueberry blue */
+}
+.form-submit-button {
+  margin: 0;
+  border-style: 2px outset;
+  background: #1f45fc;  /* blue orchid */
+}
+.field2 input{
+  border: 2px inset;
+}
+.field3 textarea{
+  border: 2px inset;
+}
+.formbg textarea{
+  background-color: #ebf4fa;
+}
+select.myselect option{
+  border: 5px solid black;
+}
+
+/* PLACEMENTS */
+
+.righthead {
+  padding-right: 12%;
+  text-align: right;
+}
+.middlehead {
+  margin-left: 40%;
+  padding-right: 15%;
+  text-align: center;
+}
+span b {
+  font-size: 80%;
+  font-weight: normal;
+}
+ol {
+  padding-left: 0%
+  margin-left: 0px;
+}
+ul {
+  padding: 0;
+}
+h2, title{
+  display: inline-block;
+}
+title {
+  padding: 0;
+  margin: 0;
+  left: 5px;
+  position: relative;
+  text-align: left;
+  font-size: 20px;
+}
+h2 {
+  text-align: left;
+  font-size: 22px;
+  padding: 0;
+  margin: 0;
+}
+
+/*.pad {
+  width: 88%;
+  padding-right: 9%; 
+  padding-left: 1.5%; 
+  padding-top: 1%;
+}*/
+/* Not able to get this working.
+ * https://alexandergottlieb.com/2018/02/22/overflow-scroll-and-the-right-padding-problem-a-css-only-solution/
+ * https://www.brunildo.org/test/overscrollback.html
+/*
+.pad:after {
+  content: "";
+  display: block;
+  position: absolute;
+  right: -20rem;
+  width: 20rem;
+  height: 50px;
+}*/
+

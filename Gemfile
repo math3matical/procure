@@ -3,8 +3,29 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby "2.7.5"
 
+########################################
+## Gems added after the rails install ##
+
+
+#https://stackoverflow.com/questions/3268053/rails-before-validation-strip-whitespace-best-practices
+#https://github.com/holli/auto_strip_attributes
+gem 'auto_strip_attributes'
+
+#https://github.com/rest-client/rest-client
+gem 'rest-client'
+
+
+#https://www.adamscott.io/blog/2014/01/21/renaming-a-ruby-on-rails-application/
+gem "rename"
+
 # RedCarpet https://web-crunch.com/posts/how-to-add-markdown-support-to-ruby-on-rails
 gem "redcarpet"
+
+# https://blog.engineyard.com/using-jquery-with-rails-how-to
+# Didn't get it to work.  Deleted the files from the article.
+gem "jquery-rails"
+
+#########################################
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.1"

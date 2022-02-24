@@ -4,19 +4,15 @@ class EngineersController < ApplicationController
   end
 
   def show
-    @engineers = Engineer.find(params[:id])
+    @engineer = Engineer.find(params[:id])
   end
 
   def edit
-    puts "============================"
-    puts params
-    puts "============================"
     @engineer = Engineer.find(params[:id])
   end
 
   def create
     @engineer = Engineer.new(engineer_params)
-
     if @engineer.save
       redirect_to @engineer
     else
@@ -27,7 +23,6 @@ class EngineersController < ApplicationController
 
   def update
     @engineer = Engineer.find(params[:id])
-
     if @engineer.update(engineer_params)
       redirect_to @engineer
     else
@@ -39,11 +34,22 @@ class EngineersController < ApplicationController
     @engineer = Engineer.new
   end
 
+  def newapi
+    @things = EngineerGrabber.call(params[:engineer_first], params[:engineer_last])
+    engineer = {}
+    engineer[:first_name] = @things["items"].first["firstName"]
+    engineer[:last_name] = @things["items"].first["lastName"]
+    engineer[:irc] = @things["items"].first["ircNick"]
+    engineer[:position] = @things["items"].first["title"]
+    params2 = {}
+    params2[:engineer] = engineer
+    @engineer = Engineer.new(engineer)
+  end
+
+  def findapi   
+  end
+
   def bugs
-    puts "================================================================================================================"
-    puts "engineer bugs"
-    puts params
-    puts "================================================================================================================"
     @engineer = Engineer.find(params[:id])
     @engineer.bugs
   end
@@ -51,7 +57,6 @@ class EngineersController < ApplicationController
   def destroy
     @engineer = Engineer.find(params[:id])
     @engineer.destroy
-
     redirect_to engineers_path, status: :see_other
   end
 
@@ -59,7 +64,4 @@ class EngineersController < ApplicationController
     def engineer_params
       params.require(:engineer).permit(:first_name, :last_name, :irc, :position, :status, :search)
     end
-
-
-
 end

@@ -1,0 +1,43 @@
+<div class="mainbox">
+
+  <div class="testsubbox">
+    <div class="boxsubheader">
+      <% unless params[:engineer_id] %>
+        <h2 class="XXLfont"><%= ticket.capitalize %>s</h2>
+        <p class="Mfont book">
+          <%= link_to "New", "/#{ticket}s/new", class: "nolink" %> |
+          <%= link_to "Sort", "/#{ticket}s/new", class: "nolink" %> |
+          <%= link_to "Filter", "/#{ticket}s/new", class: "nolink" %>
+        </p>
+
+      <% else %>
+        <h2><%= @engineer.first_name %>'s <%= ticket.capitalize %>s</h2>
+        <p class="Mfont book">
+          <%= link_to "Return to #{@engineer.first_name}", "/engineers/#{@engineer.id}", class: "nolink" %>
+        </p>
+        <p class="Mfont book">
+          <%= link_to "Cases", "/engineers/#{@engineer.id}/cases", class: "nolink" %> |
+          <%= link_to "Solutions", "/engineers/#{@engineer.id}/solutions", class: "nolink" %> |
+          <%= link_to "Bugs", "/engineers/#{@engineer.id}/bugs", class: "nolink" %>
+        </p>
+      <% end %>
+    </div>
+  </div>
+  <br>
+
+  <div class="testbox">
+    <div class="box80">
+      <%= render 'searchform2', ticket: "#{ticket}s", path: '' %>
+      <ol>
+        <% tickets.each do |ticket| %>
+          <% unless ticket.archived? %>
+            <li>
+              <p><strong><%= link_to ticket.number, ticket, class: "nolink" %></strong> -  <%= ticket.title %> </p>
+            </li>
+          <% end %>
+        <% end %>
+      </ol>
+    </div>
+  </div>
+</div>
+

@@ -1,99 +1,143 @@
-<%= link_to "Back", :back %>
+<%= render "logo" %>
+
+<style>
+  ul li {
+    display: inline-block;
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+
+  ul li > * {
+    width: 170px;
+  }
+</style>
+
+
+<%= link_to "Back", :back, class: "book nolink" %>
 
 <br></br>
 
-<%= form_with model: provision_tag do |form| %>
-  <div>
-    <%= form.label :version %><br>
-    <%= form.text_field :version %><br>
-  </div>
-  <br>
+<div class="mainbox">
+  <div class="mainformbox" style="overflow: hidden;">
+    <div class="ticketformtitle">
+      <p class="XXLfont book lopad">Provision Tag</p>
+    </div>
+
+    <div class="ticketform">
+      <%= form_with model: provision_tag do |form| %>
+        <ul>
+          <li>
+            <strong><%= form.label :version %></strong>
+            <%= form.select :version, ['6.7', '6.8', '6.9', '6.10'] %>
+          </li>
+          <br></br>
   
-  <div>
-    <%= form.label :contentview %><br>
-    <%= form.check_box :contentview %><br>
-  </div>
-  <br>
+          <li>
+          <div class="form-check">
+            <%= form.check_box :contentview %>
+            <strong><%= form.label :contentview %></strong>
+          </div>
+          </li>
+          <br></br>
 
-  <div>
-    <%= form.label :capsule %><br>
-    <%= form.check_box :capsule %><br>
-  </div>
-  <br>
+          <li>
+          <div class="form-check">
+            <%= form.check_box :capsule %>
+            <strong><%= form.label :capsule %></strong>
+          </div>
+          </li>
 
-  <div>
-    <%= form.label :http %><br>
-    <%= form.check_box :http %><br>
-  </div>
-  <br>
+          <li>
+          <div class="form-check">
+            <%= form.check_box :http %>
+            <strong><%= form.label :http %></strong>
+          </div>
+          </li>
+          <br></br>
 
-  <div>
-    <%= form.label :ui %><br>
-    <%= form.check_box :ui %><br>
-  </div>
-  <br>
+          <li>
+          <div class="form-check">
+            <%= form.check_box :ui %>
+            <strong><%= form.label :ui %></strong>
+          </div>
+          </li>
+  
+          <li>
+          <div class="form-check">
+            <%= form.check_box :pxe %>
+            <strong><%= form.label :pxe %></strong>
+          </div>
+          </li>
+          <br></br>
+  
+          <li>
+          <div class="form-check">
+            <%= form.check_box :bootstrap %>
+            <strong><%= form.label :bootstrap %></strong>
+          </div>
+          </li>
+  
+          <li>
+          <div class="form-check">
+            <%= form.check_box :kickstart %>
+            <strong><%= form.label :kickstart %></strong>
+          </div>
+          </li>
+          <br></br>
+  
+          <li>
+          <div class="form-check">
+            <%= form.check_box :discover %>
+            <strong><%= form.label :discover %></strong>
+          </div>
+          </li>
 
-  <div>
-    <%= form.label :pxe %><br>
-    <%= form.check_box :pxe %><br>
-  </div>
-  <br>
+          <li>
+          <div class="form-check">
+            <%= form.check_box :image %>
+            <strong><%= form.label :image %></strong>
+          </div>
+          </li>
+          <br></br>
+  
+          <li>
+          <div class="form-check">
+            <%= form.check_box :compute %>
+            <strong><%= form.label :compute %></strong>
+          </div>
+          </li>
+  
+          <li>
+          <div class="form-check">
+            <%= form.check_box :notes %>
+            <strong><%= form.label :notes %></strong>
+          </div>
+          </li>
+          <br></br>
+  
+          <li>
+          <div class="form-check">
+            <%= form.check_box :bootdisk %>
+            <strong><%= form.label :bootdisk %></strong>
+          </div>
+          </li>
+  
+          <li>
+          <div class="form-check">
+            <%= form.check_box :ipxe %>
+            <strong><%= form.label :ipxe %></strong>
+          </div>
+          </li>
+          <br></br>
+ 
+          <%= form.hidden_field :provision_taggable_id, value: provision_taggable_id %>
+          <%= form.hidden_field :provision_taggable_type, value: provision_taggable_type %>
 
-  <div>
-    <%= form.label :bootstrap %><br>
-    <%= form.check_box :bootstrap %><br>
-  </div>
-  <br>
-
-  <div>
-    <%= form.label :kickstart %><br>
-    <%= form.check_box :kickstart %><br>
-  </div>
-  <br>
-
-  <div>
-    <%= form.label :discover %><br>
-    <%= form.check_box :discover %><br>
-  </div>
-  <br>
-
-  <div>
-    <%= form.label :image %><br>
-    <%= form.check_box :image %><br>
-  </div>
-  <br>
-
-  <div>
-    <%= form.label :compute %><br>
-    <%= form.check_box :compute %><br>
-  </div>
-  <br>
-
-  <div>
-    <%= form.label :notes %><br>
-    <%= form.check_box :notes %><br>
-  </div>
-  <br>
-
-  <div>
-    <%= form.label :bootdisk %><br>
-    <%= form.check_box :bootdisk %><br>
-  </div>
-  <br>
-
-  <div>
-    <%= form.label :ipxe %><br>
-    <%= form.check_box :ipxe %><br>
-  </div>
-  <br>
-
-  <%= form.hidden_field :provision_taggable_id, value: provision_taggable_id %>
-  <%= form.hidden_field :provision_taggable_type, value: provision_taggable_type %>
-
-  <div>
-    <%= form.submit %>
+          <li>
+            <%= form.submit class: "form-submit-button" %>
+          </li>
+        </ul>
+      <% end %>
+    </div>
   </div>
 </div>
-
-<% end %>
-

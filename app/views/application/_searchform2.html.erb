@@ -1,0 +1,12 @@
+<div class="field">
+  <%= form_tag("/#{ticket}/#{path}", method: :get) do %>
+    <%= text_field_tag(:search, params[:search], size: 22) %>
+
+    <%# Using this button to clear the form prevents the user from hitting enter
+        to submit a search.  In the url you can see the issue is that the there are
+        2 search variables (i.e. ?search=something&search=). One is blank and one has 
+        the search string. %>
+    <%#= button_tag "x", name: 'search', value: '', class: "form-reset-button book" %>
+
+  <% end %>
+</div>

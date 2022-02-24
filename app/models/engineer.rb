@@ -1,5 +1,8 @@
 class Engineer < ApplicationRecord
   include Visible
+  
+  has_many :engineer_tags, dependent: :destroy
+  has_many :bugs, :through =>  :engineer_tags, :source => :engineer_taggable, :source_type => "Bug"
 
   has_many :solution_coverages, dependent: :destroy
   has_many :bug_coverages, dependent: :destroy
@@ -12,6 +15,20 @@ class Engineer < ApplicationRecord
   
   validates :last_name, presence: true
   validates :first_name, presence: true
+  
+  validate :first_last 
+
+  def first_last
+    last = Engineer.where('lower(last_name) = ?', last_name.downcase)
+    last.each do |l|
+      if l.first_name.downcase.eql? first_name.downcase
+        unless l.id.eql? id
+          errors.add(:last_name, "has already been used") 
+        end
+      end
+    end
+  end
+
 
   def self.search(search)
     search ||=""

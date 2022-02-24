@@ -1,0 +1,32 @@
+<div class="testsubbox">
+  <div class="boxsubheader">
+    <h2 class="XXLfont"><%= type.capitalize %>:</h2>
+    <strong><title><%= ticket.title %></title></strong>
+    <p class="Mfont book">
+      <%= link_to "New", "/articles/new", class: "nolink" %> |
+      <%= link_to "Edit", edit_article_path(ticket), class: "nolink" %> |
+      <%= link_to "Comment", new_article_comment_path(ticket), class: "nolink" %> |
+      <%= link_to "Remove", article_path(ticket), data: {
+                    turbo_method: :delete,
+                    turbo_confirm: "Are you sure?"
+                  }, class: "nolink" %>
+    </p>
+  </div>
+</div>
+<br>
+
+<div class="testbox">
+  <div class="tickettitle">
+    <strong><p class="XLfont lopadtop">Details</p></strong>
+    <p class="Mfont book lopadbot"><%= link_to "Edit", edit_article_path(ticket), class: "nolink" %></p>
+  </div>
+
+  <div class="box80" style="padding-left: 10px">
+    <ul style="padding:0">
+      <p><strong>Title:</strong> <%= ticket.title %></p>
+      <p><strong>Body:</strong> <%= ticket.body %></p>
+      <p><strong>Created:</strong> <%= ticket.created_at %></p>
+      <p><strong>Updated:</strong> <%= ticket.updated_at %></p>
+    </ul>
+  </div>
+</div>

@@ -1,0 +1,14 @@
+body{
+  background: lightgray;
+}
+.testsubbox, .testtitlebox, .testbox, .mainformbox {
+  background-color: #d891ef;  /* bright lilac */
+}
+.uppermain, .mainbox {
+  background-color: #ccccff;  /* periwinkle */
+}
+.boxsubheader, .boxheader, .box80, .boxtag, .scrollout, .ticketform, .ticketformtitle, .tickettitle, .scrollbox {
+  background: #ffffbf;  /* green water */
+  background: #ebfaf4;  /* water */
+}
+

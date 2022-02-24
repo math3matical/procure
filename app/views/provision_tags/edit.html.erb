@@ -1,10 +1,1 @@
-<%#<h3>ProvisionTag Edit View</h3>
-<p style="font-size:13px">Find me in app/views/provision_tags/edit.html.erb</p>%>
-
-<br></br>
-<% if params[:case_id] %>
-  <% case_id = params[:case_id] %>
-<% end %>
-
-
 <%= render partial: "form", locals: {provision_taggable_id: params[:provision_taggable_id], provision_taggable_type: params[:provision_taggable_type], provision_tag: @provision_tag} %>

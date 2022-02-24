@@ -1,0 +1,22 @@
+<div class="testbox">
+  <div class="tickettitle">
+    <strong><p class="XLfont lopadtop">Satellite Tag</p></strong>
+    <% if ticket.satellite_tag %>
+      <p class="Sfont book lopadbot">
+        <%= link_to "Edit", edit_satellite_tag_path(satellite_taggable_id: ticket.id, satellite_tag: ticket.satellite_tag, satellite_taggable_type: type.capitalize), class: "nolink book" %>
+        <%= link_to "Remove", satellite_tag_path(ticket.satellite_tag),
+                       data:{
+                       turbo_method: :delete,
+                       turbo_confirm: "Are you sure you want to delete?"
+                     }, class: "nolink" %>
+      </p>
+    <% elsif %>
+      <p class="Sfont book lopadbot">
+        <%= link_to "Tag", new_satellite_tag_path(generic_id: ticket.id, taggable_type: type.capitalize), class: "nolink" %>
+      </p>
+    <% end %>
+  </div>
+  <% if ticket.satellite_tag %>
+    <%= render ticket.satellite_tag %>
+  <% end %>
+</div>

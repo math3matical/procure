@@ -1,62 +1,17 @@
-<html>
-<body style="background-color: #ffffc2">
-</body>
-</html>
-<style>
-.nolink {
-  text-decoration: none;
-  color: darkblue;
-}
-.uplink {
-  text-decoration: none;
-  color: darkblue;
-  font-size: 20px;
-}
-</style>
-
-
-<%#<h3>Engineers Show View</h3>
-<p style="font-size: 13px">Find me in app/views/engineers/show.html.erb</p>%>
-
-<br></br>
-
-
-<p>
-  <%= link_to "Work", :stuff, class: "uplink" %> |
-  <%= link_to "Articles", :articles, class: "uplink" %> |
-  <%= link_to "Engineers", :engineers, class: "uplink" %>
-</p>
-
-<p style="font-size:16px">
-  <%= link_to "Cases", :cases, class: "nolink" %> |
-  <%= link_to "Solutions", :solutions, class: "nolink" %> |
-  <%= link_to "Bugs", :bugs, class: "nolink" %>
-</p>
-
-
-
-<h2>Engineer: <%= @engineers.first_name %></h2>
-<p style="font-size:14px">
-  <%#  <a href="/articles">Articles</a> %>
-  <%= link_to "Comment", new_engineer_comment_path(@engineers), class: "nolink" %> |
-  <%= link_to "Edit", edit_engineer_path(@engineers), class: "nolink" %> |
-  <%= link_to "Remove", engineer_path(@engineers), data: {
-                    turbo_method: :delete,
-                    turbo_confirm: "Are you sure?"
-                  }, class: "nolink" %> 
-</p>
-<p style="font-size:14px">
-  <%= link_to "Cases", "/engineers/#{@engineers.id}/cases", class: "nolink" %> |
-  <%= link_to "Solutions", "/engineers/#{@engineers.id}/solutions", class: "nolink" %> |
-  <%= link_to "Bugs", "/engineers/#{@engineers.id}/bugs", class: "nolink" %> 
-  <%# link_to "Engineers", "/engineers/#{@engineers.id}/enwgineers" %> 
-  <%# link_to "Bugs", bugs_path %>
-</p>
-<div style="border: solid darkblue; width: 90%; background-color: lightcyan">
-<p>First name: <%= @engineers.first_name %></p>
-<p>Last name: <%= @engineers.last_name %></p>
-<p>Irc: <%= @engineers.irc %></p>
-<p>Position: <%= @engineers.position %></p>
-<p>Comments:</p>
-  <%= render @engineers.comments %>
+<%= render 'headerlink' %>
+<div class="mainbox">
+  <div class="testsubbox">
+    <div class="boxsubheader">
+      <h2 class="XXLfont">Engineer:</h2>
+      <strong><title><%= @engineer.first_name %> <%= @engineer.last_name %> </title></strong>
+      <%= render 'engineerlink' %>
+    </div>
+  </div>
+  <br>
+  <%= render 'engineerdetails', engineer: @engineer %>
 </div>
+<div class="mainbox">
+  <%= render 'engineercomments', engineer: @engineer %>
+</div>
+
+

@@ -1,8 +1,2 @@
-<%#<h3>New ProvisionTag</h3>
-<p style="font-size: 13px">Find me in app/views/satellite_twags/new.html.erb</p>%>
-<br></br>
-<% if params[:case_id] %>
-  <% case_id = params[:case_id] %>
-<% end %>
 <%= render partial: "form", locals: {provision_taggable_id: params[:generic_id], provision_taggable_type: params[:taggable_type], provision_tag: @provision_tag} %>
 

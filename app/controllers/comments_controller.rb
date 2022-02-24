@@ -1,10 +1,5 @@
 class CommentsController < ApplicationController
   def create
-    puts "================================================================================================================"
-    puts "create method"
-    puts params
-    puts "================================================================================================================"
-
     unless params[:article_id].nil?
       @article = Article.find(params[:article_id])
       @comment = @article.comments.create(comment_params)
@@ -33,24 +28,12 @@ class CommentsController < ApplicationController
   end
 
   def edit
-    puts "================================================================================================================"
-    puts "new edit"
-    puts params
-    puts "================================================================================================================"
     unless params[:solution_id].nil?
-#      @solution = Solution.find(params[:solution_id])
-#      @comment = @solution.comments.create(comment_params)
-      puts params
       @comment = Comment.find(params[:id])
-#      @solution = Solution.find(params[:id])
     end 
   end
 
   def update
-    puts "================================================================================================================"
-    puts "new method"
-    puts params
-    puts "================================================================================================================"
     @comment = Comment.find(params[:id])
     case @comment.commentable_type
     when 'Solution'
@@ -75,10 +58,6 @@ class CommentsController < ApplicationController
   end
 
   def new
-    puts "================================================================================================================"
-    puts "new method"
-    puts params
-    puts "================================================================================================================"
     if params[:solution_id]
       @generic = Solution.find(params[:solution_id])
     elsif params[:bug_id]
@@ -90,14 +69,9 @@ class CommentsController < ApplicationController
     elsif params[:article_id]
       @generic = Article.find(params[:article_id])
     end
-#    @comment = @solution.comments.create(comment_params)
   end
 
   def destroy
-    puts "================================================================================================================"
-    puts "new destroy"
-    puts params
-    puts "================================================================================================================"
     unless params[:article_id].nil?
       @article = Article.find(params[:article_id])
       @comment = @article.comments.find(params[:id])

@@ -1,12 +1,2 @@
-<%#<h3>NetworkTag Edit View</h3>
-<p style="font-size:13px">Find me in app/views/network_tags/edit.html.erb</p>%>
-
-<br></br>
-
-<% if params[:case_id] %>
-  <% case_id = params[:case_id] %>
-<% end %>
-
-
 <%= render partial: "form", locals: {network_taggable_id: params[:network_taggable_id], network_taggable_type: params[:network_taggable_type], network_tag: @network_tag} %>
 

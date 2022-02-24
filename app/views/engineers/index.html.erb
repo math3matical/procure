@@ -1,66 +1,33 @@
-<html>
-<body style="background-color: #ffffc2">
-</body>
-</html>
+<%= render 'headerlink' %>
 
-<style>
-div {
-  border: solid darkblue;
-  padding: 10px;
-  margin: 10px;
-  width: 25%;
-}
-.box {
-}
-.box2 {
-  border: solid darkblue;
-}
-.nolink {
-  text-decoration: none;
-  color: darkblue
-}
-.uplink {
-  text-decoration: none;
-  color: darkblue;
-  font-size: 20px;
-}
+<div class="mainbox">
+  <div class="testsubbox">
+    <div class="boxsubheader">
+      <h2 class="XXLfont">Engineers</h2>
+      <p class="Mfont book">
+        <%= link_to "New", "/engineers/new", class: "nolink" %> |
+        <%= link_to "API", "/engineers/findapi", class: "nolink" %> |
+        <%= link_to "Sort", "/test/horse", class: "nolink" %> |
+        <%= link_to "Filter", "/test/horse", class: "nolink" %>
+      </p>
+      <%= render 'searchform', ticket: 'engineers', path: '' %>
+    <br>
+    </div>
+  </div>
+  <br>
 
-</style>
-<%#<h3>Engineers Index View</h3>
-<p style="font-size: 13px">Find me in app/views/engineers/index.html.erb</p>%>
-
-<br></br>
-
-<p>
-  <%= link_to "Work", :stuff, class: "uplink" %> |
-  <%= link_to "Articles", :articles, class: "uplink" %> |
-  <%= link_to "Engineers", :engineers, class: "uplink" %>
-</p>
-
-<p style="font-size:16px">
-  <%= link_to "Cases", :cases, class: "nolink" %> |
-  <%= link_to "Solutions", :solutions, class: "nolink" %> |
-  <%= link_to "Bugs", :bugs, class: "nolink" %>
-</p>
-
-
-<h2>Engineers</h2>
-<p style="font-size:14px">
-  <%= link_to "New Engineer", new_engineer_path, class: "nolink" %>
-</p>
-
-<%= form_tag(engineers_path, method: :get) do %>
-  <%= text_field_tag(:search, params[:search]) %>
-  <%= submit_tag ("Search") %>
-<% end %>
-
-
-<div style="background: lightcyan; width: 90%">
-<ul>
-  <% @engineers.each do |engineer| %>
-    <li>
-      <%= link_to engineer.first_name, engineer_path(engineer.id), class: "nolink" %>
-    </li>
-  <% end %>
-</ul>
+  <div class="testbox">
+    <div class="box80">
+      <ol>
+        <% @engineers.each do |engineer| %>
+          <li>
+            <p class="book"> <%= link_to "#{engineer.first_name} #{engineer.last_name}", engineer_path(engineer.id), class: "nolink" %>   <%= link_to "Remove", engineer_path(engineer), data: {
+                    turbo_method: :delete,
+                    turbo_confirm: "Are you sure?"
+                  }, class: "nolink Sfont book", style: "margin-left: 5px" %> </p>
+          </li>
+        <% end %>
+      </ol>
+    </div>
+  </div>
 </div>

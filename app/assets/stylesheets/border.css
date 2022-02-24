@@ -1,0 +1,106 @@
+body{
+}
+
+.check_box {
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+}
+select {
+  min-width:50px;
+  max-width:150px;
+  min-height: 26px;
+  border-width: 3px;
+  border-color: rgba(50, 50, 50, 0.14);
+  margin: 10px 10px 10px 0px;
+}
+.lopadtop, .lopadbot, .lopad, .linebreak, .linebreaker {
+  margin: 0;
+}
+.lopadtop{
+  padding: 4px 0 3px;
+}
+.lopadbot{
+  padding: 3px 0 4px 10px;
+}
+.lopad{
+  padding: 5px 0 5px 5px;
+}
+.linebreak{
+  padding-top: 4px;
+}
+.linebreaker{
+  padding-top: 18px;
+}
+.form {
+  padding-left: 2%
+}
+.testsubbox, .testtitlebox, .testbox {
+  padding: 10px 0 10px 0;
+  margin: 0 10px 0 10px;
+  border: 2px solid black;
+  border-radius: 5px;
+  overflow: hidden;
+}
+.testtitlebox, .testsubbox{
+  min-width: 420px;
+  max-width: 460px;
+}
+.testbox {
+  min-width: 420px;
+}
+.uppermain, .mainbox, .mainformbox, .boxsubheader, .boxheader, .box80, .boxtag, .tickettitle, .ticketformtitle, .ticketform, .scrollout {
+  border: 2px solid black;
+  border-radius: 5px;
+}
+.uppermain, .mainbox {
+  padding: 15px 0 15px 0;
+  margin: 0 5px 20px 5px;
+  overflow: hidden;
+}
+.mainformbox {
+  padding: 10px 0 15px 0;
+  margin: 0 1% 0 1%;
+}
+.boxsubheader, .boxheader{
+  padding: 10px 10px 0 20px; 
+  margin: 0 20px 10px 10px;
+}
+.boxheader, .boxsubheader{
+  max-width: 420px;
+}
+.box80, .boxtag, .scrollout, .ticketform, .ticketformtitle, .tickettitle {
+  padding: 0 10px 0 10px;
+  margin: 0 20px 10px 10px;
+  overflow: hidden;
+ }
+.box80, .boxtag{
+  min-width: 200px;
+}
+.boxtag{
+  padding-top: 10px;
+  column-count: 2;
+  column-gap: 40px;
+}
+.scrollout, .scrollbox{
+  padding-bottom: 0;
+  margin-bottom: 8px;
+  min-width:350px;
+}
+.scrollbox{
+  padding: 0 0 0 0;
+  margin: 0 0 0 1%;
+  width: 97%;
+  overflow: auto;
+}
+.tickettitle{
+  /*width: max-content;*/
+  margin-bottom: 8px;
+  width: 85%;
+  max-width: 160px;
+}
+.ticketformtitle{
+  padding-right: 20px;
+  width: max-content;
+  margin-bottom: 8px;
+}
+

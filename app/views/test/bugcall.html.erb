@@ -1,0 +1,37 @@
+<%= render 'headerlink' %>
+
+<%#= @things %>
+
+<%= @things.class %>
+
+<br></br>
+
+<%= @things %>
+
+<br></br>
+
+
+Hey There
+
+<br></br>
+<%= @things["bugs"] %> <br>
+
+<%= @things["bugs"].first["product"] %> <br>
+<%= @things["bugs"].first["summary"] %> <br>
+<%= @things["bugs"].first["assigned_to"] %> <br>
+<%= @things["bugs"].first["creator"] %> <br>
+<%= @things["bugs"].first["severity"] %> <br>
+<%= @things["bugs"].first["qa_contact"] %> <br>
+<%= @things["bugs"].first["version"] %> <br>
+<%= @things["bugs"].first["whiteboard"] %> <br>
+<%= @things["bugs"].first["target_release"] %> <br>
+Hey There
+
+<br></br>
+
+<% @things.each do |yo| %>
+  <% yo.each do |yoyo| %>
+    <%= yoyo %><br></br>
+  <% end %>
+<% end %>
+<%# nil %>

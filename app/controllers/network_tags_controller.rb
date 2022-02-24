@@ -26,7 +26,6 @@ class NetworkTagsController < ApplicationController
     end
   end
 
-
   def update
     @network_tag = NetworkTag.find(params[:id])
     if @network_tag.update(network_tag_params)
@@ -56,10 +55,8 @@ class NetworkTagsController < ApplicationController
     redirect_to case_path(@network_tag.network_taggable_id), status: 303
   end
 
-
   private
     def network_tag_params
       params.require(:network_tag).permit(:ipv4, :ipv6, :bond, :vlan, :bridge, :proxy, :firewall, :network_taggable_type, :network_taggable_id)
     end
-
 end
