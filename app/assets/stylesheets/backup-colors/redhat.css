@@ -1,0 +1,31 @@
+body{
+  background: #F7CB8C;
+  background-color: #f3f3f3;  /* light jade */
+  background: #ffe6e6;
+  background: #bcbcbc;
+}
+.testsubbox, .testtitlebox, .testbox, .mainformbox {
+//https://www.redhat.com/en/about/brand/standards/color
+  background-color: #ee0000;  /* red hat red */
+  background-color: #f56d6d;
+  background-color: #f23636;
+}
+.uppermain, .mainbox {
+  background-color: #d3fd78;  /* light jade */
+  background-color: #6388dd;  /* light jade */
+  background-color: #dd8863;  /* light jade */
+  background: #4d4d4d;
+}
+.boxsubheader, .boxheader, .box80, .boxtag, .scrollout, .ticketform, .ticketformtitle, .tickettitle, .scrollbox, .commenttitle, .whiteheadsubtitle, .commenttitle, .whiteheadsubtitle {
+  background: #ffffbf;  /* green water */
+  background: #fae5eb;  /* water */
+  background: #dedede;  /* water */
+}
+
+
+.whitebox, .boxtag, .scrollbox, .commenttitle, .whiteheadsubtitle {
+  background: #ffffff;
+}
+.commenttitle, .whiteheadsubtitle {
+  background: none;
+}

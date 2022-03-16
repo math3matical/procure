@@ -1,5 +1,6 @@
 <%= render "logo" %>
-<% ticketid ||=params[:ticketid] %>
+<% ticketid ||= session[:ticketid] %>
+<%# ticketid ||=params[:ticketid] %>
 <% ticketid ||=ticket.id %>
 <strong><%= link_to "Back", "/#{urltick}s/#{ticketid}", class: "nolink" %></strong>
 <br></br>
@@ -7,7 +8,9 @@
 <div class="mainbox">
   <div class="mainformbox">
     <div class="ticketformtitle">
-      <p class="XXLfont book lopad"><%= params[:action].capitalize %> <%= urltick.capitalize %></p>
+      <div class="whiteheadtitle">
+        <p class="XXLfont book lopad"><%= params[:action].capitalize %> <%= urltick.capitalize %></p>
+      </div>
     </div>
 
     <div class="ticketform">
@@ -26,6 +29,15 @@
             <strong><%= form.label "#{urltick.capitalize} Number" %></strong><br>
             <textfield class="field2"> <%= form.number_field :number %> </textfield><br>
             <% ticket.errors.full_messages_for(:number).each do |message| %>
+              <div><%= message %></div>
+            <% end %>
+          </div>
+          <br>
+
+          <div>
+            <strong><%= form.label "#{urltick.capitalize} Owner" %></strong><br>
+            <textfield class="field2"> <%= form.text_field :case_owner %> </textfield><br>
+            <% ticket.errors.full_messages_for(:case_owner).each do |message| %>
               <div><%= message %></div>
             <% end %>
           </div>
@@ -125,6 +137,19 @@
             <textfield class="myselect"> <%= form.select :status, ['public', 'private', 'archived'] %> </textfield>
           </div>
           <br></br>
+
+          <%= form.hidden_field :link %>
+          <%= form.hidden_field :url %>
+          <%= form.hidden_field :region %>
+          <%= form.hidden_field :handover %>
+          <%= form.hidden_field :closed %>
+          <%= form.hidden_field :escalated %>
+          <%= form.hidden_field :breaches %>
+          <%= form.hidden_field :ownerIRC %>
+          <%= form.hidden_field :state %>
+          <%= form.hidden_field :strategic %>
+          <%= form.hidden_field :case_tag %>
+          <%= form.hidden_field :description %>
 
           <div>
             <%= form.submit class: "form-submit-button"  %>

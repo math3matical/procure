@@ -2,29 +2,33 @@
   <div class="testsubbox">
     <div class="boxsubheader">
       <% unless params[:engineer_id] %>
-        <h2 class="XXLfont"><%= ticket.capitalize %>s</h2>
-        <p class="Mfont book">
-          <%= link_to "New", "/#{ticket}s/new", class: "nolink" %> |
-          <% if ticket == "solution" %>
-    <%= link_to "API", "/test/horse", class: "nolink" %> |
-          <% else %>
+        <div class="whiteheadsubtitle">
+          <p class="lopad XXLfont"><strong><%= ticket.capitalize %>s</strong></p>
+          <p class="lopad Mfont book">
+            <%= link_to "New", "/#{ticket}s/new", class: "nolink" %> |
             <%= link_to "API", "/#{ticket}s/findapi", class: "nolink" %> |
-          <% end %>
-          <%= link_to "Sort", "/test/horse", class: "nolink" %> |
-          <%= link_to "Filter", "/test/horse", class: "nolink" %>
-          <% path = "#{ticket}s/" %>
-        </p>
+            <%= link_to "Sort", "/#{ticket}s/?sort=true", class: "nolink" %> |
+            <%#= link_to "Sort", "/test/horse", class: "nolink" %> 
+            <%#= button_tag "Sort", {"type: 'button', id: "button-sort", style: "font-weight: bold, margin: 5px 5px 0 0; font-size: 12px; background: none; border: none; padding-left: 0"} %> 
+            <%= button_tag 'Filter', {type: 'button', id: "button-filter", class: "book", style: "font-weight: bold; margin: 5px 5px 0 0; font-size:12px; background: none; border: none; padding: 0; margin-right: 0; font-style: Bookman Old Style;"} %>
+            <%= link_to "x", "/test/removefilter", class: "nolink", style: "border: 2px solid black; border-radius: 2px; background: #dddddd; margin-left: 0; padding: 0 3px 0 3px" %>
+          </p>
+        </div>
+        <%= render 'filterform' %>
+        <% path = "#{ticket}s/" %>
       <% else %>
-        <h2><%= @engineer.first_name %>'s <%= ticket.capitalize %>s</h2>
-        <p class="Mfont book">
-          <%= link_to "Return to #{@engineer.first_name}", "/engineers/#{@engineer.id}", class: "nolink" %>
-        </p>
-        <p class="Mfont book">
-          <%= link_to "Cases", "/engineers/#{@engineer.id}/cases", class: "nolink" %> |
-          <%= link_to "Solutions", "/engineers/#{@engineer.id}/solutions", class: "nolink" %> |
-          <%= link_to "Bugs", "/engineers/#{@engineer.id}/bugs", class: "nolink" %>
-          <% path = "engineers/#{@engineer.id}/#{ticket}s" %>
-        </p>
+        <div class="whiteheadsubtitle">
+          <p><h2><%= @engineer.first_name %>'s <%= ticket.capitalize %>s</h2></p>
+          <p class="Mfont book">
+            <%= link_to "Return to #{@engineer.first_name}", "/engineers/#{@engineer.id}", class: "nolink" %>
+          </p>
+          <p class="Mfont book">
+            <%= link_to "Cases", "/engineers/#{@engineer.id}/cases", class: "nolink" %> |
+            <%= link_to "Solutions", "/engineers/#{@engineer.id}/solutions", class: "nolink" %> |
+            <%= link_to "Bugs", "/engineers/#{@engineer.id}/bugs", class: "nolink" %>
+            <% path = "engineers/#{@engineer.id}/#{ticket}s" %>
+          </p>
+        </div>
       <% end %>
       <%= render 'searchform', ticket: "#{ticket}s", path: path %>
       <br>
@@ -33,15 +37,17 @@
   <br>
   <div class="testbox">
     <div class="box80">
-      <ol>
-        <% tickets.each do |ticket| %>
-          <% unless ticket.archived? %>
-            <li>
-              <p><strong><%= link_to ticket.number, ticket, class: "nolink" %></strong> -  <%= ticket.title %> </p>
-            </li>
+      <div class="whitebox">
+        <ol>
+          <% tickets.each do |ticket| %>
+            <% unless ticket.archived? %>
+              <li>
+                <p><strong><%= link_to ticket.number, ticket, class: "nolink" %></strong> -  <%= ticket.title %> </p>
+              </li>
+            <% end %>
           <% end %>
-        <% end %>
-      </ol>
+        </ol>
+      </div>
     </div>
   </div>
 </div>

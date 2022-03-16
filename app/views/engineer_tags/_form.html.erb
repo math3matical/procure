@@ -23,7 +23,7 @@
 
             <%# Same issue as above.  On the first run, the @engineers variable correctly
                 gets set in the engineer_tag controller new method.  But when a redirect call
-                gets made frmo the create method (to due to someone submitting a blank), the
+                gets made frmo the create method (due to someone submitting a blank), the
                 @engineers variable is no longer there.  I have changed the name to engineer
                 for now and handle the logic here  %> 
             <% case engineer_taggable_type %>
@@ -38,7 +38,7 @@
               <% engineers||= Engineer.all - bug.engineers %>
             <% end %>
 
-            <%= form.select :engineer_id, engineers.collect{ |p| [p.first_name, p.id ]}, include_blank: true %>
+            <%= form.select :engineer_id, engineers.collect{ |p| ["#{p.first_name} #{p.last_name}", p.id ]}, include_blank: true %>
             <% engineer_tag.errors.full_messages_for(:engineer_id).each do |message| %>
               <div><%= message %></div>
             <% end %>

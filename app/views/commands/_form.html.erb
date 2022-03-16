@@ -1,0 +1,48 @@
+<%= render "logo" %>
+
+<strong><%= link_to "Back", "/commands/#{command.id}", class: "nolink" %></strong>
+<br></br>
+
+<div class="mainbox">
+  <div class="mainformbox">
+    <div class="ticketformtitle"> 
+      <div class="whiteheadtitle">
+        <p class="XXLfont book lopad"><%= params[:action].capitalize %> Article</p>
+      </div>
+    </div> 
+
+    <div class="ticketform">
+      <ul class="form">
+        <%= form_with model: command do |form| %>
+          <div>
+            <strong><%= form.label :name %></strong><br>
+            <textfield class="field2"> <%= form.text_field :name %> </textfield>
+            <% command.errors.full_messages_for(:name).each do |message| %>
+              <div><%= message %></div>
+            <% end %>
+          </div>
+          <br>
+ 
+          <div style="overflow: auto">
+            <strong><%= form.label :body %></strong><br>
+            <textfield class="field3"> <%= form.text_area :body, style: "width: 80%; height: 150px" %> </textfield><br>
+            <% command.errors.full_messages_for(:body).each do |message| %>
+              <div><%= message %></div>
+            <% end %>
+          </div>
+          <br>
+ 
+          <div>
+            <strong><%= form.label :status %></strong><br>
+            <%= form.select :status, ['public', 'private', 'archived'], selected: 'public' %>
+          </div>
+          <br></br>
+
+          <div>
+            <%= form.submit class: "form-submit-button" %>
+          </div>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>

@@ -25,6 +25,11 @@ class CommentsController < ApplicationController
       @comment = @case.comments.create(comment_params)
       redirect_to case_path(@case)
     end
+    unless params[:command_id].nil?  
+      @command = Command.find(params[:command_id])
+      @comment = @command.comments.create(comment_params)
+      redirect_to command_path(@command)
+    end
   end
 
   def edit
@@ -51,6 +56,9 @@ class CommentsController < ApplicationController
     when 'Engineer'
       @engineer = Engineer.find_by(id: @comment.commentable_id)
       @generic = @engineer
+    when 'Command'
+      @command = Command.find_by(id: @comment.commentable_id)
+      @generic = @command
     end
     if @comment.update(comment_params)
       redirect_to @generic
@@ -68,6 +76,8 @@ class CommentsController < ApplicationController
       @generic = Engineer.find(params[:engineer_id])
     elsif params[:article_id]
       @generic = Article.find(params[:article_id])
+    elsif params[:command_id]
+      @generic = Command.find(params[:command_id])
     end
   end
 
@@ -101,6 +111,12 @@ class CommentsController < ApplicationController
       @comment = @case.comments.find(params[:id])
       @comment.destroy
       redirect_to case_path(@case), status: 303
+    end 
+    unless params[:command_id].nil? 
+      @command = Command.find(params[:command_id])
+      @comment = @command.comments.find(params[:id])
+      @comment.destroy
+      redirect_to command_path(@command), status: 303
     end 
   end
 

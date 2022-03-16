@@ -3,12 +3,17 @@
 <div class="mainbox">
   <div class="testsubbox">
     <div class="boxsubheader">
-      <h2 class="XXLfont">Work</h2>
-      <p class="Mfont book">
-        <%= link_to "New", "/test/horse", class: "nolink" %> |
-        <%= link_to "Sort", "/test/horse", class: "nolink" %> |
-        <%= link_to "Filter", "/test/horse", class: "nolink" %>
-      </p>
+      <div class="whiteheadsubtitle">
+        <p class="lopad XXLfont"><strong><%= raw("pro&#8226;cure") %></strong></p>
+        <p class="lopad Mfont book">
+          <%#= link_to "Sort", "/test/horse", class: "nolink" %>
+          <%= link_to "Sort", "/test/index/?sort=true", class: "nolink" %> |
+          <%= button_tag 'Filter', {type: 'button', id: "button-filter", style: "font-weight: bold; margin: 5px 5px 0 0; font-size:12px; background: none; border: none; padding: 0; margin-right: 0"} %>
+          <%= link_to "x", "/test/removefilter", class: "nolink", style: "border: 2px solid black; border-radius: 2px; background: #dddddd; margin-left: 0; padding: 0 3px 0 3px" %>
+
+        </p>
+      </div>
+      <%= render 'filterform' %>
       <%= render 'searchform', ticket: 'test', path: 'index' %>
       <br>
     </div>

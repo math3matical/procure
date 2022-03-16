@@ -1,0 +1,160 @@
+body{
+}
+
+.check_box {
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+}
+select {
+  min-width:50px;
+  max-width:150px;
+  min-height: 26px;
+  border-width: 3px;
+  border-color: rgba(50, 50, 50, 0.14);
+  margin: 10px 10px 10px 0px;
+}
+.lopadtop, .lopadbot, .lopad, .linebreak, .linebreaker {
+  margin: 0;
+}
+.lopadtop{
+  padding: 4px 0 0;
+}
+.lopadbot{
+  padding: 3px 0 4px 5px;
+}
+.lopad{
+  padding: 5px 5px 5px 5px;
+  margin: 0 0 0 0;
+}
+.linebreak{
+  padding-top: 4px;
+}
+.linebreaker{
+  padding-top: 18px;
+}
+.form {
+  padding-left: 1%
+}
+.testsubbox, .testtitlebox, .testbox {
+  padding: 10px 0 10px 0;
+  margin: 0 10px 0 10px;
+  border: 2px solid black;
+  border-radius: 5px;
+  overflow: hidden;
+}
+.testtitlebox {
+  min-width: 420px;
+  max-width: 2200px;
+}
+.testsubbox{
+  min-width: 420px;
+  max-width: 2200px;
+}
+.testbox {
+  id: testbox;
+  min-width: 420px;
+  max-width: 2200px;
+}
+.uppermain, .mainbox, .mainformbox, .boxsubheader, .boxheader, .box80, .boxtag, .tickettitle, .ticketformtitle, .ticketform, .scrollout, .commenttitle, .whitebox, .scrollbox, .whitetitle, .whiteheadtitle, .whiteheadsubtitle {
+  border: 2px solid black;
+  border-radius: 5px;
+}
+.uppermain, .mainbox {
+  padding: 15px 0 25px 0;
+  margin: 30px 5px 30px 5px;
+  overflow: hidden;
+  //max-width: 2200px
+}
+.mainformbox {
+  padding: 10px 0 15px 0;
+  margin: 0 1% 0 1%;
+  max-width: 1900px;
+}
+.boxsubheader, .boxheader{
+  padding: 10px 10px 0 15px; 
+  margin: 5px 20px 10px 10px;
+}
+.boxheader{
+  max-width: 660px;
+}
+.boxsubheader{
+  max-width: 460px;
+}
+.box80, .scrollout, .ticketform, .ticketformtitle, .tickettitle, .commenttitle, .whitetitle, .whiteheadtitle, .whiteheadsubtitle {
+  padding: 0 10px 0 10px;
+  margin: 0 20px 10px 10px;
+  overflow: hidden;
+ }
+.whitetitle{
+  margin-left: 5px; 
+  margin-top: 10px;
+}
+.whiteheadtitle, .whiteheadsubtitle{
+  margin-left: 0px;
+  margin-top: 5px;
+}
+.whiteheadtitle{
+  //max-width: 540px;
+  max-width: max-content;
+  padding-right: 20px;
+}
+.whiteheadsubtitle{
+  //max-width: 420px; 
+  max-width: max-content;
+  padding-right: 20px;
+}
+.whitetitle{
+  max-width: 140px;
+}
+.box80, .boxtag{
+  min-width: 200px;
+}
+.boxtag{
+  padding-top: 10px;
+  padding-bottom: 10px;
+  column-count: 2;
+  column-gap: 40px;
+}
+.scrollout, .scrollbox{
+  padding-bottom: 0;
+  margin-bottom: 20px;
+  min-width:350px;
+/*  height: 325px;*/
+}
+.scrollbox{
+  padding: 0 0 0 5px;
+//  margin: 0 0 0 1%;
+  margin: 10px 10px 10px 5px;
+//  width: 97%;
+ /*  height: 300px; */
+  height: max-content;
+  max-height: 450px;
+  overflow: auto;
+}
+.commenttitle{
+  width: max-content;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  margin-left: 5px;
+}
+.tickettitle{
+  width: max-content;
+  margin-bottom: 10px;
+  margin-top: 5px;
+  //width: 85%;
+  //max-width: 200px;
+}
+.ticketformtitle{
+  padding-right: 20px;
+  width: max-content;
+  margin-bottom: 8px;
+}
+.whitebox, .boxtag{
+  margin: 15px 10px 20px 5px;
+  padding-left: 10px;
+  overflow: auto;
+}
+.whiteheadtitle, .whiteheadsubtitle, .whitetitle, .commenttitle{
+  border: none;
+  background: none;
+}

@@ -4,5 +4,9 @@
 </div>
 
 <div class="mainbox">
+  <%= render 'tickettags', ticket: @article, type: 'article' %>
+</div>
+
+<div class="mainbox">
   <%= render 'articlecomments', ticket: @article, type: 'article'  %>
 </div>

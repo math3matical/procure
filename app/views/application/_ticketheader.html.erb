@@ -1,7 +1,9 @@
 <div class="testsubbox">
   <div class="boxsubheader">
-    <h2 class="XXLfont"><%= type.capitalize %>:</h2>
-    <strong><title><%= ticket.number %></title></strong>
+    <div class="whiteheadsubtitle">
+      <p class="lopad XXLfont"><strong><%= type.capitalize %>:</strong>
+      <strong><title><%= ticket.number %></title></strong></p>
     <%= render 'ticketeditlink', ticket: ticket, type: type %>
+    </div>
   </div>
 </div>

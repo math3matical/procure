@@ -2,9 +2,11 @@
 <div class="mainbox">
   <div class="testsubbox">
     <div class="boxsubheader">
-      <h2 class="XXLfont">Engineer:</h2>
-      <strong><title><%= @engineer.first_name %> <%= @engineer.last_name %> </title></strong>
-      <%= render 'engineerlink' %>
+      <div class="whiteheadsubtitle">
+        <p class="lopad XXLfont"><strong>Engineer:</strong>
+        <strong><title><%= @engineer.first_name %> <%= @engineer.last_name %> </title></strong></p>
+        <%= render 'engineerlink' %>
+      </div>
     </div>
   </div>
   <br>

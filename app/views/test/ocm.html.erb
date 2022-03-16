@@ -1,0 +1,9 @@
+<h2>The things:</h2>
+<br></br>
+<% @things["items"].each do |thing| %>
+  <div class="box80">
+    <p>
+      <%= thing.to_json %>
+    </p>
+  </div>
+<% end %>

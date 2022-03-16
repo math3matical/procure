@@ -6,19 +6,21 @@
 
 <div class="mainbox">
   <%= render "ticketengineer", ticket: ticket, type: type %> 
+  <p class="linebreaker"></p>
+
+  <%= render "tickettags", ticket: ticket, type: type %> 
 </div>
 
-<div class="mainbox">
-  <%= render "ticketsatellite", ticket: ticket, type: type %> 
-</div>
+<%#<div class="mainbox">
+  <%= render "ticketsatellite", ticket: ticket, type: type 
+  <p class="linebreaker"></p>
 
-<div class="mainbox">
-  <%= render "ticketprovision", ticket: ticket, type: type %> 
-</div>
+  <%= render "ticketprovision", ticket: ticket, type: type  
+  <p class="linebreaker"></p>
 
-<div class="mainbox">
-  <%= render "ticketnetwork", ticket: ticket, type: type %> 
+  <%= render "ticketnetwork", ticket: ticket, type: type  
 </div>
+%>
 
 <div class="mainbox">
   <%= render "ticketcomments", ticket: ticket, type: type %> 

@@ -1,6 +1,9 @@
 <%= render "logo" %>
 
 <style>
+  ul {
+    width: 550px;
+  }
   ul li {
     display: inline-block;
     padding-right: 10px;
@@ -19,71 +22,26 @@
     <div class="ticketformtitle">
       <p class="XXLfont book lopad">Network Tag</p>
     </div>
-
     <div class="ticketform">
       <%= form_with model: network_tag do |form| %>
         <ul>
-          <li>
-          <div class="form-check">
-            <%= form.check_box :ipv4 %>
-            <strong><%= form.label :ipv4 %></strong>
-          </div>
-          </li>
-   
-          <li>
-          <div class="form-check">
-            <%= form.check_box :ipv6 %>
-            <strong><%= form.label :ipv6 %></strong>
-          </div>
-          </li>
+          <% list = [:ipv4, :ipv6, :bond, :vlan, :bridge, :proxy, :firewall] %>
+          <% counter = 0 %>
+          <% list.each do |key|  %>  
+            <li>
+              <div class="form-check">
+                <%= form.check_box key %>
+                <strong><%= form.label key %></strong>
+                <% counter +=1 %>
+              </div>
+            </li>
+            <% if counter % 2 == 0 %>
+              <br></br>
+            <% end %>
+          <% end %>
           <br></br>
-  
-          <li>
-          <div class="form-check">
-            <%= form.check_box :bond %>
-            <strong><%= form.label :bond %></strong>
-          </div>
-          </li>
-  
-          <li>
-          <div class="form-check">
-            <%= form.check_box :vlan %>
-            <strong><%= form.label :vlan %></strong>
-          </div>
-          </li>
-          <br></br>
-  
-          <li>
-          <div class="form-check">
-            <%= form.check_box :bridge %>
-            <strong><%= form.label :bridge %></strong>
-          </div>
-          </li>
-  
-          <li>
-          <div class="form-check">
-            <%= form.check_box :proxy %>
-            <strong><%= form.label :proxy %></strong>
-          </div>
-          </li>
-          <br></br>
-  
-          <li>
-          <div class="form-check">
-            <%= form.check_box :firewall %>
-            <strong><%= form.label :firewall %></strong>
-          </div>
-          </li>
-  
           <%= form.hidden_field :network_taggable_id, value: network_taggable_id %>
           <%= form.hidden_field :network_taggable_type, value: network_taggable_type  %>
-  
-          <%# <li> buffer for the submit button, so the submit button stays to the left.  could use the hidden_form, but 
-              would rather leave that out of the li for now %>
-          <li>
-          </li>
-          <br></br>
-
           <li>
             <%= form.submit class: "form-submit-button" %>
           </li>
@@ -92,4 +50,3 @@
     <% end %>
   </div>
 </div>
-

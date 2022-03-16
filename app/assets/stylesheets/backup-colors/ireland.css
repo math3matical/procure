@@ -1,0 +1,20 @@
+body{
+  background: #fdffa9;
+}
+.uppermain, .mainbox {
+  background: #00c897;
+}
+.testsubbox, .testtitlebox, .testbox, .mainformbox {
+  background: #019267;
+}
+.boxsubheader, .boxheader, .box80, .boxtag, .scrollout, .ticketform, .ticketformtitle, .tickettitle, .scrollbox, .commenttitle, .whiteheadsubtitle, .commenttitle, .whiteheadsubtitle {
+  background: #ffe375;
+}
+
+
+.whitebox, .scrollbox, .commenttitle, .whiteheadsubtitle, .boxtag {
+  background: #ffffff;
+}
+.commenttitle, .whiteheadsubtitle {
+  background: none;
+}

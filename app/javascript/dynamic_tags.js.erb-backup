@@ -1,0 +1,25 @@
+var states = new Array();
+<% for tag in @tags -%>
+  tags.push(new Array(<%= tag.tag_groups_id %>, '<%=h tag.name %>', <%= tag.id %>));
+<% end -%>
+
+function countrySelected() {
+  tag_group_id = $('tag_group_id').getValue();
+  options = $('tag_id').options;
+  options.length = 1;
+  tags.each(function(tag) {
+    if (tag[0] == tag_group_id) {
+      options[options.length] = new Option(state[1], state[2]);
+    }
+  });
+  if (options.length == 1) {
+    $('state_field').hide();
+  } else {
+    $('state_field').show();
+  }
+}
+
+document.observe('dom:loaded', function() {
+  tagGroupSelected();
+  $('tag_groups_id').observe('change', tagGroupSelected);
+});

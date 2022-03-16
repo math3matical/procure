@@ -17,13 +17,14 @@ select {
   margin: 0;
 }
 .lopadtop{
-  padding: 4px 0 3px;
+  padding: 4px 0 0;
 }
 .lopadbot{
-  padding: 3px 0 4px 10px;
+  padding: 3px 0 4px 5px;
 }
 .lopad{
-  padding: 5px 0 5px 5px;
+  padding: 5px 5px 5px 5px;
+  margin: 0 0 0 0;
 }
 .linebreak{
   padding-top: 4px;
@@ -32,75 +33,148 @@ select {
   padding-top: 18px;
 }
 .form {
-  padding-left: 2%
+  padding-left: 1%
 }
 .testsubbox, .testtitlebox, .testbox {
   padding: 10px 0 10px 0;
   margin: 0 10px 0 10px;
   border: 2px solid black;
-  border-radius: 5px;
+  border-radius: 20px;
   overflow: hidden;
 }
-.testtitlebox, .testsubbox{
-  min-width: 420px;
-  max-width: 460px;
+.testtitlebox {
+  min-width: 380px;
+  max-width: 2200px;
+}
+.testsubbox{
+  min-width: 380px;
+  max-width: 2200px;
 }
 .testbox {
-  min-width: 420px;
+  id: testbox;
+  min-width: 380px;
+  max-width: 2200px;
 }
-.uppermain, .mainbox, .mainformbox, .boxsubheader, .boxheader, .box80, .boxtag, .tickettitle, .ticketformtitle, .ticketform, .scrollout {
+.uppermain, .mainbox, .mainformbox, .boxsubheader, .boxheader, .box80, .boxtag, .boxtagfilter, .tickettitle, .ticketformtitle, .ticketform, .scrollout, .commenttitle, .whitebox, .scrollbox, .whitetitle, .whiteheadtitle, .whiteheadsubtitle {
   border: 2px solid black;
-  border-radius: 5px;
+//  border-radius: 5px;
 }
 .uppermain, .mainbox {
-  padding: 15px 0 15px 0;
-  margin: 0 5px 20px 5px;
+  padding: 15px 1.5% 25px 0;
+  margin: 30px 35px 30px 20px;
+  max-width: 2235px;
   overflow: hidden;
+  //max-width: 2200px;
+  border-radius: 20px;
 }
 .mainformbox {
   padding: 10px 0 15px 0;
-  margin: 0 1% 0 1%;
+  margin: 0 10px 0 10px;
+  max-width: 1900px;
+  border-radius: 10px;
 }
 .boxsubheader, .boxheader{
-  padding: 10px 10px 0 20px; 
-  margin: 0 20px 10px 10px;
+  padding: 10px 10px 0 15px; 
+  margin: 5px 15px 10px 10px;
+  border-radius: 15px;
 }
-.boxheader, .boxsubheader{
-  max-width: 420px;
+.boxheader{
+  max-width: 500px;
 }
-.box80, .boxtag, .scrollout, .ticketform, .ticketformtitle, .tickettitle {
+.boxsubheader{
+  max-width: 380px;
+}
+.box80, .scrollout, .ticketform, .ticketformtitle, .tickettitle, .commenttitle, .whitetitle, .whiteheadtitle, .whiteheadsubtitle {
   padding: 0 10px 0 10px;
   margin: 0 20px 10px 10px;
   overflow: hidden;
  }
-.box80, .boxtag{
+.whitetitle{
+  margin-left: 5px; 
+  margin-top: 10px;
+}
+.whiteheadtitle, .whiteheadsubtitle{
+  margin-left: 0px;
+  margin-top: 5px;
+}
+.whiteheadtitle{
+  //max-width: 540px;
+  max-width: max-content;
+  padding-right: 20px;
+}
+.whiteheadsubtitle{
+  //max-width: 420px; 
+  max-width: max-content;
+  padding-right: 20px;
+}
+.whitetitle{
+  max-width: 140px;
+}
+.box80, .boxtag, .boxtagfilter{
   min-width: 200px;
+  border-radius: 15px;
 }
 .boxtag{
   padding-top: 10px;
-  column-count: 2;
+  padding-bottom: 10px;
+  column-count: 1;
   column-gap: 40px;
+}
+.boxtagfilter{
+  padding: 0;
+  column-gap: 20px;
+  column-count: 3;
+  column-width: 115px;
+  column-heigh: 200px;
+  border: none;
 }
 .scrollout, .scrollbox{
   padding-bottom: 0;
-  margin-bottom: 8px;
-  min-width:350px;
+  margin-bottom: 20px;
+  min-width:300px;
+  border-radius: 10px;
+/*  height: 325px;*/
 }
 .scrollbox{
-  padding: 0 0 0 0;
-  margin: 0 0 0 1%;
-  width: 97%;
+  padding: 0 0 0 5px;
+//  margin: 0 0 0 1%;
+  margin: 10px 10px 10px 5px;
+//  width: 97%;
+ /*  height: 300px; */
+  height: max-content;
+  max-height: 450px;
   overflow: auto;
 }
+.commenttitle{
+  width: max-content;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  margin-left: 5px;
+}
 .tickettitle{
-  /*width: max-content;*/
-  margin-bottom: 8px;
-  width: 85%;
-  max-width: 160px;
+  width: max-content;
+  margin-bottom: 10px;
+  margin-top: 5px;
+  border-radius: 10px;
+  //width: 85%;
+  //max-width: 200px;
+}
+.ticketform{
+  border-radius:10px;
 }
 .ticketformtitle{
+  border-radius: 10px;
   padding-right: 20px;
   width: max-content;
   margin-bottom: 8px;
 }
-
+.whitebox, .boxtag{
+  margin: 15px 10px 20px 5px;
+  padding-left: 10px;
+  overflow: auto;
+  border-radius: 10px;
+}
+.whiteheadtitle, .whiteheadsubtitle, .whitetitle, .commenttitle{
+  border: none;
+  background: none;
+}

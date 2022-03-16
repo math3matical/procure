@@ -1,6 +1,9 @@
 <%= render "logo" %>
 
 <style>
+  ul {
+    width: 500px;
+  }
   ul li {
     display: inline-block;
     padding-right: 10px;
@@ -8,7 +11,7 @@
   }
 
   ul li > * {
-    width: 170px;
+    width: 190px;
   }
 </style>
 
@@ -31,103 +34,21 @@
             <%= form.select :version, ['6.7', '6.8', '6.9', '6.10'] %>
           </li>
           <br></br>
-  
-          <li>
-          <div class="form-check">
-            <%= form.check_box :contentview %>
-            <strong><%= form.label :contentview %></strong>
-          </div>
-          </li>
-          <br></br>
 
-          <li>
-          <div class="form-check">
-            <%= form.check_box :capsule %>
-            <strong><%= form.label :capsule %></strong>
-          </div>
-          </li>
-
-          <li>
-          <div class="form-check">
-            <%= form.check_box :http %>
-            <strong><%= form.label :http %></strong>
-          </div>
-          </li>
-          <br></br>
-
-          <li>
-          <div class="form-check">
-            <%= form.check_box :ui %>
-            <strong><%= form.label :ui %></strong>
-          </div>
-          </li>
-  
-          <li>
-          <div class="form-check">
-            <%= form.check_box :pxe %>
-            <strong><%= form.label :pxe %></strong>
-          </div>
-          </li>
-          <br></br>
-  
-          <li>
-          <div class="form-check">
-            <%= form.check_box :bootstrap %>
-            <strong><%= form.label :bootstrap %></strong>
-          </div>
-          </li>
-  
-          <li>
-          <div class="form-check">
-            <%= form.check_box :kickstart %>
-            <strong><%= form.label :kickstart %></strong>
-          </div>
-          </li>
-          <br></br>
-  
-          <li>
-          <div class="form-check">
-            <%= form.check_box :discover %>
-            <strong><%= form.label :discover %></strong>
-          </div>
-          </li>
-
-          <li>
-          <div class="form-check">
-            <%= form.check_box :image %>
-            <strong><%= form.label :image %></strong>
-          </div>
-          </li>
-          <br></br>
-  
-          <li>
-          <div class="form-check">
-            <%= form.check_box :compute %>
-            <strong><%= form.label :compute %></strong>
-          </div>
-          </li>
-  
-          <li>
-          <div class="form-check">
-            <%= form.check_box :notes %>
-            <strong><%= form.label :notes %></strong>
-          </div>
-          </li>
-          <br></br>
-  
-          <li>
-          <div class="form-check">
-            <%= form.check_box :bootdisk %>
-            <strong><%= form.label :bootdisk %></strong>
-          </div>
-          </li>
-  
-          <li>
-          <div class="form-check">
-            <%= form.check_box :ipxe %>
-            <strong><%= form.label :ipxe %></strong>
-          </div>
-          </li>
+          <% list = [:contentview, :capsule, :http, :ui, :pxe, :bootstrap, :kickstart, :discover, :image, :compute, :bootdisk, :ipxe] %>
+          <% counter = 0 %>
+          <% list.each do |key|  %>  
+            <li>
+              <div class="form-check">
+                <%= form.check_box key %>
+                <strong><%= form.label key %></strong>
+                <% counter +=1 %>
+              </div>
+            </li>
+            <% if counter % 2 == 0 %>
+              <br></br>
+            <% end %>
+          <% end %>
           <br></br>
  
           <%= form.hidden_field :provision_taggable_id, value: provision_taggable_id %>

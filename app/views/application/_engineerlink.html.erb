@@ -1,15 +1,14 @@
-<p class="Mfont book">
-  <%= link_to "New", "/engineers/new?id=#{@engineer.id}", class: "nolink" %> |
-  <%= link_to "API", "/engineers/findapi", class: "nolink" %> |
+<p class="lopad Mfont book">
   <%= link_to "Edit", edit_engineer_path(@engineer), class: "nolink" %> |
   <%= link_to "Comment", new_engineer_comment_path(@engineer), class: "nolink" %> |
+  <%= link_to "Tag", "/tags/?tag_taggable_type=Engineer&tag_taggable_id=#{@engineer.id}", class: "nolink" %> |
   <%= link_to "Remove", engineer_path(@engineer), data: {
                     turbo_method: :delete,
                     turbo_confirm: "Are you sure?"
                   }, class: "nolink" %>
 </p>
 
-<p class="Mfont book">
+<p class="lopad Mfont book">
   <%= link_to "Cases", "/engineers/#{@engineer.id}/cases", class: "nolink" %> |
   <%= link_to "Solutions", "/engineers/#{@engineer.id}/solutions", class: "nolink" %> |
   <%= link_to "Bugs", "/engineers/#{@engineer.id}/bugs", class: "nolink" %>

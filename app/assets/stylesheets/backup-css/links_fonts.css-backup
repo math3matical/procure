@@ -1,0 +1,43 @@
+.nolink, .uplink, .twolink, .smlink, .remove, a:link, a:visted{
+  text-decoration: none;
+  color: black;
+}
+.uplink, .twolink, .smlink, .remove, .book{
+  font-weight: bold;
+}
+a:link { text-decoration: none; color: black; }
+a:visited { text-decoration: none; color: black; }
+a:hover { text-decoration: underline; color: #ff6347; }  /* tomato */
+a:active { text-decoration: underline; color: #342d7e; } /* some blue */
+c {
+  font-size: 26px;
+  line-height: 26px;
+}
+d {
+  line-height: 18px;
+}
+.XXLfont, .uplink {
+  font-size: 24px;
+}
+.XLfont, d{
+  font-size: 20px;
+}
+.twolink {
+  font-size: 18px;
+}
+.Lfont, e{
+  font-size: 16px;
+}
+.Mfont{
+  font-size: 14px;
+}
+.Sfont{
+  font-size: 13px;
+}
+.smlink, .remove {
+  font-size: 12px;
+}
+.book {
+  font-style: Bookman Old Style;
+}
+

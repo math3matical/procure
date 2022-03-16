@@ -1,3 +1,18 @@
-<h2> Quit horse'n around, I'm not stable yet!</h2>
+<%= render "logo" %>
+<%= link_to "Back", :back, class: "nolink book Lfont" %>
 <br></br>
-<%= image_tag "unfinished_horse.jpg", class: "img-responsive" %>
+<div class="mainbox">
+  <div class="mainformbox">
+    <div class="ticketformtitle">
+      <div class="whiteheadtitle">
+        <h2> Hay! ...I'm not stable yet.</h2>
+      </div>
+    </div>
+    <br></br>
+    <div class="ticketform">
+      <div class="whitebox" style="width: max-content">
+        <%= image_tag "unfinished_horse.jpg", class: "img-responsive" %>
+      </div>
+    </div>
+  </div>
+</div>

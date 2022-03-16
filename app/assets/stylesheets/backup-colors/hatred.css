@@ -1,0 +1,23 @@
+body{
+  background: #F7CB8C;
+  background-color: #c2192d;  /* pistachio green */
+}
+.testsubbox, .testtitlebox, .testbox, .mainformbox {
+  background-color: #777777;  /* light jade */
+}
+.uppermain, .mainbox {
+  background-color: #d3fd78;  /* light jade */
+  background-color: #6388dd;  /* light jade */
+  background-color: #dd8863;  /* light jade */
+  background: #000000;
+}
+.boxsubheader, .boxheader, .box80, .boxtag, .scrollout, .ticketform, .ticketformtitle, .tickettitle, .scrollbox, .commenttitle, .whiteheadsubtitle, .commenttitle, .whiteheadsubtitle {
+  background: #ffffbf;  /* green water */
+  background: #fae5eb;  /* water */
+  background: #fafafa;  /* water */
+}
+
+
+.whitebox, .boxtag, .scrollbox, .commenttitle, .whiteheadsubtitle {
+  background: #ffffff;
+}

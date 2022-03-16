@@ -1,8 +1,5 @@
 Rails.application.routes.draw do
   get 'test/index'
-  get 'case_coverages/index'
-  get 'solution_coverages/index'
-  get 'bug_coverages/index'
   get 'bugs/index'
   
   get '/test/runit', to: 'test#bugcall'
@@ -11,15 +8,39 @@ Rails.application.routes.draw do
   get '/engineers/findapi', to: 'engineers#findapi'
   get '/cases/newapi', to: 'cases#newapi'
   get '/cases/findapi', to: 'cases#findapi'
+  get '/solutions/horse', to: 'solutions#horse'
   get '/bugs/newapi', to: 'bugs#newapi'
   get '/bugs/findapi', to: 'bugs#findapi'
-  get '/solutions/horse', to: 'solutions#horse'
+  get '/solutions/newapi', to: 'solutions#newapi'
+  get '/solutions/findapi', to: 'solutions#findapi'
   get '/test/horse', to: 'test#horse'
+  get '/test/ocm', to: 'test#ocm'
+  get '/test/attachmentdownload', to: 'test#attachmentdownload'
+  get '/test/attachment_download', to: 'test#attachment_download'
+  get '/test/solutionuser', to: 'test#solutionuser'
+  get '/test/solution_user', to: 'test#solution_user'
+  get '/test/casecomments', to: 'test#casecomments'
+  get '/test/case_comments', to: 'test#case_comments'
+  post '/test/addfilter', to: 'test#addfilter'
+  get '/test/findapi', to: 'test#findapi'
+  get '/test/ocm_find', to: 'test#ocm_find'
+  get '/index', to: 'test#index'
+  get '/test/colorchange', to: 'test#colorchange'
+  get '/test/color_change', to: 'test#color_change'
+  get '/cases/reverse', to: 'cases#reverse'
+  get '/test/removefilter', to: 'test#removefilter'
 
   get "/solutions/", to: "solutions#index"
   get "/cases/", to: "cases#index"
   get 'engineer_bugs', to: 'engineers#bugs'
   get 'new_comment', to: 'solutions#new_comment'
+  get '/tag_groups', to: 'tag_groups#new'
+  get '/tag_groups/former', to: 'tag_groups#former'
+  get '/tag_group/former', to: 'tag_groups#former'
+  get '/tags/maketags', to: 'tags#new'
+  post '/tags/new', to: 'tags#new'
+  get '/tags', to: 'tags#new'
+  post '/tags', to: 'tags#create'
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -30,7 +51,10 @@ Rails.application.routes.draw do
   resources :articles do
     resources :comments
   end
-
+  
+  resources :tag_groups do
+    resources :tag_items
+  end
 
   resources :comments do
   end
@@ -54,14 +78,6 @@ Rails.application.routes.draw do
     resources :comments
   end
 
-  resources :solution_coverages do
-    resources :comments
-  end
-  
-  resources :bug_coverages do
-    resources :comments
-  end
-
   resources :bugs do
     resources :comments
   end
@@ -70,10 +86,11 @@ Rails.application.routes.draw do
     resources :comments
   end
 
-  resources :case_coverages do
-    resources :comments
-  end
-
   resources :engineer_tags
+
+  resources :commands do
+    resources :comments
+    resources :tags
+  end
 
 end

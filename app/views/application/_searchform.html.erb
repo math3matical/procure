@@ -1,7 +1,7 @@
 <div class="field">
   <%= form_tag("/#{path}", method: :get) do %>
   <%#= form_tag("/#{ticket}/#{path}", method: :get) do %>
-    <%= text_field_tag(:search, params[:search], size: 22) %>
+    <%= text_field_tag(:search, params[:search], size: 22, style:"margin-left: 20px") %>
     <%#= text_field_tag(:search, params[:search], size: 22, style: "margin-right: 4px; border: 2px solid black") %>
 
     <%# Using this button to clear the form prevents the user from hitting enter

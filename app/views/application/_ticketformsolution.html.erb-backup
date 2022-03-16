@@ -1,0 +1,146 @@
+<%= render "logo" %>
+<% ticketid ||= session[:ticketid] %>
+<%# ticketid ||=params[:ticketid] %>
+<% ticketid ||=ticket.id %>
+<strong><%= link_to "Back", "/#{urltick}s/#{ticketid}", class: "nolink" %></strong>
+<br></br>
+
+<div class="mainbox">
+  <div class="mainformbox">
+    <div class="ticketformtitle">
+      <p class="XXLfont book lopad"><%= params[:action].capitalize %> <%= urltick.capitalize %></p>
+    </div>
+
+    <div class="ticketform">
+      <ul class="form field3">
+        <%= form_with model: ticket do |form| %>
+          <div>
+            <strong><%= form.label :title %></strong><br>
+            <textfield class="field2" style="background: blue"><%= form.text_field :title %></textfield>
+            <% ticket.errors.full_messages_for(:title).each do |message| %>
+              <div><%= message %></div>
+            <% end %>
+          </div>
+          <br>
+
+          <div>
+            <strong><%= form.label "#{urltick.capitalize} Number" %></strong><br>
+            <textfield class="field2"> <%= form.number_field :number %> </textfield><br>
+            <% ticket.errors.full_messages_for(:number).each do |message| %>
+              <div><%= message %></div>
+            <% end %>
+          </div>
+          <br>
+
+          <div>
+            <strong><%= form.label "#{urltick.capitalize} Owner" %></strong><br>
+            <textfield class="field2"> <%= form.text_field :solution_owner %> </textfield><br>
+            <% ticket.errors.full_messages_for(:solution_owner).each do |message| %>
+              <div><%= message %></div>
+            <% end %>
+          </div>
+          <br>
+
+          <div>
+            <strong><%= form.label :sbr %></strong><br>
+            <textfield class="field2" style="background: blue"><%= form.text_field :sbr %></textfield>
+            <% ticket.errors.full_messages_for(:sbr).each do |message| %>
+              <div><%= message %></div>
+            <% end %>
+          </div>
+          <br>
+
+          <div>
+            <strong><%= form.label :product %></strong><br>
+            <textfield class="field2" style="background: blue"><%= form.text_field :product %></textfield>
+            <% ticket.errors.full_messages_for(:product).each do |message| %>
+              <div><%= message %></div>
+            <% end %>
+          </div>
+          <br>
+
+          <div>
+            <strong><%= form.label :issue %></strong><br>
+            <textfield class="field2"> <%= form.text_area :issue, style: "width: 85%; height: 150px" %> </textfield><br>
+            <% ticket.errors.full_messages_for(:issue).each do |message| %>
+              <div><%= message %></div>
+            <% end %>
+          </div>
+          <br>
+
+          <div>
+            <strong><%= form.label :summary %></strong><br>
+            <textfield class="field2"> <%= form.text_area :summary, style: "width: 85%; height: 150px" %> </textfield><br>
+            <% ticket.errors.full_messages_for(:summary).each do |message| %>
+
+              <div><%= message %></div>
+            <% end %>
+          </div>
+          <br>
+
+          <div>
+            <strong><%= form.label :bug_number %></strong><br>
+            <textfield class="field2" style="background: blue"><%= form.text_field :bug_number %></textfield>
+            <% ticket.errors.full_messages_for(:bug_number).each do |message| %>
+              <div><%= message %></div>
+            <% end %>
+          </div>
+          <br>
+
+          <div>
+            <strong><%= form.label :bug_summary %></strong><br>
+            <textfield class="field2"> <%= form.text_area :bug_summary, style: "width: 85%; height: 150px" %> </textfield><br>
+
+            <% ticket.errors.full_messages_for(:bug_summary).each do |message| %>
+              <div><%= message %></div>
+            <% end %>
+          </div>
+          <br>
+
+          <div>
+            <strong><%= form.label :customer_contact %></strong><br>
+            <textfield class="field2" style="background: blue"><%= form.text_field :customer_contact %></textfield>
+            <% ticket.errors.full_messages_for(:customer_contact).each do |message| %>
+              <div><%= message %></div>
+            <% end %>
+          </div>
+          <br>
+
+          <div>
+            <strong><%= form.label :customer_name %></strong><br>
+            <textfield class="field2" style="background: blue"><%= form.text_field :customer_name %></textfield>
+            <% ticket.errors.full_messages_for(:customer_name).each do |message| %>
+              <div><%= message %></div>
+            <% end %>
+          </div>
+          <br>
+
+          <div>
+            <strong><%= form.label :importance %></strong><br>
+            <textfield class=field2> <%= form.number_field :importance %> </textfield><br>
+          </div>
+          <br>
+
+          <div>
+            <strong><%= form.label :notes %></strong><br>
+            <textfield class="field2"> <%= form.text_area :notes, style: "width: 85%; height: 150px" %> </textfield><br>
+            <% ticket.errors.full_messages_for(:notes).each do |message| %>
+              <div><%= message %></div>
+            <% end %>
+          </div>
+          <br>
+
+          <div>
+            <strong><%= form.label :status %></strong><br>
+            <textfield class="myselect"> <%= form.select :status, ['public', 'private', 'archived'] %> </textfield>
+          </div>
+          <br></br>
+
+          <div>
+            <%= form.submit class: "form-submit-button"  %>
+          </div>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>

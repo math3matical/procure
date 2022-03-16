@@ -1,22 +1,45 @@
-<div class="righthead">
-  <span class="book"><%= link_to raw("pro&#8226;cure"), "/test/index", class: "nolink" %> <b>&nbsp;<%= link_to "work-in memory", "/test/runit", class: "nolink" %></b></span>
-</div>
+<%= render 'logo' %>
+
+<strong><%= link_to "Try me", "/test/colorchange" %></strong>
+
+<%# response = RestClient::Request.new(
+    method: :get,
+    url: "https://opentdb.com/api.php?amount=1",
+    headers: {accept: :json},
+    verify_ssl: false
+    ).execute %>
+<%# response=JSON.parse(response.to_str) %>
+<%#= markdown(response["results"].first["question"]) %>
+<%#= markdown(response["results"].first["correct_answer"]) %>
+<%#= markdown(response["results"].first["incorrect_answers"].join(', ')) %>
+<br>
+<%# response = RestClient::Request.new(
+    method: :get,
+    url: "https://api.api-ninjas.com/v1/trivia?category=music",
+    headers: {accept: :json},
+    verify_ssl: false
+    ).execute %>
+<%# response=JSON.parse(response.to_str) %>
+<%#= markdown(response.first["question"]) %>
+<%#= markdown(response.first["answer"]) %>
 <br>
 
 <div class="uppermain">
   <div class="testtitlebox">
     <div class="boxheader" style="padding-top: 5px">
+      <div class="whiteheadtitle">
       <p>
-        <%= link_to "Work", :stuff, class: "uplink" %> <c>|</c>
-        <%= link_to "Engineers", :engineers, class: "uplink" %> <c>|</c>
-        <%= link_to "Articles", :articles, class: "uplink" %>
+        <%= link_to "Cases", :cases, class: "uplink" %> <d>|</d>
+        <%= link_to "KCS", :solutions, class: "uplink" %> <d>|</d>
+        <%= link_to "Bugs", :bugs, class: "uplink" %> <d>|</d>
+        <%= link_to "Articles", :articles, class: "uplink" %> 
       </p>
 
-      <p class="Lfont" style="padding-left: 38px">
-        <%= link_to "Cases", :cases, class: "twolink" %> <d>|</d>
-        <%= link_to "Solutions", :solutions, class: "twolink" %> <d>|</d>
-        <%= link_to "Bugs", :bugs, class: "twolink" %>
+      <p >
+        <%= link_to "Engineers", :engineers, class: "uplink" %> <d>|</d>
+        <%= link_to "Commands", :commands, class: "uplink" %>
       </p> 
+    </div>
     </div>
   </div>
 </div>

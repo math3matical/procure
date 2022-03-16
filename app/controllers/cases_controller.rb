@@ -1,39 +1,69 @@
 class CasesController < ApplicationController
   def index
+    session[:case_sort] ||=0
     if params[:engineer_id]
       @engineer = Engineer.find(params[:engineer_id])
       @cases = Case.search2(params[:search], @engineer)
-#      @cases = @engineer.cases
-#      @cases2 = Case.search(params[:search])
-#      @name = @engineer.first_name
     else
       @cases = Case.search(params[:search])
     end
+    if session[:filter].length > 0
+      p "Cases class?"
+      p @cases.class
+      @cases = @cases.joins(:tag_items).where("tag_items.id REGEXP '#{session[:filter].join('|')}'").distinct
+    end
+    p @cases.class
+    @cases=@cases.order(:number)
+    session[:case_sort]+=1 if params[:sort]=="true"
+    @cases=@cases.order(:number).reverse unless session[:case_sort]%2==0
+  end
+
+  def reverse
+    p @cases.class
+    @cases=@cases.reverse_order
+    redirect_back(fallback_location: root_path)  
   end
 
   def show
     @case = Case.find(params[:id])
+    @engineers = @case.engineers
+    @tag_items = @case.tag_items
     @coverages = {}
   end
 
   def new
+    session[:ticketid] = params[:ticketid]
     @case = Case.new
   end
 
+  def findapi
+    session[:ticketid] = params[:ticketid]
+  end
+
   def newapi
-    @things = CaseGrabber.call(params[:case_number])
-    casse = {}
-    casse[:sbr] = @things["sbrGroup"]
-    casse[:product] = @things["product"]
-    casse[:version] = @things["version"]
-    casse[:issue] = @things["issue"]
-    casse[:summary] = @things["summary"]
-    casse[:number] = @things["caseNumber"]
-    casse[:bug_number] = @things["bugzillaNumber"]
-    casse[:bug_summary] = @things["bugzillaSummary"]
-    casse[:customer_contact] = @things["caseContact"]
-    casse[:customer_name] = @things["account"]["name"]
-    @case = Case.new(casse)
+    sanitize = params[:case_number].gsub(/[[:space:]]+/, "")
+    @things = CaseGrabber.call(sanitize)
+    unless @things.class == "Hash"
+      # added error check in the case grabber service
+      # but now @things doesn't come back as hash, comes back
+      # as a json
+      @things=JSON.parse(@things)
+      casse = {}
+      list = {sbr: "sbrGroup", product: "product", version: "version", issue: "issue", summary: "summary", number: "caseNumber", bug_number: "bugzillaNumber", bug_summary: "bugzillaSummary", customer_contact: "caseContact", account_number: "accountNumber", fts: "fts", link: "caseLink", description: "description", ownerIRC: "ownerITCNickname", handover: "ftsHandoverReady", closed: "isClosed", escalated: "isEscalated", breaches: "numberOfBreaches", state: "status", strategic: "strategic", case_tag: "tags", region: "caseOwnerSuperRegion"}
+      list.each do |key, value|
+        casse[key]=@things[value]
+      end
+      p "-------------------------------------"
+      p casse[:link]
+      p casse[:link].split(' ')
+      casse[:url]="https://gss--c.visualforce.com/apex/Case_View?id=#{casse[:link].split(' ')[1][7..21]}&sfdc.override=1"
+      # Seen cases without an account hash or case_owner hash, e.g. 03147432
+      casse[:customer_name] = @things["account"]["name"] if @things["account"] 
+      casse[:case_owner] = @things["caseOwner"]["name"] if @things["caseOwner"]
+      @case = Case.new(casse)
+    else
+      render :findapi, status: :unprocessable_entity
+    end
   end
 
   def create
@@ -66,6 +96,6 @@ class CasesController < ApplicationController
 
   private
     def case_params
-      params.require(:case).permit(:title, :version, :number, :comments, :importance, :notes, :status, :search, :sbr, :product, :issue, :summary, :bug_number, :bug_summary, :customer_contact, :customer_name)
+      params.require(:case).permit(:title, :version, :number, :comments, :importance, :notes, :status, :search, :sbr, :product, :issue, :summary, :bug_number, :bug_summary, :customer_contact, :customer_name, :case_owner, :link, :url, :region, :handover, :closed, :escalated, :breaches, :ownerIRC, :state, :strategic, :case_tag, :description)
     end
 end

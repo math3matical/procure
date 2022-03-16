@@ -1,0 +1,20 @@
+<div class="testbox">
+  <div class="tickettitle">
+    <div class="whitetitle">
+      <strong><p class="XLfont lopadtop">Tags</p></strong>
+      <p class="Sfont book lopadbot"><%= link_to "Add", "/tags/?tag_taggable_type=#{type.capitalize}&tag_taggable_id=#{ticket.id}", class: "nolink" %> 
+      </p>
+    </div>
+  </div>
+  <% if ticket.tags.length > 0 %>
+    <div class="box80">
+      <div class="boxtag">
+        <% ticket.tag_items.each do |item| %>
+          <strong><%= item.tag_group.name %></strong>:
+          <%= item.name %><br>
+          <p class="linebreaker"></p>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>

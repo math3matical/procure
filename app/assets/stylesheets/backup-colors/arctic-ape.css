@@ -1,0 +1,25 @@
+body{
+  background: #98b4aa;
+  background: #88dfd8;
+}
+.uppermain, .mainbox {
+  background: #74959a;
+  background: #ffe194;
+}
+.testsubbox, .testtitlebox, .testbox, .mainformbox {
+  background: #495371;
+  background: #4c4c6d;
+}
+.boxsubheader, .boxheader, .box80, .boxtag, .scrollout, .ticketform, .ticketformtitle, .tickettitle, .scrollbox, .commenttitle, .whiteheadsubtitle, .commenttitle, .whiteheadsubtitle {
+  background: #f1e0ac;
+  background: #e8f6ef;
+}
+
+
+.whitebox, .scrollbox, .commenttitle, .whiteheadsubtitle, .boxtag {
+  background: #ffffff;
+}
+
+.whiteheadtitle, .whiteheadsubtitle, .whitetitle, .commenttitle{
+  background: none;
+}

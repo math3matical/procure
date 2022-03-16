@@ -1,5 +1,6 @@
 <%= render "logo" %>
-<% ticketid ||=params[:ticketid] %>
+<% ticketid ||= session[:ticketid] %>
+<%# ticketid ||=params[:ticketid] %>
 <% ticketid ||=ticket.id %>
 <strong><%= link_to "Back", "/#{urltick}s/#{ticketid}", class: "nolink" %></strong>
 <br></br>
@@ -7,7 +8,9 @@
 <div class="mainbox">
   <div class="mainformbox">
     <div class="ticketformtitle">
-      <p class="XXLfont book lopad"><%= params[:action].capitalize %> <%= urltick.capitalize %></p>
+      <div class="whiteheadtitle">
+        <p class="XXLfont book lopad"><%= params[:action].capitalize %> <%= urltick.capitalize %></p>
+      </div>
     </div>
 
     <div class="ticketform">
@@ -125,6 +128,18 @@
             <textfield class="myselect"> <%= form.select :status, ['public', 'private', 'archived'] %> </textfield>
           </div>
           <br></br>
+
+          <%= form.hidden_field :creator %>
+          <%= form.hidden_field :severity %>
+          <%= form.hidden_field :fixed_in %>
+          <%= form.hidden_field :release_notes %>
+          <%= form.hidden_field :component %>
+          <%= form.hidden_field :keywords %>
+          <%= form.hidden_field :target_milestone %>
+          <%= form.hidden_field :last_change %>
+          <%= form.hidden_field :cc %>
+          <%= form.hidden_field :cc_detail %>
+          <%= form.hidden_field :url %>
 
           <div>
             <%= form.submit class: "form-submit-button"  %>

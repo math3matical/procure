@@ -2,7 +2,7 @@
 
 <style>
   ul {
-    width: 700px;
+    width: 550px;
   }
   ul li {
     width: 325;
@@ -10,14 +10,12 @@
     padding-right: 10px;
     padding-left: 10px;
   }
-
   ul li > * {
     width: 175px;
   }
 </style>
 
 <strong><%= link_to "Back", :back, class: "nolink" %></strong>
-
 <br></br>
 
 <div class="mainbox">
@@ -29,144 +27,28 @@
     <div class="ticketform">
       <%= form_with model: satellite_tag do |form| %>
         <ul>
+          <% list = [:pulp, :postgres, :foreman_proxy, :installer, :publish, :promote, :contentview, :capsule, :sync, :repository, :metadata, :mongo, :redis, :puma, :http, :reports, :ui] %>
           <li>
             <strong><%= form.label :version %></strong>
             <%= form.select :version, ['6.7', '6.8', '6.9', '6.10'] %>
           </li>
           <br></br>
-
-          <li>
-          <div class="form-check">
-            <%= form.check_box :pulp %>
-            <strong><%= form.label :pulp %></strong>
-          </div>
-          </li>
-
-          <li>
-          <div class="form-check">
-            <%= form.check_box :postgres %>
-            <strong><%= form.label :postgres %></strong>
-          </div>
-          </li>
+          <% counter = 0 %>
+          <% list.each do |key|  %>
+            <li>
+              <div class="form-check">
+                <%= form.check_box key %>
+                <strong><%= form.label key %></strong>
+                <% counter +=1 %>
+              </div>
+            </li>
+            <% if counter % 2 == 0 %>
+              <br></br>
+            <% end %>
+          <% end %>
           <br></br>
- 
-          <li>
-          <div class="form-check">
-            <%= form.check_box :foreman_proxy %>
-            <strong><%= form.label :foreman_proxy %></strong>
-          </div>
-          </li>
-
-          <li>
-          <div class="form-check">
-            <%= form.check_box :installer %>
-            <strong><%= form.label :installer %></strong>
-          </div>
-          </li>
-          <br></br>
-
-          <li>
-          <div class="form-check">
-            <%= form.check_box :publish %>
-            <strong><%= form.label :publish %></strong>
-          </div>
-          </li>
-  
-          <li>
-          <div class="form-check">
-            <%= form.check_box :promote %>
-            <strong><%= form.label :promote %></strong>
-          </div>
-          </li>
-          <br></br>
-
-          <li>
-          <div class="form-check">
-            <%= form.check_box :contentview %>
-            <strong><%= form.label :contentview %></strong>
-          </div>
-          </li>
- 
-          <li>
-          <div class="form-check">
-            <%= form.check_box :capsule, class: "form-check-input", style: "text-align: right" %>
-            <strong><%= form.label :capsule, class: "form-check-label", style: "margin-right: 20px" %></strong>
-          </div>
-          </li>
-     
-          <br></br>
-  
-          <li>
-          <div class="form-check">
-            <%= form.check_box :sync %>
-            <strong><%= form.label :sync %></strong>
-          </div>
-          </li>
-
-          <li>
-          <div class="form-check">
-             <%= form.check_box :repository %>
-             <strong><%= form.label :repository %></strong>
-          </div>
-          </li>
-          <br></br>
-
-          <li>
-          <div class="form-check">
-            <%= form.check_box :metadata %>
-            <strong><%= form.label :metadata %></strong>
-          </div>
-          </li>
-
-          <li>
-          <div class="form-check">
-            <%= form.check_box :mongo %>
-            <strong><%= form.label :mongo %></strong>
-          </div>
-          </li>
-          <br></br>
-
-          <li>
-          <div class="form-check">
-            <%= form.check_box :redis %>
-            <strong><%= form.label :redis %></strong>
-          </div>
-          </li>
-
-          <li>
-          <div class="form-check">
-            <%= form.check_box :puma %>
-            <strong><%= form.label :puma %></strong>
-          </div>
-          </li>
-          <br></br>
-
-          <li>
-          <div class="form-check">
-            <%= form.check_box :http %>
-            <strong><%= form.label :http %></strong>
-          </div>
-          </li>
-
-          <li>
-          <div class="form-check">
-            <%= form.check_box :reports %>
-            <strong><%= form.label :reports %></strong>
-          </div>
-          </li>
-          <br></br>
-
-          <li>
-          <div class="form-check">
-            <%= form.check_box :ui %>
-            <strong><%= form.label :ui %></strong>
-          </div>
-          </li>
-          <br></br>
-
           <%= form.hidden_field :satellite_taggable_id, value: satellite_taggable_id %>
           <%= form.hidden_field :satellite_taggable_type, value: satellite_taggable_type %>
-
           <li>
             <%= form.submit class: "form-submit-button" %>
           </li>
@@ -175,4 +57,3 @@
     </div>
   </div>
 </div>
-

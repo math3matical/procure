@@ -1,0 +1,33 @@
+<%= render "logo" %>
+<% id ||= params[:id] %>
+<strong><%= link_to "Back", '/test/index', class: "nolink" %></strong>
+<br></br>
+
+<div class="mainbox">
+  <div class="mainformbox">
+    <div class="ticketformtitle"> 
+      <div class="whiteheadtitle">
+        <p class="XXLfont book lopad">Set Background Color</p>
+      </div>
+    </div> 
+
+    <div class="ticketform">
+      <ul class="form">
+        <%= form_tag("/test/color_change", method: :get) do %>
+          <%#= form_tag("/#{ticket}/#{path}", method: :get) do %>
+          <strong><%= label_tag "Color" %></strong><br>
+          <textfield class="field"><%= select_tag(:color_change, options_for_select([['Choose Palette', 'nothing'],['Wildberry','funky-torq.css'],["Davy Tanner","yoder.css"],["Lucky","ireland.css"],["Optimus Prime","optimus-prime.css"],["Under The Sea","sea-blue.css"],["Citradelic","citrus.css"],["Yellow Submarine","turq-yellow-fun.css"],["Arctic Ape","arctic-ape.css"],["Red Hat","redhat.css"],["Adventure Time","fun-turquoise-orange.css"], ["Starry Night", "starry-night.css"]])) %></textfield>
+          <p class="linebreaker"></p>
+
+          <%# Using this button to clear the form prevents the user from hitting enter
+              to submit a search.  In the url you can see the issue is that the there are
+              2 search variables (i.e. ?search=something&search=). One is blank and one has 
+              the search string. %>
+          <%#= button_tag "x", name: 'search', value: '', class: "form-reset-button book" %>
+          <br></br>
+          <%= button_tag "Change Background", class: "form-search-button" %>
+        <% end %>
+      </ul>
+    </div> 
+  </div>
+</div>

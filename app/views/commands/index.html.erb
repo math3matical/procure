@@ -1,0 +1,38 @@
+<%= render 'headerlink' %>
+
+<div class="mainbox">
+  <div class="testsubbox">
+    <div class="boxsubheader">
+      <div class="whiteheadsubtitle">
+        <p class="lopad XXLfont"><strong>Commands</strong></p>
+        <p class="lopad Mfont book">
+          <%= link_to "New", "/commands/new", class: "nolink" %> |
+          <%= link_to "Sort", "/commands/?sort=true", class: "nolink" %> |
+          <%#= link_to "Sort", "/test/horse", class: "nolink" %> 
+          <%= button_tag 'Filter', {type: 'button', id: "button-filter", style: "font-weight: bold; margin: 5px 5px 0 0; font-size:12px; background: none; border: none; padding: 0; margin-right: 0"} %>
+          <%= link_to "x", "/test/removefilter", class: "nolink", style: "border: 2px solid black; border-radius: 2px; background: #dddddd; margin-left: 0; padding: 0 3px 0 3px" %>
+        </p>
+      </div>
+      <%= render 'filterform' %>
+      <%= render 'searchform', ticket: 'commands', path: 'commands' %>
+      <br>
+    </div>
+  </div>
+  <br>
+
+  <div class="testbox">
+    <div class="box80">
+      <div class="whitebox">
+        <ol>
+          <% @commands.each do |command| %>
+            <% unless command.archived? %>
+             <li>
+                <p class="book"> <%= link_to command.name, command, class: "nolink" %> </p>
+             </li>
+           <% end %>
+          <% end %>
+        </ol>
+      </div>
+    </div>
+  </div>
+</div>

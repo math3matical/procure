@@ -7,6 +7,10 @@ ruby "2.7.5"
 ## Gems added after the rails install ##
 
 
+#https://www.jetbrains.com/help/ruby/add-a-javascript-asset-to-the-rails-application.html
+#https://stackoverflow.com/questions/57891751/webpacker-configuration-file-not-found-rails-6-0-0
+gem 'webpacker'
+
 #https://stackoverflow.com/questions/3268053/rails-before-validation-strip-whitespace-best-practices
 #https://github.com/holli/auto_strip_attributes
 gem 'auto_strip_attributes'
@@ -33,8 +37,8 @@ gem "rails", "~> 7.0.1"
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
 
-# Use sqlite3 as the database for Active Record
-gem "sqlite3", "~> 1.4"
+# Use mysql2 as the database for Active Record
+gem "mysql2", "~> 0.5"
 
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", "~> 5.0"

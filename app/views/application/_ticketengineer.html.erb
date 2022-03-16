@@ -1,37 +1,41 @@
 <div class="testbox">
   <div class="tickettitle">
-    <strong><p class="XLfont lopadtop">Engineers</p></strong>
-    <p class="Sfont book lopadbot"> <%= link_to "Tag", "/engineer_tags/new?#{type}_id=#{ticket.id}&engineer_taggable_type=#{type.capitalize}&engineer_taggable_id=#{ticket.id}", class: "nolink" %> </p>
+    <div class="whitetitle">
+      <strong><p class="XLfont lopadtop">Engineers</p></strong>
+      <p class="Sfont book lopadbot"> <%= link_to "Add", "/engineer_tags/new?#{type}_id=#{ticket.id}&engineer_taggable_type=#{type.capitalize}&engineer_taggable_id=#{ticket.id}", class: "nolink" %> </p>
+    </div>
   </div>
 
   <% if ticket.engineers.all.length > 0 %>
     <div class="box80">
-      <table style="border-spacing: 10px;">
-        <tr>
-          <th scope="col">Name</th>
-          <th scope="col">Title</th>
-          <th scope="col">irc</th>
-        </tr>
-        <% ticket.engineers.each do |engineer| %>
+      <div class="whitebox">
+        <table style="border-spacing: 10px;">
           <tr>
-            <% case type.capitalize %>
-            <% when 'Solution' %>
-              <% stuff = EngineerTag.find_by_engineer_id_and_engineer_taggable_id_and_engineer_taggable_type(engineer.id, ticket.id, 'Solution') %>
-            <% when 'Case' %>
-              <% stuff = EngineerTag.find_by_engineer_id_and_engineer_taggable_id_and_engineer_taggable_type(engineer.id, ticket.id, 'Case') %>
-            <% when 'Bug' %>
-              <% stuff = EngineerTag.find_by_engineer_id_and_engineer_taggable_id_and_engineer_taggable_type(engineer.id, ticket.id, 'Bug') %>
-            <% end %>
-            <td style="padding: 2px 4px"><e><%= link_to "#{engineer.first_name} #{engineer.last_name}", "/engineers/#{engineer.id}" %></e></td>
-            <td style="padding: 2px 4px"><%= engineer.position %></td>
-            <td style="padding: 2px 4px"><%= engineer.irc %>&nbsp;</td>
-            <td style="padding: 2px 4px"><%= link_to "Remove", "/engineer_tags/#{stuff.id}", data: {
-                                                                          turbo_method: :delete,
-                                                                          turbo_confirm: "Are you sure?"
-                                                                          }, class: "remove" %></td>
+            <th scope="col">Name</th>
+            <th scope="col">Title</th>
+            <th scope="col">irc</th>
           </tr>
-        <% end %>
-      </table>
+          <% ticket.engineers.each do |engineer| %>
+            <tr>
+              <% case type.capitalize %>
+              <% when 'Solution' %>
+                <% stuff = EngineerTag.find_by_engineer_id_and_engineer_taggable_id_and_engineer_taggable_type(engineer.id, ticket.id, 'Solution') %>
+              <% when 'Case' %>
+                <% stuff = EngineerTag.find_by_engineer_id_and_engineer_taggable_id_and_engineer_taggable_type(engineer.id, ticket.id, 'Case') %>
+              <% when 'Bug' %>
+                <% stuff = EngineerTag.find_by_engineer_id_and_engineer_taggable_id_and_engineer_taggable_type(engineer.id, ticket.id, 'Bug') %>
+              <% end %>
+              <td style="padding: 2px 4px"><e><%= link_to "#{engineer.first_name} #{engineer.last_name}", "/engineers/#{engineer.id}" %></e></td>
+              <td style="padding: 2px 4px"><%= engineer.position %></td>
+              <td style="padding: 2px 4px"><%= engineer.irc %>&nbsp;</td>
+              <td style="padding: 2px 4px"><%= link_to "Remove", "/engineer_tags/#{stuff.id}", data: {
+                                                                            turbo_method: :delete,
+                                                                            turbo_confirm: "Are you sure?"
+                                                                            }, class: "remove" %></td>
+            </tr>
+          <% end %>
+        </table>
+      </div>
     </div>
   <% end %>
 </div>

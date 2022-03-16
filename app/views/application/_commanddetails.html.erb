@@ -1,0 +1,39 @@
+<div class="testsubbox">
+  <div class="boxsubheader">
+    <div class="whiteheadsubtitle">
+      <p class="lopad XXLfont"><strong><%= type.capitalize %>:</strong>
+      <strong><title><%= ticket.name %></title></strong></p>
+      <p class="lopad Mfont book">
+        <%= link_to "Edit", edit_command_path(ticket), class: "nolink" %> |
+        <%= link_to "Comment", new_command_comment_path(ticket), class: "nolink" %> |
+        <%= link_to "Tag", "/tags/?tag_taggable_type=#{type.capitalize}&tag_taggable_id=#{ticket.id}", class: "nolink" %> |
+
+        <%= link_to "Remove", command_path(ticket), data: {
+                      turbo_method: :delete,
+                      turbo_confirm: "Are you sure?"
+                    }, class: "nolink" %>
+      </p>
+    </div>
+  </div>
+</div>
+<br>
+
+<div class="testbox">
+  <div class="tickettitle">
+    <div class="whitetitle">
+      <strong><p class="XLfont lopadtop">Details</p></strong>
+      <p class="Mfont book lopadbot"><%= link_to "Edit", edit_command_path(ticket), class: "nolink" %></p>
+    </div>
+  </div>
+
+  <div class="box80" style="padding-left: 10px">
+    <div class="whitebox">
+      <ul style="padding:0">
+        <p><strong>Title:</strong> <%= ticket.name %></p>
+        <p><strong>Body:</strong> <%= ticket.body %></p>
+        <p><strong>Created:</strong> <%= ticket.created_at %></p>
+        <p><strong>Updated:</strong> <%= ticket.updated_at %></p>
+      </ul>
+    </div>
+  </div>
+</div>

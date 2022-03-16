@@ -3,14 +3,19 @@
 <div class="mainbox">
   <div class="testsubbox">
     <div class="boxsubheader">
-      <h2 class="XXLfont">Engineers</h2>
-      <p class="Mfont book">
-        <%= link_to "New", "/engineers/new", class: "nolink" %> |
-        <%= link_to "API", "/engineers/findapi", class: "nolink" %> |
-        <%= link_to "Sort", "/test/horse", class: "nolink" %> |
-        <%= link_to "Filter", "/test/horse", class: "nolink" %>
-      </p>
-      <%= render 'searchform', ticket: 'engineers', path: '' %>
+      <div class="whiteheadsubtitle">
+        <p class="lopad XXLfont"><strong>Engineers</strong></p>
+        <p class="lopad Mfont book">
+          <%= link_to "New", "/engineers/new", class: "nolink" %> |
+          <%= link_to "API", "/engineers/findapi", class: "nolink" %> |
+          <%#= link_to "Sort", "/test/horse", class: "nolink" %>
+          <%= link_to "Sort", "/engineers/?sort=true", class: "nolink" %> |
+          <%= button_tag 'Filter', {type: 'button', id: "button-filter", style: "font-weight: bold; margin: 5px 5px 0 0; font-size:12px; background: none; border: none; padding: 0; margin-right: 0"} %>
+          <%= link_to "x", "/test/removefilter", class: "nolink", style: "border: 2px solid black; border-radius: 2px; background: #dddddd; margin-left: 0; padding: 0 3px 0 3px" %>
+        </p>
+      </div>
+      <%= render 'filterform' %>
+      <%= render 'searchform', ticket: 'engineers', path: 'engineers' %>
     <br>
     </div>
   </div>
@@ -18,16 +23,18 @@
 
   <div class="testbox">
     <div class="box80">
-      <ol>
-        <% @engineers.each do |engineer| %>
-          <li>
-            <p class="book"> <%= link_to "#{engineer.first_name} #{engineer.last_name}", engineer_path(engineer.id), class: "nolink" %>   <%= link_to "Remove", engineer_path(engineer), data: {
-                    turbo_method: :delete,
-                    turbo_confirm: "Are you sure?"
-                  }, class: "nolink Sfont book", style: "margin-left: 5px" %> </p>
-          </li>
-        <% end %>
-      </ol>
+      <div class="whitebox">
+        <ol>
+          <% @engineers.each do |engineer| %>
+            <li>
+              <p class="book"> <%= link_to "#{engineer.first_name} #{engineer.last_name}", engineer_path(engineer.id), class: "nolink" %>   <%= link_to "Remove", engineer_path(engineer), data: {
+                      turbo_method: :delete,
+                     turbo_confirm: "Are you sure?"
+                    }, class: "nolink Sfont book", style: "margin-left: 5px" %> </p>
+            </li>
+         <% end %>
+        </ol>
+      </div>
     </div>
   </div>
 </div>

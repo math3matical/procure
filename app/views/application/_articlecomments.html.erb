@@ -1,7 +1,9 @@
 <div class="testbox">
   <div class="tickettitle">
-    <strong><p class="XLfont lopadtop">Comments</p></strong>
-    <p class="Mfont book lopadbot"><%= link_to "New", new_article_comment_path(ticket), class: "nolink" %></p>
+    <div class="whitetitle">
+      <strong><p class="XLfont lopadtop">Comments</p></strong>
+      <p class="Sfont book lopadbot"><%= link_to "New", new_article_comment_path(ticket), class: "nolink" %></p>
+    </div>
   </div>
   <% if ticket.comments.length > 0 %>
     <%= render ticket.comments %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_24_151815) do
+ActiveRecord::Schema.define(version: 2022_03_11_230114) do
 
   create_table "articles", force: :cascade do |t|
     t.string "title"
@@ -18,16 +18,6 @@ ActiveRecord::Schema.define(version: 2022_02_24_151815) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "status"
-  end
-
-  create_table "bug_coverages", force: :cascade do |t|
-    t.integer "engineer_id", null: false
-    t.integer "bug_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.string "status"
-    t.index ["bug_id"], name: "index_bug_coverages_on_bug_id"
-    t.index ["engineer_id"], name: "index_bug_coverages_on_engineer_id"
   end
 
   create_table "bugs", force: :cascade do |t|
@@ -47,16 +37,15 @@ ActiveRecord::Schema.define(version: 2022_02_24_151815) do
     t.string "whiteboard"
     t.string "target_release"
     t.text "summary"
-  end
-
-  create_table "case_coverages", force: :cascade do |t|
-    t.integer "engineer_id", null: false
-    t.integer "case_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.string "status"
-    t.index ["case_id"], name: "index_case_coverages_on_case_id"
-    t.index ["engineer_id"], name: "index_case_coverages_on_engineer_id"
+    t.string "fixed_in"
+    t.string "release_notes"
+    t.string "component"
+    t.string "keywords"
+    t.string "target_milestone"
+    t.string "last_change"
+    t.text "cc"
+    t.text "cc_detail"
+    t.string "url"
   end
 
   create_table "cases", force: :cascade do |t|
@@ -87,6 +76,28 @@ ActiveRecord::Schema.define(version: 2022_02_24_151815) do
     t.text "bug_summary"
     t.string "customer_contact"
     t.string "customer_name"
+    t.string "case_owner"
+    t.string "link"
+    t.string "url"
+    t.string "region"
+    t.boolean "handover"
+    t.boolean "closed"
+    t.boolean "escalated"
+    t.string "ownerIRC"
+    t.string "state"
+    t.string "strategic"
+    t.string "tags"
+    t.text "description"
+    t.string "breaches"
+    t.string "case_tag"
+  end
+
+  create_table "commands", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.text "body"
+    t.string "status"
   end
 
   create_table "comments", force: :cascade do |t|
@@ -181,16 +192,6 @@ ActiveRecord::Schema.define(version: 2022_02_24_151815) do
     t.index ["satellite_taggable_type", "satellite_taggable_id"], name: "index_satellite_tags_on_satellite_taggable"
   end
 
-  create_table "solution_coverages", force: :cascade do |t|
-    t.integer "engineer_id", null: false
-    t.integer "solution_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.string "status"
-    t.index ["engineer_id"], name: "index_solution_coverages_on_engineer_id"
-    t.index ["solution_id"], name: "index_solution_coverages_on_solution_id"
-  end
-
   create_table "solutions", force: :cascade do |t|
     t.string "title"
     t.string "number"
@@ -199,12 +200,42 @@ ActiveRecord::Schema.define(version: 2022_02_24_151815) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "status"
+    t.text "abstract"
+    t.string "author"
+    t.string "boostProduct"
+    t.string "inferred_tag"
+    t.string "state"
+    t.string "url"
+    t.string "product"
+    t.string "tag"
+    t.string "created"
+    t.string "solution_tag"
   end
 
-  add_foreign_key "bug_coverages", "bugs"
-  add_foreign_key "bug_coverages", "engineers"
-  add_foreign_key "case_coverages", "cases"
-  add_foreign_key "case_coverages", "engineers"
-  add_foreign_key "solution_coverages", "engineers"
-  add_foreign_key "solution_coverages", "solutions"
+  create_table "tag_groups", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "tag_items", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "tag_group_id"
+    t.index ["tag_group_id"], name: "index_tag_items_on_tag_group_id"
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "tag_taggable_id"
+    t.string "tag_taggable_type"
+    t.integer "tag_item_id"
+    t.integer "tag_group_id"
+    t.index ["tag_group_id"], name: "index_tags_on_tag_group_id"
+    t.index ["tag_item_id"], name: "index_tags_on_tag_item_id"
+  end
+
 end

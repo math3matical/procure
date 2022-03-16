@@ -1,13 +1,19 @@
 class BugsController < ApplicationController
 
   def index
+    session[:bug_sort] ||= 0
     if params[:engineer_id]
       @engineer = Engineer.find(params[:engineer_id])
       @bugs = Bug.search2(params[:search], @engineer)
-#      @bugs = @engineer.bugs
     else
       @bugs = Bug.search(params[:search])
     end
+    if session[:filter].length > 0
+      @bugs = @bugs.joins(:tag_items).where("tag_items.id REGEXP '#{session[:filter].join('|')}'")
+    end
+    @bugs=@bugs.order(:number)
+    session[:bug_sort]+=1 if params[:sort]
+    @bugs=@bugs.reverse unless session[:bug_sort]%2==0
   end
 
   def show
@@ -16,23 +22,28 @@ class BugsController < ApplicationController
   end
     
   def new
+    session[:ticketid] = params[:ticketid]
     @bug = Bug.new
   end
 
+  def findapi
+    session[:ticketid] = params[:ticketid]
+  end
+
   def newapi
-    @things = BugCaller.call(params[:bug_number])
-    bug = {}
-    bug[:summary] = @things["bugs"].first["summary"]
-    bug[:number] = @things["bugs"].first["id"]
-    bug[:product] = @things["bugs"].first["product"]
-    bug[:version] = @things["bugs"].first["version"]
-    bug[:assigned_to] = @things["bugs"].first["assigned_to"]
-    bug[:qa_contact] = @things["bugs"].first["qa_contact"]
-    bug[:whiteboard] = @things["bugs"].first["whiteboard"]
-    bug[:target_release] = @things["bugs"].first["target_release"]
-    bug[:creator] = @things["bugs"].first["creator"]
-    bug[:severity] = @things["bugs"].first["severity"]
-    @bug = Bug.new(bug)
+    sanitize = params[:bug_number].gsub(/[[:space:]]+/, "")
+    @things = BugCaller.call(sanitize)
+    unless @things["error"]
+      bug = {}
+      list = {summary: "summary", number: "id", product: "product", version: "version", assigned_to: "assigned_to", qa_contact: "qa_contact", whiteboard: "whiteboard", target_release: "target_release", creator: "creator", severity: "severity", fixed_in: "cf_fixed_in", release_notes: "cf_release_notes", component: "component", keywords: "keywords", target_milestone: "target_milestone", last_change: "last_change", cc: "cc", cc_detail: "cc_detail"}
+      list.each do |key, value|
+        bug[key]=@things["bugs"].first[value]
+      end
+      bug[:url]="https://bugzilla.redhat.com/#{bug[:number]}"
+      @bug = Bug.new(bug)
+    else
+      render :findapi, status: :unprocessable_entity
+    end
 
   end
 
@@ -66,6 +77,6 @@ class BugsController < ApplicationController
 
   private
     def bug_params
-      params.require(:bug).permit(:id, :title, :number, :importance, :notes, :created_at, :updated_at, :status, :search, :product, :summary, :assigned_to, :creator, :severity, :qa_contact, :version, :whiteboard, :taget_releae)
+      params.require(:bug).permit(:id, :title, :number, :importance, :notes, :created_at, :updated_at, :status, :search, :product, :summary, :assigned_to, :creator, :severity, :qa_contact, :version, :whiteboard, :taget_releae, :fixed_in, :release_notes, :component, :keywords, :target_milestone, :last_change, :cc, :cc_detaili, :url)
     end
 end

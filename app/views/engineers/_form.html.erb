@@ -1,53 +1,32 @@
 <%= render "logo" %>
-<% id = params[:id] %>
-<% id  ||=engineer.id %>
+<% id ||= session[:engineer_id] %>
+<% id ||=engineer.id %>
+
 <strong><%= link_to "Back", "/engineers/#{id}", class: "nolink" %></strong>
 <br></br>
 
 <div class="mainbox">
   <div class="mainformbox">
     <div class="ticketformtitle"> 
-      <p class="XXLfont book lopad">New Engineer</p>
+      <div class="whiteheadsubtitle">
+        <p class="XXLfont book lopad">New Engineer</p>
+      </div>
     </div> 
 
     <div class="ticketform">
       <ul class="form">
+        <% list = [:first_name, :last_name, :position, :irc] %>
         <%= form_with model: engineer do |form| %>
-          <div>
-            <strong><%= form.label :first_name %></strong><br>
-            <textfield class="field2"> <%= form.text_field :first_name %> </textfield>
-            <% engineer.errors.full_messages_for(:first_name).each do |message| %>
-              <div><%= message %></div>
-            <% end %>
-          </div> 
-          <br>
-
-          <div>
-            <strong><%= form.label :last_name %></strong><br>
-            <textfield class="field2"> <%= form.text_field :last_name %> </textfield><br>
-            <% engineer.errors.full_messages_for(:last_name).each do |message| %>
-              <div><%= message %></div>
-            <% end %>
-          </div>
-          <br>
-
-          <div>
-            <strong><%= form.label :position %></strong><br>
-            <textfield class="field2"> <%= form.text_field :position %> </textfield><br>
-            <%# engineer.errors.full_messages_for(:position).each do |message| %>
-              <div><%# message %></div>
-            <%# end %>
-          </div>
-          <br>
-
-          <div>
-            <strong><%= form.label :irc %></strong><br>
-            <textfield class="field2"> <%= form.text_field :irc %> </textfield><br>
-            <%# engineer.errors.full_messages_for(:irc).each do |message| %>
-              <div><%# message %></div>
-            <%# end %>
-          </div>
-          <br>
+          <% list.each do |key| %>
+            <div>
+              <strong><%= form.label key %></strong><br>
+              <textfield class="field2"> <%= form.text_field key %> </textfield>
+              <% engineer.errors.full_messages_for(key).each do |message| %>
+                <div><%= message %></div>
+              <% end %>
+            </div>
+            <br>
+          <% end %>
 
           <div>
             <strong><%= form.label :status %></strong><br>

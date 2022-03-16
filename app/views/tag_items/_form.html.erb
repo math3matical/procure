@@ -1,0 +1,32 @@
+
+<div class="mainbox">
+  <div class="mainformbox">
+    <div class="ticketformtitle">
+      <p class="XXLfont book lopad">Tag Object</p>
+    </div>
+  <ul class="form">
+  <%= javascript_pack_tag 'dynamic_tags' %>
+  <%= form_with model: tag do |f| %>
+    <div class="field">
+      <p>
+        <%= f.label :tag_group_id %><br>
+        <%= f.select :tag_groups_id, TagGroup.all.collect {|c| [c.name, c.id]}, {prompt: "Select group tag"}) %>
+      </p>
+      <p id="state_field">
+        <%= f.label :tags_id %>
+        <%= f.select(:tag_id, Tag.all.collect {|c| [c.name, c.id]}, {prompt: "Select a tag"}) %>
+      </p>
+
+      <%= form.hidden_field :tag_taggable_id, value: 17 %>
+      <%= form.hidden_field :tag_taggable_type, value: 'Case' %>
+ 
+      <%= f.submit class: "form-submit-button" %>
+
+    </div>
+  <% end %>
+
+
+  </ul>
+  </div>
+</div>
+

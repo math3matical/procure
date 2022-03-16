@@ -1,0 +1,67 @@
+<style>
+ol li {
+  font-weight: bold;
+}
+li > div{
+  font-weight: normal;
+}
+</style>
+<div class="righthead">
+  <%= render 'logo' %>
+</div>
+<strong><%= link_to "Back", :back, class: "nolink" %></strong>
+
+<br></br>
+<div class="mainbox">
+  <div class="testtitlebox">
+    <div class="ticketformtitle" style="padding: 5px">
+      <div class="whiteheadtitle">
+        <h2>Case Comments</h2><br>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="mainbox">
+  <div class="testbox" style="display: block">
+    <div class="ticketformtitle" style="padding: 5px">
+      <div class="whiteheadtitle">
+        <h2>Comments</h2><br>
+      </div>
+    </div>
+    <div class="ticketformtitle book">
+      <div class="whiteheadtitle">
+        <p class="lopad">From Case: <%= @thing.first["caseNumber"] %></p>
+        <button id="greet-user-button" style="margin: 5px 5px">Expand</button>
+      </div>
+    </div>
+    <%# list = ["fileName", "sizeKB", "checksum", "createdDate", "createdBy", "id"] %>
+    <% list = ["createdBy","createdDate", "isPublic", "createdByType","contentType", "isDraft"] %>
+      <strong><ol reversed style="padding: 0"></strong>
+    <% @thing.each do |thing| %>
+      <div class ="box80">
+        <li style="margin-left: 38px">
+        <li style="margin-left: 38px">
+        <div class="scrollbox">
+          <p><%= thing["commentBody"]%></p>
+        </div>
+        <div class="boxtag">
+          <% shrink = {} %>
+          <% list.each do |key| %>
+            <% shrink[key] = thing[key] %>
+          <% end %>
+          <% print_hash(shrink, 30) %>
+        </div>
+        </li>
+      </div>
+    <% end %>
+      </ol>
+    <% @thing.each do |thing| %>
+      <div class="box80" style="display: none">
+        <div class="whitebox"> 
+          <% print_hash(thing, 30) %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <%= javascript_pack_tag "application" %>
+</div>

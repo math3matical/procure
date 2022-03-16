@@ -1,0 +1,12 @@
+<%= render 'headerlink' %>
+<div class="mainbox">
+  <%= render 'commanddetails', ticket: @command, type: 'command' %>
+</div>
+
+<div class="mainbox">
+  <%= render 'tickettags', ticket: @command, type: 'command' %>
+</div>
+
+<div class="mainbox">
+  <%= render 'commandcomments', ticket: @command, type: 'command'  %>
+</div>

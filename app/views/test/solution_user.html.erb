@@ -1,0 +1,53 @@
+<div class="righthead">
+  <%= render 'logo' %>
+</div>
+<strong><%= link_to "Back", :back, class: "nolink" %></strong>
+
+<br></br>
+<div class="mainbox">
+  <div class="testtitlebox">
+    <div class="ticketformtitle" style="padding: 5px">
+      <div class="whiteheadtitle">
+        <h2>KCS Results</h2><br>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="mainbox">
+  <div class="testbox" style="display: block">
+    <div class="ticketformtitle" style="padding: 5px">
+      <div class="whiteheadtitle">
+        <h2>Solutions</h2><br>
+      </div>
+    </div>
+    <div class="ticketformtitle book">
+      <div class="whiteheadtitle">
+        <p class="lopad">Total: <%= @thing["response"]["numFound"] %></p>
+        <button id="greet-user-button" style="margin: 5px 5px">Expand</button>
+      </div>
+    </div>
+    <% list = ["title", "id", "createdDate", "kcsState", "sbr", "tag" ] %>
+    <%# list = ["kind", "id", "name", "creation_timestamp", "nodes", "network", "status", "billing_model"] %>
+    <% @thing["response"]["docs"].each do |thing| %>
+      <div class ="box80">
+        <div class="whitebox">
+          <% shrink = {} %>
+          <% list.each do |key| %>
+            <% shrink[key] = thing[key] %>
+          <% end %>
+          <p class="linebreaker"></p>
+          <% print_hash(shrink, 30) %>
+          <p style="padding-left: 30px; margin-top: 10px"><strong>Link</strong>: <a href="<%= thing['view_uri'] %>"><%= thing['view_uri'] %></a></p>
+        </div>
+      </div>
+    <% end %>
+    <% @thing["response"]["docs"].each do |thing| %>
+      <div class="box80" style="display: none">
+        <div class="whitebox">
+          <% print_hash(thing, 30) %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <%= javascript_pack_tag "application" %>
+</div>

@@ -1,0 +1,88 @@
+<div class="righthead">
+  <%= render 'logo' %>
+</div>
+<strong><%= link_to "Back", :back, class: "nolink" %></strong>
+
+<br></br>
+<div class="mainbox">
+  <div class="testtitlebox">
+    <div class="ticketformtitle" style="padding: 5px">
+      <div class="whiteheadtitle">
+        <h2>Cluster Results</h2><br>
+        <button id="greet-user-button" style="margin: 5px 5px">Expand</button>
+      </div>
+      <%#= javascript_pack_tag 'hello'%>
+    </div>
+  </div>
+</div>
+<div class="mainbox">
+  <div class="testbox" style="display: block">
+    <div class="ticketformtitle" style="padding: 5px">
+      <div class="whiteheadtitle">
+        <h2>Cluster</h2><br>
+      </div>
+    </div>
+    <div class="box80">
+      <div class="whitebox">
+        <% list = ["kind", "id", "name", "creation_timestamp", "nodes", "network", "status", "billing_model"] %>
+        <% shrink = {} %>
+        <% list.each do |key| %>
+          <% shrink[key] = @thing.first["items"].first[key] %>
+        <% end %>
+        <% print_hash(shrink, 30) %>
+      </div>
+    </div>
+    <div class="box80" style="display: none">
+      <div class="whitebox">
+        <% print_hash(@thing.first["items"].first, 30) %>
+      </div>
+    </div>
+  </div>
+  <p class="linebreaker"></p>
+  <div class="testbox" style="display: block">
+    <div class="ticketformtitle" style="padding: 5px">
+      <div class="whiteheadtitle">
+        <h2>Subscription</h2><br>
+      </div>
+    </div>
+    <div class="box80">
+      <div class="whitebox">
+        <% list = ["kind", "id", "cluster_id", "external_cluster_id", "organization_id", "managed", "status", "provenance"] %>
+        <% shrink = {} %>
+        <% list.each do |key| %>
+          <% shrink[key] = @thing.second["items"].first[key] %>
+        <% end %>
+        <% print_hash(shrink, 30) %>
+      </div>
+    </div>
+    <div class="box80" style="display: none">
+      <div class="whitebox">
+        <% print_hash(@thing.second["items"].first, 30) %>
+      </div>
+    </div>
+  </div>
+  <p class="linebreaker"></p>
+  <div class="testbox" style="display: block">
+    <div class="ticketformtitle" style="padding: 5px">
+      <div class="whiteheadtitle">
+        <h2>Creator</h2><br>
+      </div>
+    </div>
+    <div class="box80"> 
+      <div class="whitebox">
+        <% list = ["kind", "id", "first_name", "last_name", "username", "email"] %>
+        <% shrink = {} %>
+        <% list.each do |key| %>
+          <% shrink[key] = @thing.third[key] %>
+        <% end %>
+        <% print_hash(shrink, 30) %>
+      </div>
+    </div>
+    <div class="box80" style="display: none">
+      <div class="whitebox">
+        <% print_hash(@thing.third, 30) %>
+      </div>
+    </div>
+  </div>
+  <%= javascript_pack_tag "application" %>
+</div>

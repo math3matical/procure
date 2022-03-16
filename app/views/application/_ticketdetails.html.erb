@@ -1,25 +1,52 @@
 <div class="testbox">
   <div class="tickettitle">
-    <strong><p class="XLfont lopadtop">Details</p></strong>
-    <p class="lopadbot Mfont book"><%= link_to "Edit", "/#{type}s/#{ticket.id}/edit?ticketid=#{ticket.id}", class: "nolink" %></p>
+    <div class="whitetitle">
+      <strong><p class="XLfont lopadtop">Details</p></strong>
+      <p class="lopadbot Sfont book"><%= link_to "Edit", "/#{type}s/#{ticket.id}/edit?ticketid=#{ticket.id}", class: "nolink" %>
+      <button id="greet-user-button" style="font-weight: bold; margin: 5px 5px; font-size:12px; background: none; border: none">Expand</button></p>
+    </div>
   </div>
 
-  <div class="box80">
-    <p><strong>Id:</strong> <%= ticket.id %></p>
-    <p><strong>Title:</strong> <%= ticket.title %></p>
-    <p><strong>Number:</strong> <%= ticket.number %></p>
-    <p><strong>Importance:</strong> <%= ticket.importance %></p>
-    <p><strong>Created:</strong> <%= ticket.created_at %></p>
-    <p><strong>Updated:</strong> <%= ticket.updated_at %></p>
-    <p><strong>Status:</strong> <%= ticket.status %></p>
+
+
+
+  <div class="box80" style="display: none">
+    <div class="whitebox">
+      <% ticket.attributes.each do |key, value| %>
+        <p>
+          <% unless key == "notes" %>
+            <strong><%= key.underscore.humanize.capitalize %>:</strong>
+            <%= value %>
+          <% end %>
+        </p>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="box80" style="display: block">
+    <div class="whitebox" style="display: block">
+      <% list = [ "number", "title" ] %>
+      <% list.each do |key| %>
+        <p>
+          <strong><%= key.underscore.humanize.capitalize %>:</strong>
+          <%= ticket[key] %>
+        </p>
+      <% end %>
+    </div>
   </div>
 </div>
+
+<%= javascript_pack_tag "application" %>
+
+
 <p class="linebreaker"></p>
 
 <div class="testbox">
   <div class="tickettitle">
-    <strong><p class="XLfont lopadtop">Notes</p></strong>
-    <p class="lopadbot Mfont book"><%= link_to "Edit", "/#{type}s/#{ticket.id}/edit?ticketid=#{ticket.id}", class: "nolink" %></p>
+    <div class="whitetitle">
+      <strong><p class="XLfont lopadtop">Notes</p></strong>
+      <p class="lopadbot Sfont book"><%= link_to "Edit", "/#{type}s/#{ticket.id}/edit?ticketid=#{ticket.id}", class: "nolink" %></p>
+    </div>
   </div>
 
   <div class="scrollout">

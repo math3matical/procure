@@ -1,13 +1,14 @@
 <% unless comment.archived? %>
-  <div class="scrollout">
-    <div class="scrollbox"  >
-      <div style="padding-left: 5px; padding-top: 5px">
+  <div class="scrollout" style=" padding-right: 0px">
+    <div class="commenttitle">
+      <p class="Lfont book"><%= comment.commenter %></p>
+    </div>
+    <div class="scrollbox" style="margin-right:10px">
         <%#  <p class="lopad"> <%= comment.commenter 'there was an end erb tag here'  </p> %>
         <%= markdown(comment.body) %>
-      </div>
     </div>
 
-    <div style="margin-left: 10px">
+    <div class="commenttitle">
       <p class="Sfont book" style="margin: 6px 0 4px 0">
         <%= link_to "Edit", edit_comment_path(comment), class: "smlink" %>
         <%= link_to "Remove", [comment.commentable, comment], 

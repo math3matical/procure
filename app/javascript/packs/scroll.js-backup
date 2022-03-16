@@ -1,0 +1,65 @@
+const $scroller = document.getElementById("scroller");
+const $containers = [document.getElementById("container_head"), document.getElementById("container_body")];
+
+const $wrapper = document.getElementById("wrapper");
+
+let ignoreScrollEvent = false;
+
+animation = null;
+
+const scrollbarPositioner = () => {
+  const scrollTop = document.scrollingElement.scrollTop;
+  const wrapperTop = $wrapper.offsetTop;
+  const wrapperBottom = wrapperTop + $wrapper.offsetHeight;
+
+  const topMatch = (window.innerHeight + scrollTop) >= wrapperTop
+  const bottomMatch = (scrollTop) <= wrapperBottom;
+
+  if (topMatch && bottomMatch) {
+    const inside = wrapperBottom >= scrollTop && window.innerHeight + scrollTop <= wrapperBottom;
+
+    if (inside) {
+      $scroller.style.bottom = '0px'
+    } else {
+      const offset = (scrollTop + window.innerHeight) - wrapperBottom;
+
+      $scroller.style.bottom = offset + 'px'
+    }
+    $scroller.classList.add('visible');
+  } else {
+    $scroller.classList.remove('visible');
+  }
+
+  requestAnimationFrame(scrollbarPositioner);
+}
+
+requestAnimationFrame(scrollbarPositioner);
+
+$scroller.addEventListener('scroll', (e) => {
+  if (ignoreScrollEvent) return false;
+
+  if (animation) cancelAnimationFrame(animation);
+  animation = requestAnimationFrame(() => {
+    ignoreScrollEvent = true;
+
+    $containers.forEach($container => {
+      $container.scrollLeft = $scroller.scrollLeft;
+    });
+
+    ignoreScrollEvent = false;
+  });
+});
+
+$containers.forEach($container => {
+  $container.addEventListener('scroll', (e) => {
+    if (ignoreScrollEvent) return false;
+
+    if (animation) cancelAnimationFrame(animation);
+    animation = requestAnimationFrame(() => {
+      ignoreScrollEvent = true;
+      $scroller.scrollLeft = $container.scrollLeft;
+
+      ignoreScrollEvent = false;
+    });
+  });
+})

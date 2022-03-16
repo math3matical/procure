@@ -3,6 +3,9 @@ class Article < ApplicationRecord
 
   has_many :comments, as: :commentable, dependent: :destroy
 
+  has_many :tags, as: :tag_taggable, dependent: :destroy
+  has_many :tag_items, :through => :tags
+
   has_one :satellite_tag, as: :satellite_taggable, dependent: :destroy
   has_one :provision_tag, as: :provision_taggable, dependent: :destroy
   has_one :network_tag, as: :network_taggable, dependent: :destroy
@@ -12,10 +15,14 @@ class Article < ApplicationRecord
 
   def self.search(search)
     search ||=""
+    search = search.gsub(/[[:space:]]+/, "")
     unless search == ""
-      @stuff = Article.where('title LIKE ?', "%#{search}%").all
-      @stuff2 =Article.where('body LIKE ?', "%#{search}%").all
-      ids = @stuff.ids + @stuff2.ids
+      @stuff = Article.joins(:tag_items).where('tag_items.name LIKE ?', "%#{search}%")
+#      @stuff2 = Article.joins(:engineers).where('engineers.first_name LIKE :search or engineers.last_name LIKE :search', search: "%#{search}%")
+      @stuff3 = Article.joins(:comments).where('comments.body LIKE ?', "%#{search}%")
+      @stuff4 = Article.where('title LIKE :search or body LIKE :search', search: "%#{search}%")
+      ids = []
+      ids = @stuff.ids + @stuff3.ids + @stuff4.ids
       @stuff = Article.where(id: ids)
     else
       Article.all

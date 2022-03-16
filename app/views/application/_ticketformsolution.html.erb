@@ -1,0 +1,76 @@
+<%= render "logo" %>
+<% ticketid ||= session[:ticketid] %>
+<%# ticketid ||=params[:ticketid] %>
+<% ticketid ||=ticket.id %>
+<strong><%= link_to "Back", "/#{urltick}s/#{ticketid}", class: "nolink" %></strong>
+<br></br>
+
+<div class="mainbox">
+  <div class="mainformbox">
+    <div class="ticketformtitle">
+      <div class="whiteheadtitle">
+        <p class="XXLfont book lopad"><%= params[:action].capitalize %> <%= urltick.capitalize %></p>
+      </div>
+    </div>
+
+    <div class="ticketform">
+      <ul class="form field3">
+        <%= form_with model: ticket do |form| %>
+          <div>
+            <strong><%= form.label :title %></strong><br>
+            <textfield class="field2" style="background: blue"><%= form.text_field :title %></textfield>
+            <% ticket.errors.full_messages_for(:title).each do |message| %>
+              <div><%= message %></div>
+            <% end %>
+          </div>
+          <br>
+
+          <div>
+            <strong><%= form.label "#{urltick.capitalize} Number" %></strong><br>
+            <textfield class="field2"> <%= form.number_field :number %> </textfield><br>
+            <% ticket.errors.full_messages_for(:number).each do |message| %>
+              <div><%= message %></div>
+            <% end %>
+          </div>
+          <br>
+
+          <br>
+
+          <div>
+            <strong><%= form.label :importance %></strong><br>
+            <textfield class=field2> <%= form.number_field :importance %> </textfield><br>
+          </div>
+          <br>
+
+          <div>
+            <strong><%= form.label :notes %></strong><br>
+            <textfield class="field2"> <%= form.text_area :notes, style: "width: 85%; height: 150px" %> </textfield><br>
+            <% ticket.errors.full_messages_for(:notes).each do |message| %>
+              <div><%= message %></div>
+            <% end %>
+          </div>
+          <br>
+
+          <div>
+            <strong><%= form.label :status %></strong><br>
+            <textfield class="myselect"> <%= form.select :status, ['public', 'private', 'archived'] %> </textfield>
+          </div>
+          <br></br>
+
+          <%= form.hidden_field :abstract %>
+          <%= form.hidden_field :author %>
+          <%= form.hidden_field :created %>
+          <%= form.hidden_field :inferred_tag %>
+          <%= form.hidden_field :state %>
+          <%= form.hidden_field :url %>
+          <%= form.hidden_field :solution_tag %>
+          <%= form.hidden_field :boostProduct %>
+
+          <div>
+            <%= form.submit class: "form-submit-button"  %>
+          </div>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>
