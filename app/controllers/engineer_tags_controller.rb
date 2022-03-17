@@ -35,8 +35,6 @@ class EngineerTagsController < ApplicationController
         redirect_to "/cases/#{@engineer_tag.engineer_taggable_id}"
       end
     elsif
-    #  redirect_to "/engineer_tags/new?#{@engineer_tag.engineer_taggable_type.downcase}_id=#{@engineer_tag.engineer_taggable_id}&engineer_taggable_type=#{@engineer_tag.engineer_taggable_type}&engineer_taggable_id=#{@engineer_tag.engineer_taggable_id}" 
-
   render  "new", locals: {engineer_taggable_id: @engineer_tag.engineer_taggable_id, engineer_tag: @engineer_tag, engineer_taggable_type: @engineer_tag.engineer_taggable_type} , action: {engineer_taggable_type: @engineer_tag.engineer_taggable_type, engineer_taggable_id: 8} , status: :unprocessable_entity
     end
   end

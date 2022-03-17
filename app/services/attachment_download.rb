@@ -10,9 +10,8 @@ class AttachmentDownload < ApplicationService
   def call()
     begin
       response = RestClient::Request.new(
-        :method => :get,
+        method: :get,
         url: "https://access.redhat.com/hydra/rest/cases/#{@solution_number}/attachments",
-  #      :url => "https://access.redhat.com/hydra/rest/search/kcs/?q=id:#{@solution_number}",
         user: Rails.application.credentials.rhn[:user],
         password: Rails.application.credentials.rhn[:password],
         headers: {accept: :json, content_type: :json }

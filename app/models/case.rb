@@ -14,15 +14,6 @@ class Case < ApplicationRecord
   validates :number, presence: true, length: { minimum: 8, maximum: 8 }
   validates_uniqueness_of :number
 
-#https://dev.to/spidergears/rails-active-record-validation-messages-4dcf
-# Didn't seem to work as creator said.  The model value type is still returned first.
-#  validates :number,
-#    uniqueness: {
-#      message: ->(object, data) do
-#        " #{data[:value]} is already taken!"
-#      end
-#    }
-
   def self.search2(search,engineer)
     ids = []
     @stuff = self.search(search)

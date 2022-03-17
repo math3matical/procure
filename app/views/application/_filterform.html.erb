@@ -2,23 +2,19 @@
 <div class="form_tag" style="display: none">
   <%= form_tag('/test/addfilter', local: false, html: {onsubmit: "return do_something();"}, action: "ajax:beforeSend->tweet-form#submit", id: "filter-form") do |f| %>
     <div class="boxtagfilter">
-    <div class="commenttitle">
-      <strong><%= label_tag :tag_group_id, "Tag Group" %></strong><br>
-      <%= select_tag "tag_group", options_from_collection_for_select(TagGroup.all, "id", "name"), prompt: "Select Group", local: false %><br>
-      <%= submit_tag "Apply Filter", style: "margin-left: 12px; margin-top: 25px", class: "form-submit-button", id: "submit-tag", local: false, onclick: "return validateform():" %>
-    </div>
+      <div class="commenttitle">
+        <strong><%= label_tag :tag_group_id, "Tag Group" %></strong><br>
+        <%= select_tag "tag_group", options_from_collection_for_select(TagGroup.all, "id", "name"), prompt: "Select Group", local: false %><br>
+        <%= submit_tag "Apply Filter", style: "margin-left: 12px; margin-top: 25px", class: "form-submit-button", id: "submit-tag", local: false, onclick: "return validateform():" %>
+      </div>
 
-<%# options_for_select(["Computer","Games"]) %>
-
-    <div class="commenttitle" style="float:right" >
-      <strong><%= label_tag :tags_item_id, "Tag Item" %></strong><br>
-      <%= select_tag(:tag_item_id, @tag_items, {prompt: "Select Tag", multiple: true, size: 8}) %>
-    </div>
+      <div class="commenttitle" style="float:right" >
+        <strong><%= label_tag :tags_item_id, "Tag Item" %></strong><br>
+        <%= select_tag(:tag_item_id, @tag_items, {prompt: "Select Tag", multiple: true, size: 8}) %>
+      </div>
     </div>
     <%= hidden_field_tag :tag_taggable_id, value: params[:tag_taggable_id] %>
     <%= hidden_field_tag :tag_taggable_type, value: params[:tag_taggable_type] %>
-
-    <%# <button id="tag_submit"><%= f.submit :tag_sumbit, class: "form-submit-button" <missing percent sign>></button>%>
 <% end %>
 <br>
 </div>

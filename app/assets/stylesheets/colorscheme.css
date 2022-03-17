@@ -1,18 +1,18 @@
 body{
   background: #98b4aa;
-  background: #eef2f6;
+  background: #3fa796;
 }
 .uppermain, .mainbox {
   background: #74959a;
-  background: #ff5959;
+  background: #502064;
 }
 .testsubbox, .testtitlebox, .testbox, .mainformbox {
   background: #495371;
-  background: #676fa3;
+  background: #8267be;
 }
 .boxsubheader, .boxheader, .box80, .boxtag, .scrollout, .ticketform, .ticketformtitle, .tickettitle, .scrollbox, .commenttitle, .whiteheadsubtitle, .commenttitle, .whiteheadsubtitle {
   background: #f1e0ac;
-  background: #cddeff;
+  background: #ffbd35;
 }
 
 

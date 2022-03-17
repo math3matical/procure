@@ -1,6 +1,7 @@
 class CasesController < ApplicationController
   def index
-    session[:case_sort] ||=0
+    session[:case_sort] ||= 0
+    session[:filter] ||= []
     if params[:engineer_id]
       @engineer = Engineer.find(params[:engineer_id])
       @cases = Case.search2(params[:search], @engineer)
@@ -8,18 +9,14 @@ class CasesController < ApplicationController
       @cases = Case.search(params[:search])
     end
     if session[:filter].length > 0
-      p "Cases class?"
-      p @cases.class
       @cases = @cases.joins(:tag_items).where("tag_items.id REGEXP '#{session[:filter].join('|')}'").distinct
     end
-    p @cases.class
     @cases=@cases.order(:number)
     session[:case_sort]+=1 if params[:sort]=="true"
     @cases=@cases.order(:number).reverse unless session[:case_sort]%2==0
   end
 
   def reverse
-    p @cases.class
     @cases=@cases.reverse_order
     redirect_back(fallback_location: root_path)  
   end
@@ -43,19 +40,12 @@ class CasesController < ApplicationController
   def newapi
     sanitize = params[:case_number].gsub(/[[:space:]]+/, "")
     @things = CaseGrabber.call(sanitize)
-    unless @things.class == "Hash"
-      # added error check in the case grabber service
-      # but now @things doesn't come back as hash, comes back
-      # as a json
-      @things=JSON.parse(@things)
+    unless @things[:error]
       casse = {}
       list = {sbr: "sbrGroup", product: "product", version: "version", issue: "issue", summary: "summary", number: "caseNumber", bug_number: "bugzillaNumber", bug_summary: "bugzillaSummary", customer_contact: "caseContact", account_number: "accountNumber", fts: "fts", link: "caseLink", description: "description", ownerIRC: "ownerITCNickname", handover: "ftsHandoverReady", closed: "isClosed", escalated: "isEscalated", breaches: "numberOfBreaches", state: "status", strategic: "strategic", case_tag: "tags", region: "caseOwnerSuperRegion"}
       list.each do |key, value|
         casse[key]=@things[value]
       end
-      p "-------------------------------------"
-      p casse[:link]
-      p casse[:link].split(' ')
       casse[:url]="https://gss--c.visualforce.com/apex/Case_View?id=#{casse[:link].split(' ')[1][7..21]}&sfdc.override=1"
       # Seen cases without an account hash or case_owner hash, e.g. 03147432
       casse[:customer_name] = @things["account"]["name"] if @things["account"] 

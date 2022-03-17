@@ -7,7 +7,7 @@ body{
 }
 select {
   min-width:50px;
-  max-width:150px;
+  max-width:200px;
   min-height: 26px;
   border-width: 3px;
   border-color: rgba(50, 50, 50, 0.14);

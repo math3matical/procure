@@ -1,6 +1,7 @@
 class EngineersController < ApplicationController
   def index
-    session[:engineer_sort] ||=0
+    session[:engineer_sort] ||= 0
+    session[:filter] ||= []
     @engineers = Engineer.search(params[:search]).order(:last_name)
     session[:engineer_sort]+=1 if params[:sort]
     @engineers=@engineers.reverse unless session[:engineer_sort]%2==0
@@ -21,7 +22,7 @@ class EngineersController < ApplicationController
     else
       render :new, status: :unprocessable_entity
     end
-    @engineers=@engineers.reverse_order
+    @engineers=@engineers.reverse
   end
 
 
@@ -43,14 +44,18 @@ class EngineersController < ApplicationController
     first = params[:engineer_first].gsub(/[[:space:]]+/, "")
     last = params[:engineer_last].gsub(/[[:space:]]+/, "")
     @things = EngineerGrabber.call(first, last)
-    engineer = {}
-    engineer[:first_name] = @things["items"].first["firstName"]
-    engineer[:last_name] = @things["items"].first["lastName"]
-    engineer[:irc] = @things["items"].first["ircNick"]
-    engineer[:position] = @things["items"].first["title"]
-    params2 = {}
-    params2[:engineer] = engineer
-    @engineer = Engineer.new(engineer)
+    unless @things[:error] 
+      engineer = {}
+      engineer[:first_name] = @things["items"].first["firstName"]
+      engineer[:last_name] = @things["items"].first["lastName"]
+      engineer[:irc] = @things["items"].first["ircNick"]
+      engineer[:position] = @things["items"].first["title"]
+      params2 = {}
+      params2[:engineer] = engineer
+      @engineer = Engineer.new(engineer)
+    else
+      render :findapi, status: :unprocessable_entity
+    end
   end
 
   def findapi   

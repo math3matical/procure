@@ -1,14 +1,3 @@
-// if any of these are enabled, javascript doesn't work
-//import "@hotwired/turbo-rails"
-//import "rails/ujs"
-//import "controllers"
-//
-//If I enable "rails/ujs" in the app/javascript/application.js file, this works on first load.
-//However, doing so makes the Turbo "Remove" not work when trying to delete objects elsewhere,
-//e.g. cases, bugs, articles, etc.
-//Otherwise, need to refresh the page before this works.
-
-
 document.getElementById("tag_group").addEventListener("change", () => {
   var  test = document.getElementById("tag_item_id");
   var test2 = document.getElementById("tag_group");
@@ -89,7 +78,6 @@ document.getElementById("submit-tag").addEventListener("click", () => {
 });
 
 
-//window.addEventListener("load", () => {
 
 function flip(event) {
 //  event.preventDefault()
@@ -103,23 +91,22 @@ function flip(event) {
   }
 }
 
-  const links = document.querySelectorAll(
-    "button[id='button-filter']"
-  );
-  links.forEach((element) => {
-    element.addEventListener("click", (event) => {
-      event.preventDefault();
-      var x = document.getElementsByClassName("form_tag")
-      var y = document.getElementById("button-filter")
-      var z = document.getElementsByClassName("filter-clear")
-      y.innerText = y.innerText === 'Filter' ? 'Shrink' : 'Filter';
-      for (var i = 0; i < z.length; i++){
-        z.display = z.display === 'none' ? 'inline' : 'none';
-      }
-      for (var i = 0; i < x.length; i++){
-        var s = x[i].style;
-        s.display = s.display === 'none' ? 'block' : 'none';
-      }
-    });
+const links = document.querySelectorAll(
+  "button[id='button-filter']"
+);
+links.forEach((element) => {
+  element.addEventListener("click", (event) => {
+    event.preventDefault();
+    var x = document.getElementsByClassName("form_tag")
+    var y = document.getElementById("button-filter")
+    var z = document.getElementsByClassName("filter-clear")
+    y.innerText = y.innerText === 'Filter' ? 'Shrink' : 'Filter';
+    for (var i = 0; i < z.length; i++){
+      z.display = z.display === 'none' ? 'inline' : 'none';
+    }
+    for (var i = 0; i < x.length; i++){
+      var s = x[i].style;
+      s.display = s.display === 'none' ? 'block' : 'none';
+    }
   });
-//});
+});

@@ -8,12 +8,19 @@ class BugCaller < ApplicationService
   end
 
   def call
-    RestClient.get 'https://google.com'
-    response = RestClient::Request.new(
-      method: :get,
-      url: "https://bugzilla.redhat.com/rest/bug/#{@bug_number}",
-      headers: {accept: :json, content_type: :json, Authorization: "Bearer #{Rails.application.credentials.bug[:key]}"}
-    ).execute
-    results = JSON.parse(response.to_str)
+    begin
+      response = RestClient::Request.new(
+        method: :get,
+        url: "https://bugzilla.redhat.com/rest/bug/#{@bug_number}",
+        headers: {accept: :json, content_type: :json, Authorization: "Bearer #{Rails.application.credentials.bug[:key]}"}
+      ).execute
+    rescue RestClient::ExceptionWithResponse => err
+    end
+    unless err
+      results = JSON.parse(response.to_str)
+    else
+      results = {"error": "true"}
+    end
+    results
   end
 end

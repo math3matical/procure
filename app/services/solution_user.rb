@@ -30,7 +30,6 @@ class SolutionUser < ApplicationService
       response = RestClient::Request.new(
         method: :get,
         url: "https://access.redhat.com/hydra/rest/search/kcs/?q=authorSSOName:#{@solution_number}#{@search}&fq=documentKind:Solution&rows=#{@num}&sort=score+desc,id+desc&f1=id+name",
-    #    :url => "https://access.redhat.com/hydra/rest/search/kcs/?q=id:#{@solution_number}",
         user: Rails.application.credentials.rhn[:user],
         password: Rails.application.credentials.rhn[:password],
         headers: {accept: :json, content_type: :json }

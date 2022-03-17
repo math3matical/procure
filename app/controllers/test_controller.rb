@@ -3,6 +3,7 @@ include RestClient
 class TestController < ApplicationController
   def index
     session[:procure_sort] ||=0
+    session[:filter] ||= []
     p session
     @bugs = Bug.search(params[:search])
     @cases = Case.search(params[:search])
@@ -40,11 +41,6 @@ class TestController < ApplicationController
   
   def removefilter
     session[:filter]=[]
-#    session[:case_sort]=0
-#    session[:solution_sort]=0
-#    session[:bug_sort]=0
-#    session[:engineer_sort]=0
-#    session[:article_sort]=0
     redirect_back(fallback_location: root_path)
   end
 
@@ -60,16 +56,6 @@ class TestController < ApplicationController
     sanitize = params[:account_number].gsub(/[[:space:]]+/, "")
     sanitize ||="1"
     @thing = AttachmentDownload.call(sanitize)
-#    response = JSON.parse(@thing.to_str)
-#    @thing = response
-    puts "=========="
-    p "whats that thing?"
-    puts @thing
-    p "whats that class?"
-    puts @thing.class
-    puts "=========="
-    puts "=========="
-    @thing
     render '/test/attachmentdownload', status: :unprocessable_entity if @thing.class==Hash || @thing.length==0
   end
 
@@ -77,26 +63,12 @@ class TestController < ApplicationController
     sanitize = params[:account_number].gsub(/[[:space:]]+/, "")
     sanitize ||="1"
     @thing = CaseComments.call(sanitize)
-    response = JSON.parse(@thing.to_str)
-    @thing = response
-    puts "=========="
-    puts @thing
-    puts @thing.class
-    puts @thing.first["commentBody"]
-    puts "=========="
-    @thing
   end
 
   def solution_user
     sanitize = params[:solution_number].gsub(/[[:space:]]+/, "")
     sanitize ||= "1"
-  #  sanitize2 = params[:solution_search].gsub(/[[:space:]]+/, "")
     @thing = SolutionUser.call(sanitize, params[:solution_search])
-  #  response = JSON.parse(@thing.to_str)
-  #  @thing = response
-  #  sanitize=@thing["response"]["numFound"]
-  #  @thing = SolutionUser.call(sanitize)
-    
   end
  
   def ocm_find

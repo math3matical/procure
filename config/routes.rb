@@ -2,13 +2,11 @@ Rails.application.routes.draw do
   get 'test/index'
   get 'bugs/index'
   
-  get '/test/runit', to: 'test#bugcall'
   get '/test/engineerapi', to: 'test#engineerapi'
   get '/engineers/newapi', to: 'engineers#newapi'
   get '/engineers/findapi', to: 'engineers#findapi'
   get '/cases/newapi', to: 'cases#newapi'
   get '/cases/findapi', to: 'cases#findapi'
-  get '/solutions/horse', to: 'solutions#horse'
   get '/bugs/newapi', to: 'bugs#newapi'
   get '/bugs/findapi', to: 'bugs#findapi'
   get '/solutions/newapi', to: 'solutions#newapi'

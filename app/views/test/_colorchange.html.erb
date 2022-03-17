@@ -7,27 +7,39 @@
   <div class="mainformbox">
     <div class="ticketformtitle"> 
       <div class="whiteheadtitle">
-        <p class="XXLfont book lopad">Set Background Color</p>
+        <p class="XXLfont book lopad">Set Color Theme</p>
       </div>
     </div> 
 
     <div class="ticketform">
       <ul class="form">
         <%= form_tag("/test/color_change", method: :get) do %>
-          <%#= form_tag("/#{ticket}/#{path}", method: :get) do %>
-          <strong><%= label_tag "Color" %></strong><br>
-          <textfield class="field"><%= select_tag(:color_change, options_for_select([['Choose Palette', 'nothing'],['Wildberry','funky-torq.css'],["Davy Tanner","yoder.css"],["Lucky","ireland.css"],["Optimus Prime","optimus-prime.css"],["Under The Sea","sea-blue.css"],["Citradelic","citrus.css"],["Yellow Submarine","turq-yellow-fun.css"],["Arctic Ape","arctic-ape.css"],["Red Hat","redhat.css"],["Adventure Time","fun-turquoise-orange.css"], ["Starry Night", "starry-night.css"]])) %></textfield>
+          <strong><%= label_tag "Theme" %></strong><br>
+          <textfield class="field"><%= select_tag(:color_change, options_for_select([['Choose Palette', 'nothing'],['Wildberry','wildberry.css'],["Davey Tanner","davey_tanner.css"],["Lucky Charm","lucky_charm.css"],["Optimus Prime","optimus_prime.css"],["Under The Sea","under_the_sea.css"],["Citradelic","citradelic.css"],["Yellow Submarine","yellow_submarine.css"],["Arctic Ape","arctic_ape.css"],["Red Hat","red_hat.css"],["Adventure Time","adventure_time.css"], ["Starry Night", "starry_night.css"],["Starry Day", "starry_day.css"]])) %></textfield>
           <p class="linebreaker"></p>
-
-          <%# Using this button to clear the form prevents the user from hitting enter
-              to submit a search.  In the url you can see the issue is that the there are
-              2 search variables (i.e. ?search=something&search=). One is blank and one has 
-              the search string. %>
-          <%#= button_tag "x", name: 'search', value: '', class: "form-reset-button book" %>
           <br></br>
-          <%= button_tag "Change Background", class: "form-search-button" %>
+          <%= button_tag "Change Theme", class: "form-search-button" %>
         <% end %>
       </ul>
     </div> 
   </div>
 </div>
+<div class="mainbox">
+  <div class="testbox">
+    <div class="ticketformtitle">
+      <p class="lopad" style="font-weight: bold">the Office</p>
+    </div>
+    <div class="box80">
+      <div class="whitebox">
+        <p>“Would I rather be feared or loved? Easy. Both. I want people to be afraid of how much they love me.” – Michael Scott</p>
+        <p>“I don’t talk trash, I talk smack. They’re totally different. Trash talk is hypothetical, like: Your mom is so fat she can eat the internet. But smack talk is happening like right now. Like: You’re ugly and I know it for a fact ’cause I got the evidence right there.” — Kelly Kapoor</p>
+        <p>“Whenever I'm about to do something, I think, 'Would an idiot do that?' and if they would, I do not do that thing.” — Dwight Schrute</p>
+        <p>“I love inside jokes. I’d love to be a part of one someday.” — Michael Scott</p>
+        <p>“Do I need to be liked? Absolutely not. I like to be liked. I enjoy being liked. I have to be liked, but it’s not like this compulsive need to be liked, like my need to be praised.” — Michael Scott</p>
+        <p>“I don’t hate it. I just don’t like it at all and it’s terrible.” — Michael Scott</p>
+        <p>“Who says exactly what they’re thinking? What kind of a game is that?” — Kelly Kapoor</p>
+      </div>
+    </div>
+  </div>
+</div>
+

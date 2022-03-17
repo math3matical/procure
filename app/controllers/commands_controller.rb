@@ -1,9 +1,10 @@
 class CommandsController < ApplicationController
   def index
-    session[:command_sort] ||=0
+    session[:command_sort] ||= 0
+    session[:filter] ||= []
     @commands = Command.search(params[:search])
     if session[:filter].length > 0
-      @commands = @commands.joins(:tag_items).where("tag_items.id REGEXP '#{session[:filter].join('|')}'")
+      @commands = @commands.joins(:tag_items).where("tag_items.id REGEXP '#{session[:filter].join('|')}'").distinct
     end
     @commands=@commands.order(:name)
     session[:command_sort]+=1 if params[:sort]

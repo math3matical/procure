@@ -1,18 +1,42 @@
 body{
-  background: #7CD1B8;
+  background: #7fc5dc;
 }
 .testsubbox, .testtitlebox, .testbox, .mainformbox {
-  background-color: #d891ef;  /* bright lilac */
+/*https://www.redhat.com/en/about/brand/standards/color*/
+  background: #4888c8;
 }
 .uppermain, .mainbox {
-  background-color: #ccccff;  /* periwinkle */
+  background: #173679;
 }
 .boxsubheader, .boxheader, .box80, .boxtag, .scrollout, .ticketform, .ticketformtitle, .tickettitle, .scrollbox, .commenttitle, .whiteheadsubtitle, .commenttitle, .whiteheadsubtitle {
-  background: #ffffbf;  /* green water */
-  background: #ebfaf4;  /* water */
+  background: #e8e163;
 }
-
 
 .whitebox, .boxtag, .scrollbox, .commenttitle, .whiteheadsubtitle {
   background: #ffffff;
 }
+.commenttitle, .whiteheadsubtitle {
+  background: none;
+}
+
+/*
+st. patricks blu
+#173679;
+
+cyan-blue azure 
+#4888c8;
+
+dark sky blue
+#7fc5dc;
+
+booger buster
+#e8e163;
+
+carrot orange
+#db901c;
+
+maastricth blue
+#0b1e38;
+
+*/
+

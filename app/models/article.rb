@@ -18,11 +18,10 @@ class Article < ApplicationRecord
     search = search.gsub(/[[:space:]]+/, "")
     unless search == ""
       @stuff = Article.joins(:tag_items).where('tag_items.name LIKE ?', "%#{search}%")
-#      @stuff2 = Article.joins(:engineers).where('engineers.first_name LIKE :search or engineers.last_name LIKE :search', search: "%#{search}%")
-      @stuff3 = Article.joins(:comments).where('comments.body LIKE ?', "%#{search}%")
-      @stuff4 = Article.where('title LIKE :search or body LIKE :search', search: "%#{search}%")
+      @stuff2 = Article.joins(:comments).where('comments.body LIKE ?', "%#{search}%")
+      @stuff3 = Article.where('title LIKE :search or body LIKE :search', search: "%#{search}%")
       ids = []
-      ids = @stuff.ids + @stuff3.ids + @stuff4.ids
+      ids = @stuff.ids + @stuff2.ids + @stuff3.ids
       @stuff = Article.where(id: ids)
     else
       Article.all

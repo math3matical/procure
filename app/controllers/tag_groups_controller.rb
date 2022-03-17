@@ -20,9 +20,6 @@ class TagGroupsController < ApplicationController
     tag_group = TagGroup.new
     @tag_group = TagGroup.all
     @tag = []
-    puts "-------------------------------------"
-    puts @tag_group
-    puts "-------------------------------------"
   end
 
   def create

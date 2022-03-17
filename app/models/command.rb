@@ -18,11 +18,10 @@ class Command < ApplicationRecord
     search = search.gsub(/[[:space:]]+/, "")
     unless search == ""
       @stuff = Command.joins(:tag_items).where('tag_items.name LIKE ?', "%#{search}%")
-#      @stuff2 = Command.joins(:engineers).where('engineers.first_name LIKE :search or engineers.last_name LIKE :search', search: "%#{search}%")
-      @stuff3 = Command.joins(:comments).where('comments.body LIKE ?', "%#{search}%")
-      @stuff4 = Command.where('name LIKE :search or body LIKE :search', search: "%#{search}%")
+      @stuff2 = Command.joins(:comments).where('comments.body LIKE ?', "%#{search}%")
+      @stuff3 = Command.where('name LIKE :search or body LIKE :search', search: "%#{search}%")
       ids = []
-      ids = @stuff.ids + @stuff3.ids + @stuff4.ids
+      ids = @stuff.ids + @stuff2.ids + @stuff3.ids
       @stuff = Command.where(id: ids)
     else
       Command.all

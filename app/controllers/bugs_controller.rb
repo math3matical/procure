@@ -2,6 +2,7 @@ class BugsController < ApplicationController
 
   def index
     session[:bug_sort] ||= 0
+    session[:filter] ||= []
     if params[:engineer_id]
       @engineer = Engineer.find(params[:engineer_id])
       @bugs = Bug.search2(params[:search], @engineer)

@@ -1,9 +1,10 @@
 class ArticlesController < ApplicationController
   def index
-    session[:article_sort] ||=0
+    session[:article_sort] ||= 0
+    session[:filter] ||= []
     @articles = Article.search(params[:search])
     if session[:filter].length > 0
-      @articles = @articles.joins(:tag_items).where("tag_items.id REGEXP '#{session[:filter].join('|')}'")
+      @articles = @articles.joins(:tag_items).where("tag_items.id REGEXP '#{session[:filter].join('|')}'").distinct
     end
     @articles=@articles.order(:title)
     session[:article_sort]+=1 if params[:sort]

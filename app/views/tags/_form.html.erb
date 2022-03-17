@@ -12,7 +12,7 @@
     </div>
     <div class="ticketform">
       <ul class="form field3">
-      <%= form_with(model: tag, local: false) do |f| %>
+        <%= form_with(model: tag, local: false) do |f| %>
           <div>
             <strong><%= f.label :tag_group_id %></strong><br>
             <%= f.select :tag_group_id, TagGroup.all.collect {|c| [c.name, c.id]}, {prompt: "Select Group"}, {class: "ello"} %>
@@ -22,18 +22,16 @@
           <div id="state_field">
             <strong><%= f.label :tags_item_id %></strong><br>
             <%= f.select(:tag_item_id, @tag_items, {prompt: "Select Tag"}) %>
-            <%#= f.select(:tag_item_id, @tag_items, {prompt: "Select Tag"}, {multiple: true, size: 8}) %>
           </div>
           <br>
 
           <%= f.hidden_field :tag_taggable_id, value: params[:tag_taggable_id] %>
           <%= f.hidden_field :tag_taggable_type, value: params[:tag_taggable_type] %>
  
-         <%# <button id="tag_submit"><%= f.submit :tag_sumbit, class: "form-submit-button" <missing percent sign>></button>%>
           <div>
             <%= f.submit "Submit", class: "form-submit-button" %>
           </div> 
-      <% end %>
+        <% end %>
       </ul>
     </div>
   </div>

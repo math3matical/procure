@@ -17,7 +17,7 @@ d {
   line-height: 18px;
 }
 .XXLfont, .uplink {
-  font-size: 24px;
+  font-size: 26px;
 }
 .XLfont, d{
   font-size: 20px;

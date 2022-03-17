@@ -34,12 +34,10 @@ li > div{
         <button id="greet-user-button" style="margin: 5px 5px">Expand</button>
       </div>
     </div>
-    <%# list = ["fileName", "sizeKB", "checksum", "createdDate", "createdBy", "id"] %>
     <% list = ["createdBy","createdDate", "isPublic", "createdByType","contentType", "isDraft"] %>
       <strong><ol reversed style="padding: 0"></strong>
     <% @thing.each do |thing| %>
       <div class ="box80">
-        <li style="margin-left: 38px">
         <li style="margin-left: 38px">
         <div class="scrollbox">
           <p><%= thing["commentBody"]%></p>

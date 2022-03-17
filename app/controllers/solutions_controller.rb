@@ -1,6 +1,7 @@
 class SolutionsController < ApplicationController
   def index
-    session[:solution_sort] ||=0
+    session[:solution_sort] ||= 0
+    session[:filter] ||= []
     if params[:engineer_id]
       @engineer = Engineer.find(params[:engineer_id])
       @solutions = Solution.search2(params[:search], @engineer)
@@ -45,29 +46,15 @@ class SolutionsController < ApplicationController
   def newapi
     sanitize = params[:solution_number].gsub(/[[:space:]]+/, "")
     @things = SolutionGrabber.call(sanitize)
-    unless @things.class == "Hash"
-      # added error check in the case grabber service
-      # but now @things doesn't come back as hash, comes back
-      # as a json
-      @things=JSON.parse(@things)
-      p "-----------------------------------"
-      p @things.class
-      p @things
-      p @things["response"]["docs"].first
-      p "-----------------------------------"
+    unless @things[:error]
       solution = {}
-      #params.require(:solution).permit(:title, :number, :importance, :notes, :status, :search)
-      #list = {sbr: "sbrGroup", product: "product", version: "version", issue: "issue", summary: "summary", number: "caseNumber", bug_number: "bugzillaNumber", bug_summary: "bugzillaSummary", customer_contact: "caseContact", account_number: "accountNumber", fts: "fts"}
       list = {title: "allTitle", number: "solution.id", abstract: "abstract", notes: "body", author: "authorSSOName", boostProduct: "boostProduct", created: "createdDate", inferred_tag: "inferred_tag", state: "kcsState", url: "view_uri", product: "product", solution_tag: "tag" }
       list.each do |key, value|
         solution[key]=@things["response"]["docs"].first[value]
       end
-      p "-----------------------------------"
-      p solution.class
-      p solution
-      p "-----------------------------------"
       
       # Seen cases without an account hash or case_owner hash, e.g. 03147432
+      # probably doesn't apply to solutions, but just in case
       solution[:customer_name] = @things["account"]["name"] if @things["account"] 
       solution[:case_owner] = @things["caseOwner"]["name"] if @things["caseOwner"]
       @solution = Solution.new(solution)

@@ -1,11 +1,4 @@
 <p class="lopad Mfont book">
-  <%#= link_to "New", "/#{type}s/new?ticketid=#{ticket.id}", class: "nolink" % > |
-  <% if type == "solution" % >
-    <%= link_to "API", "/test/horse", class: "nolink" % > |
-  <% else % >
-    <%= link_to "API", "/#{type}s/findapi?ticketid=#{ticket.id}", class: "nolink" % > |
-  <% end %>
-
   <%= link_to "Edit", "/#{type}s/#{ticket.id}/edit?ticketid=#{ticket.id}", class: "nolink" %> |
   <%= link_to "Comment", "/#{type}s/#{ticket.id}/comments/new", class: "nolink" %> |
   <%= link_to "Remove", "/#{type}s/#{ticket.id}", data:{
@@ -14,7 +7,7 @@
                 }, class: "nolink" %>
 </p>
 <strong><p class="lopad Mfont book">
-<%= link_to "Engineer", "/engineer_tags/new?#{type}_id=#{ticket.id}&engineer_taggable_type=#{type.capitalize}&engineer_taggable_id=#{ticket.id}", class: "nolink" %> |
-<%= link_to "Tag", "/tags/?tag_taggable_type=#{type.capitalize}&tag_taggable_id=#{ticket.id}", class: "nolink" %> 
+  <%= link_to "Engineer", "/engineer_tags/new?#{type}_id=#{ticket.id}&engineer_taggable_type=#{type.capitalize}&engineer_taggable_id=#{ticket.id}", class: "nolink" %> |
+  <%= link_to "Tag", "/tags/?tag_taggable_type=#{type.capitalize}&tag_taggable_id=#{ticket.id}", class: "nolink" %> 
 </p></strong>
 

@@ -31,11 +31,6 @@ class TagItemsController < ApplicationController
         format.json { render json: @tag_item.errors, status: :unprocessable_entity }
       end
     end
-#    if @tag_item.save
-#      redirect_to @tag_item
-#    else
-#      render :new, locals: {ticketid: params[:ticketid]}, action: {ticketid: params[:ticketid]},  status: :unprocessable_entity
-#    end
   end
 
   def former
@@ -56,16 +51,11 @@ class TagItemsController < ApplicationController
   end
 
   def destroy
- #   @tag_item = TagItem.find(params[:id])
     @tag_item.destroy
     redirect_to cases_path, status: 303
   end
 
   private
-#    def tag_group_params
-#      params.require(:tag_group).permit(:name)
-#    end
-
     def get_tag_group
       @tag_group = TagGroup.find(params[:tag_group_id])
     end

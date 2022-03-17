@@ -6,14 +6,14 @@
         <p class="XXLfont book lopad">Tag Object</p>
       </div>
     </div>
-  <ul class="form">
-  <%= form_with model: tag_group do |f| %>
-    <div class="field">
+    <ul class="form">
+      <%= form_with model: tag_group do |f| %>
+        <div class="field">
+          <%= select_tag :tag_group, options_for_select(@tag_group.collect{|p| [p.name, p.id]}, selected: params[:tag_group]), prompt: "Select modelA", class: "form-control", id: "tag_group-select" %>
 
-
-    <%= select_tag :tag_group, options_for_select(@tag_group.collect{|p| [p.name, p.id]}, selected: params[:tag_group]), prompt: "Select modelA", class: "form-control", id: "tag_group-select" %>
-
-    <%= select_tag :tag, options_for_select(@tag.collect{|p| [p.name, p.id]}, selected: params[:tag]), prompt: "Select modelB", class: "form-control", id: "tag-select" %>
-    </div>
+          <%= select_tag :tag, options_for_select(@tag.collect{|p| [p.name, p.id]}, selected: params[:tag]), prompt: "Select modelB", class: "form-control", id: "tag-select" %>
+        </div>
+      <% end %>
     </ul>
-  <% end %>
+  </div>
+</div>
