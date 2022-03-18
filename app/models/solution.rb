@@ -11,7 +11,7 @@ class Solution < ApplicationRecord
   has_one :network_tag, as: :network_taggable, dependent: :destroy
 
   validates :title, presence: true
-  validates :number, presence: true, length: { minimum: 7, maximum: 7 }
+  validates :number, presence: true
   validates_uniqueness_of :number
 
   def self.search2(search,engineer)
