@@ -233,3 +233,7 @@ bug:
 
   TAG Items: IPv4, IPv6, Bridge, VLAN, Bond, Proxy, Firewall, TCPdump 
 ~~~
+
+### Getting Help
+
+Please feel free to submit pull request and file bugs on the <a href="https://github.com/math3matical/procure/issues">issue tracker</a>
