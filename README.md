@@ -52,27 +52,38 @@
 
 ### Install a higher version of Ruby.  One option is to use rbenv.
 
+<a href="https://github.com/rbenv/rbenv">https://github.com/rbenv/rbenv</a>
+
+ - Used the `Basic GitHub Checkout` method to install rbenv.  Commands for `Basic GitHub Checkout`:
+
 ~~~
-  <a href="https://github.com/rbenv/rbenv">https://github.com/rbenv/rbenv</a>
+  $ git clone https://github.com/rbenv/rbenv.git ~/.rbenv
+  $ cd ~/.rbenv && src/configure && make -C src
+  $ echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc
+  $ ~/.rbenv/bin/rbenv init
 ~~~
 
- - Had to add shims to the PATH:
+ - At this point, the instructions say to restart the shell and try the `rbenv-doctor` script, but it will fail.  You will first need to add shims to the $PATH variable:
 
 ~~~
   $ echo 'export PATH="$HOME/.rbenv/shims:$PATH"' >> ~/.bashrc
 ~~~
 
- - rbenv requires the ruby-build plugin which can be installed from this link:
+ - And then need to install the ruby-build plugin which can be installed from this link:
 
-~~~
-  <a href"https://github.com/rbenv/ruby-build#readme">https://github.com/rbenv/ruby-build#readme</a>
-~~~
+<a href"https://github.com/rbenv/ruby-build#readme">https://github.com/rbenv/ruby-build#readme</a>
 
- - commands to install ruby-build:
+ - Commands to install ruby-build plugin:
 
 ~~~
   $ mkdir -p "$(rbenv root)"/plugins
   $ git clone https://github.com/rbenv/ruby-build.git "$(rbenv root)"/plugins/ruby-build
+~~~
+
+ - Then make sure the shell is restarted, and try the `rbenv-doctor` script:
+
+~~~
+  $ curl -fsSL https://github.com/rbenv/rbenv-installer/raw/main/bin/rbenv-doctor | bash
 ~~~
 
 ### Install ruby 2.7.5
@@ -99,15 +110,14 @@
 ~~~
   $ sudo systemctl start mariadb
   $ mysql -u root
-  > create procure_development database in mysql:
-  > create database if not exists brocure_development;
-  > grant all privileges on brocure_development.* to 'user_name'@'host.example.com' identified by 'password';
+  > create database if not exists procure_development;
+  > grant all privileges on procure_development.* to 'user_name'@'host.example.com' identified by 'password';
   > flush privileges;
 ~~~
 
 ### Download procure into the directory of your choice:
 
-~~
+~~~
   $ git clone https://github.com/math3matical/procure.git
 ~~~
 
