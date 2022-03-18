@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-# README
+## README
 
  - This application was tested on a RHEL7 system.  To get the necessary libraries for this rails application, you will need:
 
@@ -44,13 +43,13 @@
   $ sudo yum install epel-release-latest-7.noarch.rpm
 ~~~
 
-### Install the necessary packages:
+### Install the necessary packages
 
 ~~~
   $ sudo yum install git git-core zlib zlib-devel gcc-c++ patch readline readline-devel libyaml-devel libffi-devel openssl-devel make bzip2 autoconf automake libtool bison curl mariadb mariadb-server mysql-devel nodejs npm
 ~~~
 
-### Install a higher version of Ruby.  One option is to use rbenv.
+### Install a higher version of Ruby.  One option is to use rbenv
 
 <a href="https://github.com/rbenv/rbenv">https://github.com/rbenv/rbenv</a>
 
@@ -71,7 +70,7 @@
 
  - And then need to install the ruby-build plugin which can be installed from this link:
 
-<a href"https://github.com/rbenv/ruby-build#readme">https://github.com/rbenv/ruby-build#readme</a>
+<a href="https://github.com/rbenv/ruby-build#readme">https://github.com/rbenv/ruby-build#readme</a>
 
  - Commands to install ruby-build plugin:
 
@@ -99,13 +98,13 @@
   $ npm install --global yarn
 ~~~
 
-### Install rails:
+### Install rails
 
 ~~~
   $ gem install rails
 ~~~
 
-### Start MariaDB server and create database:
+### Start MariaDB server and create database
 
 ~~~
   $ sudo systemctl start mariadb
@@ -115,7 +114,7 @@
   > flush privileges;
 ~~~
 
-### Download procure into the directory of your choice:
+### Download procure into the directory of your choice
 
 ~~~
   $ git clone https://github.com/math3matical/procure.git
@@ -130,14 +129,11 @@
   $ bin/rails s -b 192.168.0.15
 ~~~
 
-### Necessary changes before rails can start:
+### Necessary changes before rails can start
 
-In order to for rails to run, you will need to edit the config/database.yml file with the user/password for the mysql database.  Also, change the ip address (or use localhost if your application is running on the same system accessing the Web Browser)
+ - In order to for rails to run, you will need to edit the config/database.yml file with the user/password for the mysql database.  Also, change the ip address (or use localhost if your application is running on the same system accessing the Web Browser).
 
-~~~
-  - config/database.yaml
-  - background location   <=== this will be wrong.  The default pathway
-~~~
+ - The css profiles for the background colors is hardcoded to `/root/home/user/procure/app/assets/stylesheets/backups/`.  This will change depdening on the name of the user, as well as where the procure app is installed.
 
  - The credentials.yml.enc file will not have the master.key.  Delete the one located at:
 
@@ -151,7 +147,7 @@ In order to for rails to run, you will need to edit the config/database.yml file
   $ rails credentials:edit
 ~~~
 
- - Finally you will be need to edit the credentials that are necessary to make API calls from within procure.  To edit the credentials that will be stored on your rails application (and will be secure as long as you don't share the procure/app/config/master.key:
+ - Finally you will be need to edit the credentials that are necessary to make API calls from within procure.  To edit the credentials that will be stored on your rails application (and will be secure as long as you don't share the `procure/app/config/master.key`:
 
 ~~~
   EDITOR="vim" rails credentials:edit
@@ -167,6 +163,8 @@ bug:
   key: 'bugzilla-token'
 ~~~
 
+ - To obtain a bugzilla api token, login to <a href="https://bugzilla.redhat.com/userprefs.cgi?tab=apikey">https://bugzilla.redhat.com/userprefs.cgi?tab=apikey</a>
+
 
 * System dependencies
 
@@ -181,8 +179,3 @@ bug:
 * Services (job queues, cache servers, search engines, etc.)
 
 * Deployment instructions
-
-* ...
-=======
-# procure
->>>>>>> 6ca89f50e4a0b1c47faafb37722c99a332c5f8d8
