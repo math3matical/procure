@@ -36,7 +36,7 @@
 
  - You will need the RHEL7 repository enabled, as well as the EPEL repository.
 
-<br>
+
 ### 1) Install EPEL
 
 ~~~
@@ -45,14 +45,14 @@
   $ sudo yum install -y epel-release-latest-7.noarch.rpm
 ~~~
 
-<br>
+
 ### 2) Install the necessary packages
 
 ~~~
   $ sudo yum install git git-core zlib zlib-devel gcc-c++ patch readline readline-devel libyaml-devel libffi-devel openssl-devel make bzip2 autoconf automake libtool bison curl mariadb mariadb-server mysql-devel nodejs npm vim
 ~~~
 
-<br>
+
 ### 3) Install a version of Ruby > 2.7.0.  One option is to use `rbenv`
 
  > https://github.com/rbenv/rbenv
@@ -89,7 +89,7 @@
   $ curl -fsSL https://github.com/rbenv/rbenv-installer/raw/main/bin/rbenv-doctor | bash
 ~~~
 
-<br>
+
 ### 4) Install ruby 2.7.5
 
 ~~~
@@ -97,21 +97,21 @@
   $ echo "2.7.5" > ~/.ruby-version
 ~~~
 
-<br>
+
 ### 5) Install yarn
 
 ~~~
   $ sudo npm install --global yarn
 ~~~
 
-<br>
+
 ### 6) Install rails
 
 ~~~
   $ gem install rails
 ~~~
 
-<br>
+
 ### 7) Start MariaDB server and create database.  Be sure to substitute for `user_name`, `host.ip` and `password` in the 2 `grant` sql queries below.  The `user_name`, `password` and `host.ip` used here will be the same ones used for the `config/database.yml` file set up in step 9
 
 ~~~
@@ -125,17 +125,17 @@
   > exit
 ~~~
 
-<br>
+
 ### 8) Download procure into the directory of your choice
 
 ~~~
   $ git clone https://github.com/math3matical/procure.git
 ~~~
 
-<br>
+
 ### 9) Edit the `procure/config/database.yml` and update the `username`, `password`, and `host` to the values used in step 7
 
-<br>
+
 ### 10) Navigate to the procure directory (substituting for the correct pathway to the procure directory for the `/PATH/TO`).  Then execute the rest of the commands
 
 ~~~
@@ -145,21 +145,21 @@
   $ bin/rails db:schema:load
 ~~~
 
-<br>
+
 ### 11) Double check firewall port 3000 is open
 
 ~~~
   $ sudo firewall-cmd --add-port=3000/tcp --permanent; sudo firewall-cmd --reload
 ~~~
 
-<br>
+
 ### 12) To verify if rails can start successfully run this command and then navigate to the address of your server at port 3000 in a browser, e.g `192.168.0.1:3000`
 
 ~~~
   $ bin/rails s -b <host.ip>
 ~~~
 
-<br>
+
 ### 13) Necessary changes before procure can make API calls and change background colors.  You will need to stop the rails console and start it again for the changes to take affect.  To stop the rails server, type `ctrl+c` in the same terminal as the `bin/rails s -b <host.ip>` command was ran
 
  - The css profiles for the background colors is hardcoded to `/home/user/procure/app/assets/stylesheets/backups/`.  This will change depdening on the name of the user, as well as where the procure app is installed.  This setting can be changed in the `procure/app/services/color_change.rb` file.  Be sure to update both file locations used in the `color_change.rb` script.
@@ -191,7 +191,7 @@ bug:
  - To obtain a Bugzilla API token, login to <a href="https://bugzilla.redhat.com/userprefs.cgi?tab=apikey">https://bugzilla.redhat.com/userprefs.cgi?tab=apikey</a>
 
 
-<br>
+
 ### 14) Populating the Tag Group and Tag Item tables.  This process is currently manual, but will be added into the UI
 
  - From the procure directory, login to the rails console:
