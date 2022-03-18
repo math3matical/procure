@@ -1,6 +1,6 @@
 ## README
 
- - This application was built and tested on a RHEL 7.9 system.  Other systems may work, but this guide is for configuring a RHEL 7.9 server to run the procure rails application.  procure requires the follwing packages:
+ - This application was built and tested on RHEL 7.9.  Other systems may work, but this guide is for configuring a RHEL 7.9 server to run the procure rails application, requiring the following packages:
 
 ~~~
   rails > 7.0
@@ -30,12 +30,13 @@
   mysql  Ver 15.1 Distrib 5.5.68-MariaDB, for Linux (x86_64) using readline 5.1
 ~~~
 
- - procure was initially developed with sqlit3, but sqlite3 lacked certain features other databases such as mysql or postgresql had.  Other databases can be use, hwoever, sqlite3 will not be compatible with some of the procure features.
+ - procure was initially developed with sqlit3, but sqlite3 lacked certain features other databases such as mysql or postgresql had.  Other databases can be use, however, sqlite3 will not be compatible with some of the procure features.
 
  - RHEL7 doesn't offer ruby higher than 2.0, or nodejs higher than 4.0.  As such, we will need to install ruby and nodejs outside of the Red Hat repositories so we can have newer features.
 
  - You will need the RHEL7 repository enabled, as well as the EPEL repository.
 
+<br>
 ### 1) Install EPEL
 
 ~~~
@@ -44,12 +45,14 @@
   $ sudo yum install -y epel-release-latest-7.noarch.rpm
 ~~~
 
+<br>
 ### 2) Install the necessary packages
 
 ~~~
   $ sudo yum install git git-core zlib zlib-devel gcc-c++ patch readline readline-devel libyaml-devel libffi-devel openssl-devel make bzip2 autoconf automake libtool bison curl mariadb mariadb-server mysql-devel nodejs npm vim
 ~~~
 
+<br>
 ### 3) Install a version of Ruby > 2.7.0.  One option is to use `rbenv`
 
  > https://github.com/rbenv/rbenv
@@ -73,19 +76,20 @@
 
  > <a href="https://github.com/rbenv/ruby-build#readme">https://github.com/rbenv/ruby-build#readme</a>
 
- - Commands to install ruby-build plugin (make sure you start a new shell, i.e. logout and back in):
+ - Commands to install ruby-build plugin (make sure you start a new shell, i.e. logout and back in first):
 
 ~~~
   $ mkdir -p "$(rbenv root)"/plugins
   $ git clone https://github.com/rbenv/ruby-build.git "$(rbenv root)"/plugins/ruby-build
 ~~~
 
- - Then make sure the shell is restarted, and try the `rbenv-doctor` script:
+ - Then make sure the shell is restarted, and make sure the `rbenv-doctor` script returns successful:
 
 ~~~
   $ curl -fsSL https://github.com/rbenv/rbenv-installer/raw/main/bin/rbenv-doctor | bash
 ~~~
 
+<br>
 ### 4) Install ruby 2.7.5
 
 ~~~
@@ -93,19 +97,22 @@
   $ echo "2.7.5" > ~/.ruby-version
 ~~~
 
+<br>
 ### 5) Install yarn
 
 ~~~
   $ sudo npm install --global yarn
 ~~~
 
+<br>
 ### 6) Install rails
 
 ~~~
   $ gem install rails
 ~~~
 
-### 7) Start MariaDB server and create database.  Be sure to substitute for `user_name`, `host.ip` and `password` in the 2 grant sql queries.  The `user_name` and `password` used here will be the same ones used for the `config/database.yml` file set up in step 9
+<br>
+### 7) Start MariaDB server and create database.  Be sure to substitute for `user_name`, `host.ip` and `password` in the 2 `grant` sql queries below.  The `user_name`, `password` and `host.ip` used here will be the same ones used for the `config/database.yml` file set up in step 9
 
 ~~~
   $ sudo systemctl start mariadb; sudo systemctl enable mariadb
@@ -118,36 +125,42 @@
   > exit
 ~~~
 
+<br>
 ### 8) Download procure into the directory of your choice
 
 ~~~
   $ git clone https://github.com/math3matical/procure.git
 ~~~
 
-### 9) Edit the `procure/config/database.yml` and update the `username`, `password`, and `host` to the values used in step 7.
+<br>
+### 9) Edit the `procure/config/database.yml` and update the `username`, `password`, and `host` to the values used in step 7
 
-### 10) Navigate to the procure directory (substituting for the correct pathway to the procure directory in your environment).  Then execute the rest of the commands.
+<br>
+### 10) Navigate to the procure directory (substituting for the correct pathway to the procure directory for the `/PATH/TO`).  Then execute the rest of the commands
 
 ~~~
-  $ cd </PATH/TO/>/procure/
+  $ cd /PATH/TO/procure/
   $ bundle install
   $ bundle exec rake webpacker:install
   $ bin/rails db:schema:load
 ~~~
 
-### 11) Double check firewall port 3000 is open:
+<br>
+### 11) Double check firewall port 3000 is open
 
 ~~~
   $ sudo firewall-cmd --add-port=3000/tcp --permanent; sudo firewall-cmd --reload
 ~~~
 
-### 12) To verify if rails can start successfully run this command and then navigate to the address of your server at port 3000 in a browser, e.g `192.168.0.1:3000`:
+<br>
+### 12) To verify if rails can start successfully run this command and then navigate to the address of your server at port 3000 in a browser, e.g `192.168.0.1:3000`
 
 ~~~
   $ bin/rails s -b <host.ip>
 ~~~
 
-### 13) Necessary changes before procure can make API calls and change background colors.  You will need to stop the rails console and start it again for the changes to take affect.  To stop the rails server, type `ctrl+c` in the same terminal as the `bin/rails s -b <host.ip>` command was ran.
+<br>
+### 13) Necessary changes before procure can make API calls and change background colors.  You will need to stop the rails console and start it again for the changes to take affect.  To stop the rails server, type `ctrl+c` in the same terminal as the `bin/rails s -b <host.ip>` command was ran
 
  - The css profiles for the background colors is hardcoded to `/home/user/procure/app/assets/stylesheets/backups/`.  This will change depdening on the name of the user, as well as where the procure app is installed.  This setting can be changed in the `procure/app/services/color_change.rb` file.  Be sure to update both file locations used in the `color_change.rb` script.
 
@@ -161,7 +174,7 @@
 
 ~~~
   $ EDITOR="vim" rails credentials:edit
-~~~
+~~~ 
 
  - These credentials will be safe as long as the `procure/app/config/master.key` is not shared with anyone.  In addition, both the `master.key` and `credentials.yml.enc` have been added to the `.gitignore` file.
 
@@ -178,7 +191,8 @@ bug:
  - To obtain a Bugzilla API token, login to <a href="https://bugzilla.redhat.com/userprefs.cgi?tab=apikey">https://bugzilla.redhat.com/userprefs.cgi?tab=apikey</a>
 
 
-### 14) Populating the Tag Group and Tag Item tables.  This process is currently manual, but will be added into the UI.
+<br>
+### 14) Populating the Tag Group and Tag Item tables.  This process is currently manual, but will be added into the UI
 
  - From the procure directory, login to the rails console:
 
@@ -189,19 +203,19 @@ bug:
  - To create a new Tag Group:
 
 ~~~
-  > TagGroup.new(name: "Example Group").save
+   TagGroup.new(name: "Example Group").save
 ~~~
 
  - To create a new Tag Item, use this command, replacing <ID> for the Tag Group id:
 
 ~~~
-  > TagItem.new(name: "Example Item", tag_group_id: <ID>).save
+   TagItem.new(name: "Example Item", tag_group_id: <ID>).save
 ~~~
 
  - The Tag Group id can be found many ways.  One such way:
 
 ~~~
-  > TagGroup.find_by_name("Example Group").id
+   TagGroup.find_by_name("Example Group").id
 ~~~
 
  - To exit the console
@@ -210,7 +224,9 @@ bug:
   > exit
 ~~~
 
- - It is best to create a template for these commands in a text editor.  Copy them as many as you need, and insert the values for the Tag Groups and Tag Items.  These values should help you tag objects in the procure application.  An example tag group with associated tag items:
+ - It is best to create a template for these commands in a text editor by creating however many you need.  Fill in the values for the `:name` and `:tag_group_id` values.  Copy them to the `rails console` to save them.  
+
+ - These values should help you tag objects in the procure application.  Tags can be filtered on with the `filter` button.  The filter logic is currently an `inclusive or`.  An example tag group with associated tag items:
 
 ~~~
   Tag Group: Networking
