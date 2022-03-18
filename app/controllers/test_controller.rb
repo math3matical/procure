@@ -32,10 +32,11 @@ class TestController < ApplicationController
   end
 
   def addfilter
-    unless session[:filter].include?(params[:tag_item_id])
-      session[:filter] << params[:tag_item_id] if params[:tag_item_id]
+    if params[:tag_item_id] && params[:tag_group_id]
+      unless session[:filter].include?(params[:tag_item_id])
+        session[:filter] << params[:tag_item_id] if params[:tag_item_id].length > 0
+      end
     end
-    p session[:filter]
     redirect_back(fallback_location: root_path)
   end
   

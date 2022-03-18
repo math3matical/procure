@@ -9,6 +9,6 @@ class ColorChange < ApplicationService
   end
 
   def call
-    FileUtils.cp("/root/home/user/procure/app/assets/stylesheets/backup-colors/#{@css_file}", "/root/home/user/procure/app/assets/stylesheets/colorscheme.css")
+    FileUtils.cp("/home/user/procure/app/assets/stylesheets/backup-colors/#{@css_file}", "/home/user/procure/app/assets/stylesheets/colorscheme.css")
   end
 end
