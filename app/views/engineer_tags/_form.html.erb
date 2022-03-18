@@ -28,7 +28,7 @@
                 for now and handle the logic here  %> 
             <% case engineer_taggable_type %>
             <% when 'Solution' %>
-              <% solution = Solution.find(engineer_taggable_id) %>
+              <% solution = Solution.find(engineer_taggable_id).or %>
               <% engineers||= Engineer.all - solution.engineers %>
             <% when 'Case' %>
               <% casse = Case.find(engineer_taggable_id) %>

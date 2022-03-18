@@ -22,7 +22,6 @@ class EngineersController < ApplicationController
     else
       render :new, status: :unprocessable_entity
     end
-    @engineers=@engineers.reverse
   end
 
 

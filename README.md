@@ -1,6 +1,6 @@
 ## README
 
- - This application was built and tested on RHEL 7.9.  Other systems may work, but this guide is for configuring a RHEL 7.9 server to run the procure rails application, requiring the following packages:
+ - This application was built and tested on RHEL 7.9.  Other systems may work, but this guide is will configure a RHEL 7.9 server to run the procure rails application, requiring the following packages:
 
 ~~~
   rails > 7.0
@@ -11,7 +11,7 @@
   git
 ~~~
 
- - The versions procure was tested with:
+ - The package versions procure was tested with:
 
 ~~~
   $ rbenv version
@@ -30,9 +30,9 @@
   mysql  Ver 15.1 Distrib 5.5.68-MariaDB, for Linux (x86_64) using readline 5.1
 ~~~
 
- - procure was initially developed with sqlit3, but sqlite3 lacked certain features other databases such as mysql or postgresql had.  Other databases can be use, however, sqlite3 will not be compatible with some of the procure features.
+ - procure was initially developed with sqlit3, but sqlite3 lacked certain features other databases such as mysql or postgresql had.  Other databases can be used, however, sqlite3 will not be compatible with some of the features in procure.
 
- - RHEL7 doesn't offer ruby higher than 2.0, or nodejs higher than 4.0.  As such, we will need to install ruby and nodejs outside of the Red Hat repositories so we can have newer features.
+ - RHEL7 doesn't offer ruby higher than 2.0, or nodejs higher than 4.7.  As such, we will need to install ruby and nodejs outside of the Red Hat repositories so we can have newer features.
 
  - You will need the RHEL7 repository enabled, as well as the EPEL repository.
 
@@ -46,7 +46,7 @@
 ~~~
 
 
-### 2) Install the necessary packages
+### 2) Install the following packages
 
 ~~~
   $ sudo yum install git git-core zlib zlib-devel gcc-c++ patch readline readline-devel libyaml-devel libffi-devel openssl-devel make bzip2 autoconf automake libtool bison curl mariadb mariadb-server mysql-devel nodejs npm vim
@@ -112,7 +112,7 @@
 ~~~
 
 
-### 7) Start MariaDB server and create database.  Be sure to substitute for `user_name`, `host.ip` and `password` in the 2 `grant` sql queries below.  The `user_name`, `password` and `host.ip` used here will be the same ones used for the `config/database.yml` file set up in step 9
+### 7) Start MariaDB server and create the development and test databases.  Be sure to substitute for `user_name`, `host.ip` and `password` in the 2 `grant all privileges` sql queries below.  The `user_name`, `password` and `host.ip` used here will be the same ones used for the `config/database.yml` file set up in step 9
 
 ~~~
   $ sudo systemctl start mariadb; sudo systemctl enable mariadb
@@ -153,7 +153,7 @@
 ~~~
 
 
-### 12) To verify if rails can start successfully run this command and then navigate to the address of your server at port 3000 in a browser, e.g `192.168.0.1:3000`
+### 12) To verify if rails can start successfully, run this command and then navigate to the address of your server at port 3000 in a browser, e.g `192.168.0.1:3000`
 
 ~~~
   $ bin/rails s -b <host.ip>
