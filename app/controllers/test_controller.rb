@@ -27,12 +27,16 @@ class TestController < ApplicationController
     end
   end
 
+  def bugsearch
+    @bugs = BugSearch.call(params[:search])
+  end
+
   def bookcall
     @things = CaseFacts.call(params[:message])
   end
 
   def addfilter
-    if params[:tag_item_id] && params[:tag_group_id]
+    if params[:tag_item_id] && params[:tag_group]
       unless session[:filter].include?(params[:tag_item_id])
         session[:filter] << params[:tag_item_id] if params[:tag_item_id].length > 0
       end

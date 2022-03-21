@@ -1,22 +1,25 @@
 body{
-  background: #7CD1B8;
-}
-.testsubbox, .testtitlebox, .testbox, .mainformbox {
-  background-color: #9dc209;  /* pistachio green */
+  background: #98b4aa;
+  background: #eef2f6;
 }
 .uppermain, .mainbox {
-  background-color: #d3fd78;  /* light jade */
-  background-color: #d3fd98;  /* light jade */
+  background: #74959a;
+  background: #ff5959;
+}
+.testsubbox, .testtitlebox, .testbox, .mainformbox {
+  background: #495371;
+  background: #676fa3;
 }
 .boxsubheader, .boxheader, .box80, .boxtag, .scrollout, .ticketform, .ticketformtitle, .tickettitle, .scrollbox, .commenttitle, .whiteheadsubtitle, .commenttitle, .whiteheadsubtitle {
-  background: #ffffbf;  /* green water */
-  background: #e8f7f0;  /* water */
+  background: #f1e0ac;
+  background: #cddeff;
 }
 
 
-.whitebox, .boxtag, .scrollbox, .commenttitle, .whiteheadsubtitle {
+.whitebox, .scrollbox, .commenttitle, .whiteheadsubtitle, .boxtag {
   background: #ffffff;
 }
-.commenttitle, .whiteheadsubtitle {
+
+.whiteheadtitle, .whiteheadsubtitle, .whitetitle, .commenttitle{
   background: none;
 }
