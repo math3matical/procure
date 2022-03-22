@@ -1,12 +1,12 @@
 body{
-  background: #7fc5dc;
+  background: #c5dc7f;
 }
 .testsubbox, .testtitlebox, .testbox, .mainformbox {
 /*https://www.redhat.com/en/about/brand/standards/color*/
-  background: #4888c8;
+  background: #88c848;
 }
 .uppermain, .mainbox {
-  background: #173679;
+  background: #367917;
 }
 .boxsubheader, .boxheader, .box80, .boxtag, .scrollout, .ticketform, .ticketformtitle, .tickettitle, .scrollbox, .commenttitle, .whiteheadsubtitle, .commenttitle, .whiteheadsubtitle {
   background: #e8e163;

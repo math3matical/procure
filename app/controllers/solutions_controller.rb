@@ -63,6 +63,11 @@ class SolutionsController < ApplicationController
     end
   end
 
+  def edit
+    @solution = Solution.find(params[:id])
+  end
+
+
   def update
     @solution = Solution.find(params[:id])
     if @solution.update(solution_params)
